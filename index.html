@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tagle & Co. Art and Craft | Digital Invitations & Web Crafts</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Cormorant Garamond, Montserrat, Pinyon Script -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: '#FDFBF7',
+            'paper-dark': '#F4EFE6',
+            parchment: '#EFE7D8',
+            charcoal: '#1C1917',
+            'charcoal-light': '#292524',
+            gold: '#D4AF37',
+            'gold-dark': '#9A7B1C',
+            terracotta: '#8C4331',
+            olive: '#4A5D4E'
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'serif'],
+            sans: ['Montserrat', 'sans-serif'],
+            script: ['Pinyon Script', 'cursive'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Paper Texture Overlay */
+    .bg-paper-texture {
+      background-color: #FDFBF7;
+      background-image: radial-gradient(#E8DFD1 0.75px, transparent 0.75px), radial-gradient(#E8DFD1 0.75px, #FDFBF7 0.75px);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+    }
+
+    /* Metallic Gold Text Accent */
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #B8860B 0%, #E6CA65 50%, #9A7B1C 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Wax Seal Badge */
+    .wax-seal {
+      background: radial-gradient(circle at 35% 35%, #a83220, #731e12 70%);
+      box-shadow: 0 4px 10px rgba(115, 30, 18, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.25);
+    }
+
+    /* Simulated Phone Screen Scrollbar */
+    .phone-screen::-webkit-scrollbar {
+      width: 4px;
+    }
+    .phone-screen::-webkit-scrollbar-thumb {
+      background: #D4AF37;
+      border-radius: 4px;
+    }
+
+    /* Deckled Edge Visual Border */
+    .deckle-border {
+      border: 1px solid #E5DCCB;
+      box-shadow: 0 10px 30px -10px rgba(28, 25, 23, 0.08);
+    }
+  </style>
+</head>
+<body class="bg-paper-texture text-charcoal font-sans antialiased selection:bg-gold selection:text-white">
+
+  <!-- TOP ANNOUNCEMENT BANNER -->
+  <div class="bg-charcoal text-parchment py-2.5 px-4 text-center text-xs md:text-sm tracking-widest font-medium border-b border-gold/30 flex items-center justify-center gap-2">
+    <span class="bg-terracotta text-white text-[10px] uppercase font-bold px-2 py-0.5 rounded-full tracking-wider">Promo Price</span>
+    <span>Wedding Digital Invitation Basic Package now for only <strong class="text-gold font-semibold">₱999</strong> (Regular ₱1,499)!</span>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur-md border-b border-parchment transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand & Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <img src="icon/tagleandco.ico" 
+             alt="Tagle & Co. Art and Craft Logo" 
+             class="h-12 w-12 object-contain rounded-full border border-gold/40 p-0.5 transition-transform duration-300 group-hover:scale-105"
+             onerror="this.onerror=null; this.src='https://placehold.co/100x100/1C1917/D4AF37?text=T%26C'">
+        <div>
+          <span class="font-serif text-2xl font-bold tracking-tight block leading-none">Tagle & Co.</span>
+          <span class="text-[10px] font-semibold tracking-[0.25em] text-terracotta uppercase block mt-1">Art and Craft</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 font-medium text-xs tracking-widest uppercase text-charcoal/80">
+        <a href="#showcase" class="hover:text-terracotta transition-colors">Invitations</a>
+        <a href="#showcase" class="hover:text-terracotta transition-colors">Live Preview</a>
+        <a href="#pricing" class="hover:text-terracotta transition-colors">Packages</a>
+        <a href="#estimator" class="hover:text-terracotta transition-colors">Instant Quote</a>
+        <a href="#va-portfolio" class="hover:text-terracotta transition-colors text-olive font-bold">VA Services</a>
+      </nav>
+
+      <!-- Action Button -->
+      <a href="#pricing" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 bg-charcoal text-parchment text-xs tracking-wider uppercase font-semibold rounded hover:bg-terracotta transition-all shadow-md">
+        Book Order
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+    <div class="grid md:grid-cols-12 gap-12 items-center">
+      
+      <!-- Left Editorial Column -->
+      <div class="md:col-span-7 space-y-6 text-center md:text-left">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-parchment/60 border border-gold/30 text-xs font-medium tracking-wider uppercase text-charcoal-light">
+          <i class="fa-solid fa-gem text-gold"></i> Digital Artistry & Craftsmanship
+        </div>
+
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
+          Crafted with Heart. <br>
+          <span class="font-script text-terracotta font-normal text-5xl sm:text-6xl lg:text-7xl -mt-2 block">Memories for a Lifetime.</span>
+        </h1>
+
+        <p class="text-charcoal/80 text-sm sm:text-base font-light max-w-xl leading-relaxed mx-auto md:mx-0">
+          Elevate your special moments with handcrafted digital invitation websites. From elegant wedding showcases to milestone celebrations, we turn your stories into timeless digital experiences.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start pt-2">
+          <a href="#pricing" class="w-full sm:w-auto px-8 py-3.5 bg-terracotta text-white text-xs tracking-widest uppercase font-semibold rounded hover:bg-charcoal transition-all shadow-lg text-center">
+            View Wedding Packages
+          </a>
+          <a href="#showcase" class="w-full sm:w-auto px-8 py-3.5 border border-charcoal/30 text-charcoal text-xs tracking-widest uppercase font-semibold rounded hover:border-gold hover:text-gold-dark transition-all text-center">
+            Try Live Demo
+          </a>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="pt-8 border-t border-parchment grid grid-cols-3 gap-4 text-center md:text-left">
+          <div>
+            <p class="font-serif text-2xl font-bold text-charcoal">₱999</p>
+            <p class="text-[11px] text-charcoal/70 tracking-wider uppercase">Basic Wedding Promo</p>
+          </div>
+          <div>
+            <p class="font-serif text-2xl font-bold text-charcoal">100%</p>
+            <p class="text-[11px] text-charcoal/70 tracking-wider uppercase">Mobile Responsive</p>
+          </div>
+          <div>
+            <p class="font-serif text-2xl font-bold text-charcoal">Fast</p>
+            <p class="text-[11px] text-charcoal/70 tracking-wider uppercase">Turnaround Time</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Feature Card -->
+      <div class="md:col-span-5 relative">
+        <div class="relative bg-paper-dark p-6 sm:p-8 rounded-2xl deckle-border text-center space-y-6">
+          <div class="w-20 h-20 mx-auto rounded-full border-2 border-gold p-1 bg-paper shadow-md">
+            <img src="icon/tagleandco.ico" alt="Tagle & Co. Emblem" class="w-full h-full object-contain rounded-full" onerror="this.onerror=null; this.src='https://placehold.co/100x100/1C1917/D4AF37?text=T%26C'">
+          </div>
+
+          <span class="font-script text-3xl text-terracotta block">Tagle & Co. Signature</span>
+          <h2 class="font-serif text-2xl font-semibold">Interactive Wedding Experience</h2>
+          
+          <p class="text-xs text-charcoal/70 leading-relaxed font-light">
+            Every website includes interactive RSVPs, custom background theme music, photo galleries, entourage lists, Google Maps directions, and dynamic countdown timers.
+          </p>
+
+          <div class="p-4 bg-paper rounded-xl border border-parchment text-left text-xs space-y-2">
+            <div class="flex justify-between items-center text-charcoal/80">
+              <span><i class="fa-solid fa-check text-gold mr-2"></i>Photo Gallery</span>
+              <span class="font-medium">15 - 20 Photos</span>
+            </div>
+            <div class="flex justify-between items-center text-charcoal/80">
+              <span><i class="fa-solid fa-check text-gold mr-2"></i>Theme Music</span>
+              <span class="font-medium">Couple's Choice</span>
+            </div>
+            <div class="flex justify-between items-center text-charcoal/80">
+              <span><i class="fa-solid fa-check text-gold mr-2"></i>Location Map</span>
+              <span class="font-medium">Google Maps API</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DIGITAL INVITATION SHOWCASE GRID -->
+  <section id="showcase" class="py-20 bg-paper-dark/50 border-y border-parchment">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <!-- Section Header -->
+      <div class="text-center space-y-3 max-w-2xl mx-auto">
+        <span class="font-script text-3xl text-terracotta">Exquisite Designs</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight">Our Invitation Portfolio</h2>
+        <p class="text-xs sm:text-sm text-charcoal/70">Tap a design to preview it in a pop-up, or open the full website in a new tab.</p>
+      </div>
+
+      <!-- CATEGORY FILTERS: only categories represented by uploaded HTML files -->
+      <div id="designFilters" class="flex flex-wrap justify-center gap-2 sm:gap-4 text-xs font-medium uppercase tracking-wider">
+        <button type="button" data-filter="all" aria-pressed="true" class="design-filter px-5 py-2.5 rounded-full bg-charcoal text-white shadow-sm transition-all">All Designs</button>
+        <button type="button" data-filter="wedding" aria-pressed="false" class="design-filter px-5 py-2.5 rounded-full bg-paper border border-parchment hover:border-gold transition-all">Weddings (Kasal)</button>
+      </div>
+
+      <!-- DESIGN CARDS: each card lets visitors choose Pop-up (on this site) or New tab -->
+      <div class="space-y-6">
+        <p class="text-center text-[11px] text-charcoal/60 tracking-wide"><i class="fa-regular fa-window-restore text-gold-dark mr-1"></i> Pop-up keeps you on this page &nbsp;•&nbsp; <i class="fa-solid fa-arrow-up-right-from-square text-gold-dark mr-1"></i> New tab opens the full website</p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4" id="designChoices">
+          <article class="design-choice group rounded-xl border-2 border-parchment bg-paper p-3 shadow-sm transition hover:-translate-y-1 hover:border-gold" data-demo="0" data-category="wedding">
+            <button type="button" data-action="popup" data-demo="0" class="block w-full text-left" aria-label="Preview Passport Wedding in a pop-up">
+              <div class="aspect-[9/13] rounded-lg bg-[#4a0e17] text-[#f5dda0] flex flex-col items-center justify-center gap-3 overflow-hidden"><i class="fa-solid fa-passport text-3xl"></i><span class="font-serif text-lg">01</span></div>
+              <span class="block mt-2 text-xs font-semibold">Passport Wedding</span>
+              <span class="text-[10px] text-charcoal/60">Wedding Invitation</span>
+            </button>
+            <div class="mt-3 grid grid-cols-2 gap-1.5">
+              <button type="button" data-action="popup" data-demo="0" class="whitespace-nowrap inline-flex items-center justify-center gap-1.5 px-1 py-2 bg-charcoal text-parchment text-[10px] uppercase tracking-wider font-semibold rounded hover:bg-terracotta transition-colors"><i class="fa-regular fa-window-restore"></i> Pop-up</button>
+              <a href="passport-wedding.html" target="_blank" rel="noopener" class="whitespace-nowrap inline-flex items-center justify-center gap-1.5 px-1 py-2 border border-charcoal/30 text-charcoal text-[10px] uppercase tracking-wider font-semibold rounded hover:border-gold hover:text-gold-dark transition-colors"><i class="fa-solid fa-arrow-up-right-from-square"></i> New tab</a>
+            </div>
+          </article>
+          <article class="design-choice group rounded-xl border-2 border-parchment bg-paper p-3 shadow-sm transition hover:-translate-y-1 hover:border-gold" data-demo="1" data-category="wedding">
+            <button type="button" data-action="popup" data-demo="1" class="block w-full text-left" aria-label="Preview Vogue Wedding Issue 01 in a pop-up">
+              <div class="aspect-[9/13] rounded-lg bg-[#111111] text-[#c5a059] flex flex-col items-center justify-center gap-3 overflow-hidden"><i class="fa-solid fa-book-open text-3xl"></i><span class="font-serif text-lg">02</span></div>
+              <span class="block mt-2 text-xs font-semibold">Vogue Wedding Issue 01</span>
+              <span class="text-[10px] text-charcoal/60">Wedding Invitation</span>
+            </button>
+            <div class="mt-3 grid grid-cols-2 gap-1.5">
+              <button type="button" data-action="popup" data-demo="1" class="whitespace-nowrap inline-flex items-center justify-center gap-1.5 px-1 py-2 bg-charcoal text-parchment text-[10px] uppercase tracking-wider font-semibold rounded hover:bg-terracotta transition-colors"><i class="fa-regular fa-window-restore"></i> Pop-up</button>
+              <a href="vogue-wedding-01.html" target="_blank" rel="noopener" class="whitespace-nowrap inline-flex items-center justify-center gap-1.5 px-1 py-2 border border-charcoal/30 text-charcoal text-[10px] uppercase tracking-wider font-semibold rounded hover:border-gold hover:text-gold-dark transition-colors"><i class="fa-solid fa-arrow-up-right-from-square"></i> New tab</a>
+            </div>
+          </article>
+          <article class="design-choice group rounded-xl border-2 border-parchment bg-paper p-3 shadow-sm transition hover:-translate-y-1 hover:border-gold" data-demo="2" data-category="wedding">
+            <button type="button" data-action="popup" data-demo="2" class="block w-full text-left" aria-label="Preview Vogue Wedding Issue 02 in a pop-up">
+              <div class="aspect-[9/13] rounded-lg bg-[#080808] text-[#c5a059] flex flex-col items-center justify-center gap-3 overflow-hidden"><i class="fa-solid fa-newspaper text-3xl"></i><span class="font-serif text-lg">03</span></div>
+              <span class="block mt-2 text-xs font-semibold">Vogue Wedding Issue 02</span>
+              <span class="text-[10px] text-charcoal/60">Wedding Invitation</span>
+            </button>
+            <div class="mt-3 grid grid-cols-2 gap-1.5">
+              <button type="button" data-action="popup" data-demo="2" class="whitespace-nowrap inline-flex items-center justify-center gap-1.5 px-1 py-2 bg-charcoal text-parchment text-[10px] uppercase tracking-wider font-semibold rounded hover:bg-terracotta transition-colors"><i class="fa-regular fa-window-restore"></i> Pop-up</button>
+              <a href="vogue-wedding-02.html" target="_blank" rel="noopener" class="whitespace-nowrap inline-flex items-center justify-center gap-1.5 px-1 py-2 border border-charcoal/30 text-charcoal text-[10px] uppercase tracking-wider font-semibold rounded hover:border-gold hover:text-gold-dark transition-colors"><i class="fa-solid fa-arrow-up-right-from-square"></i> New tab</a>
+            </div>
+          </article>
+          <article class="design-choice group rounded-xl border-2 border-parchment bg-paper p-3 shadow-sm transition hover:-translate-y-1 hover:border-gold" data-demo="3" data-category="wedding">
+            <button type="button" data-action="popup" data-demo="3" class="block w-full text-left" aria-label="Preview Julian &amp; Sophia in a pop-up">
+              <div class="aspect-[9/13] rounded-lg bg-[#2C2A29] text-[#D4AF37] flex flex-col items-center justify-center gap-3 overflow-hidden"><i class="fa-solid fa-envelope-open-text text-3xl"></i><span class="font-serif text-lg">04</span></div>
+              <span class="block mt-2 text-xs font-semibold">Julian &amp; Sophia</span>
+              <span class="text-[10px] text-charcoal/60">Wedding Invitation</span>
+            </button>
+            <div class="mt-3 grid grid-cols-2 gap-1.5">
+              <button type="button" data-action="popup" data-demo="3" class="whitespace-nowrap inline-flex items-center justify-center gap-1.5 px-1 py-2 bg-charcoal text-parchment text-[10px] uppercase tracking-wider font-semibold rounded hover:bg-terracotta transition-colors"><i class="fa-regular fa-window-restore"></i> Pop-up</button>
+              <a href="julian-sophia-wedding.html" target="_blank" rel="noopener" class="whitespace-nowrap inline-flex items-center justify-center gap-1.5 px-1 py-2 border border-charcoal/30 text-charcoal text-[10px] uppercase tracking-wider font-semibold rounded hover:border-gold hover:text-gold-dark transition-colors"><i class="fa-solid fa-arrow-up-right-from-square"></i> New tab</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- WEDDING INVITATION PACKAGES & PRICING -->
+  <section id="pricing" class="py-20 bg-paper-dark/50 border-t border-parchment">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <!-- Section Title -->
+      <div class="text-center space-y-3 max-w-2xl mx-auto">
+        <span class="font-script text-3xl text-terracotta">Investment & Value</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight">Wedding Invitation Packages</h2>
+        <p class="text-xs sm:text-sm text-charcoal/70">Clear, transparent pricing designed to fit your celebration requirements.</p>
+      </div>
+
+      <!-- Packages Grid -->
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        
+        <!-- BASIC PACKAGE CARD -->
+        <div class="bg-paper rounded-2xl deckle-border p-8 space-y-6 relative flex flex-col justify-between">
+          <div class="absolute -top-3.5 left-6 bg-terracotta text-white text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-full shadow">
+            Special Promo Offer
+          </div>
+
+          <div class="space-y-4 pt-2">
+            <h3 class="font-serif text-2xl font-bold text-charcoal">Basic Package</h3>
+            
+            <!-- Price Display -->
+            <div class="flex items-baseline gap-3">
+              <span class="font-serif text-4xl font-bold text-terracotta">₱999</span>
+              <span class="text-base text-charcoal/40 line-through">₱1,499</span>
+              <span class="text-xs font-semibold text-olive uppercase tracking-wider">Save ₱500</span>
+            </div>
+            
+            <p class="text-xs text-charcoal/70 leading-relaxed border-b border-parchment pb-4">
+              Everything you need for an elegant, fast, and fully functional digital wedding invitation website.
+            </p>
+
+            <!-- Inclusions List -->
+            <ul class="space-y-3 text-xs text-charcoal/80">
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>Ready-made template/design</strong> Theme Color & Details</span></li>
+			  <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>Complete Wedding Entourage</strong> roster</span></li>
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>5-Photo Gallery</strong> showcase</span></li>
+			  <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>Event Location</strong> integrated with Google Navigation</span></li>
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>Wedding Countdown</strong> timer</span></li>
+			  <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>Wedding Day Timeline</strong> schedule</span></li>
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>Simple RSVP Form</strong> with guest monitoring</span></li>
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>Fast-Loading Website</strong> optimized for mobile</span></li>
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>1 Months Live Hosting</strong> included</span></li>
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>Shareable Wedding Website Link</strong> for family and guests</span></li>
+            </ul>
+          </div>
+
+          
+		  
+		  <a href="#estimator"
+			onclick="document.getElementById('calcPackage').value = '999';
+			document.getElementById('calcPackage').dispatchEvent(new Event('change'));
+			document.getElementById('totalPrice').textContent = '₱999';"
+			class="w-full py-3.5 bg-charcoal text-parchment text-xs uppercase tracking-widest font-semibold rounded text-center block hover:bg-terracotta transition-colors shadow">
+			Select Basic Package
+		  </a>
+		  
+        </div>
+
+        <!-- PREMIUM PACKAGE CARD -->
+        <div class="bg-paper rounded-2xl deckle-border p-8 space-y-6 relative flex flex-col justify-between border-2 border-gold">
+          <div class="absolute -top-3.5 left-6 bg-gold text-charcoal text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-full shadow">
+            Most Popular Experience
+          </div>
+
+          <div class="space-y-4 pt-2">
+            <h3 class="font-serif text-2xl font-bold text-charcoal">Premium Package</h3>
+            
+            <!-- Price Display -->
+            <div class="flex items-baseline gap-3">
+              <span class="font-serif text-4xl font-bold text-gold-dark">₱2,499</span>
+              <span class="text-xs font-semibold text-charcoal/60 uppercase tracking-wider">All-Inclusive</span>
+            </div>
+            
+            <p class="text-xs text-charcoal/70 leading-relaxed border-b border-parchment pb-4">
+              A complete, personalized, and rich digital wedding invitation experience with expanded gallery and video clip integration.
+            </p>
+
+            <!-- Inclusions List -->
+            <ul class="space-y-3 text-xs text-charcoal/80">
+			
+			  <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>Ready-made template/design</strong> Theme Color & Details</span></li>	
+			
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>Fine Details</strong> section (Date, Time, Venue)</span></li>
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>Complete Wedding Entourage</strong> roster</span></li>
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span>Up to <strong><big>20-Photo Gallery</big></strong> (Expanded showcase)</span></li>
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong><big>Video Link Integration</big></strong> for Prenup / Proposal video</span></li>
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>Personalized Background Music</strong> (Couple's Choice / Theme Song)</span></li>
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>Event Location</strong> integrated with Google Maps</span></li>
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>Wedding Countdown</strong> timer</span></li>
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>Wedding Day Timeline</strong> schedule</span></li>
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong><big>INTEGRATED RSVP Form</big></strong> with guest monitoring</span></li>
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>Fast-Loading Website</strong> optimized for mobile</span></li>
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>3 Months Hosting</strong> included</span></li>
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span><strong>Technical Support</strong> during hosting duration</span></li>
+              <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-gold mt-0.5"></i> <span>A more complete & personalized digital invitation experience</span></li>
+            </ul>
+          </div>
+
+        <a href="#estimator"
+		onclick="document.getElementById('calcPackage').value = '2499';
+		document.getElementById('calcPackage').dispatchEvent(new Event('change'));
+		document.getElementById('totalPrice').textContent = '₱2,499';"
+		class="w-full py-3.5 bg-gold-dark text-white text-xs uppercase tracking-widest font-semibold rounded text-center block hover:bg-charcoal transition-colors shadow">
+		Select Premium Package
+		</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTANT PROJECT QUOTE ESTIMATOR -->
+  <section id="estimator" class="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-paper rounded-2xl deckle-border p-8 sm:p-12 space-y-8">
+      
+      <div class="text-center space-y-2">
+        <span class="font-script text-3xl text-terracotta">Quote</span>
+        <h2 class="font-serif text-3xl font-bold">Select your preferred package</h2>
+        <p class="text-xs text-charcoal/70">Select your package and optional custom add-ons to calculate your exact investment.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 items-start">
+        
+        <!-- Controls -->
+        <div class="space-y-6">
+          <div class="space-y-2">
+		    
+			
+            <label class="text-xs font-bold uppercase tracking-wider text-charcoal block">Choose Package Base</label>
+            <select id="calcPackage" onchange="calculateQuote()" class="w-full text-xs p-3 bg-paper-dark border border-parchment rounded focus:outline-none focus:border-gold">
+              <option value="999">Basic Wedding Package — ₱999 (Promo)</option>
+              <option value="2499">Premium Wedding Package — ₱2,499</option>
+              <option value="1500">Custom Event / Birthday / Baptism — ₱1,500</option>
+            </select>
+			
+			
+			
+          </div>
+
+          <div class="space-y-3">
+            <label class="text-xs font-bold uppercase tracking-wider text-charcoal block">Optional Custom Add-Ons</label>
+            
+            <label class="flex items-center justify-between p-3 bg-paper-dark/50 rounded border border-parchment text-xs cursor-pointer">
+              <span class="flex items-center gap-2">
+                <input type="checkbox" id="addonDomain" onchange="calculateQuote()" class="rounded text-terracotta">
+                <span>Custom Domain (.com / .ph name)</span>
+              </span>
+              <span class="font-semibold">+₱850</span>
+            </label>
+
+            <label class="flex items-center justify-between p-3 bg-paper-dark/50 rounded border border-parchment text-xs cursor-pointer">
+              <span class="flex items-center gap-2">
+                <input type="checkbox" id="addonHosting" onchange="calculateQuote()" class="rounded text-terracotta">
+                <span>Extra 1-Month Hosting Extension</span>
+              </span>
+              <span class="font-semibold">+₱500</span>
+            </label>
+
+            <label class="flex items-center justify-between p-3 bg-paper-dark/50 rounded border border-parchment text-xs cursor-pointer">
+              <span class="flex items-center gap-2">
+                <input type="checkbox" id="addonRush" onchange="calculateQuote()" class="rounded text-terracotta">
+                <span>24-Hour Express Rush Turnaround</span>
+              </span>
+              <span class="font-semibold">+₱400</span>
+            </label>
+			
+          </div>
+		  
+		  	
+		  
+        </div>
+
+        <!-- Calculated Summary Box -->
+        <div class="bg-paper-dark p-6 rounded-xl border border-parchment space-y-6 text-center md:text-left">
+          <div class="space-y-1">
+            <span class="text-[10px] font-bold uppercase tracking-widest text-charcoal/60">Estimated Investment</span>
+            <div class="font-serif text-4xl font-bold text-terracotta" id="totalPrice">₱999</div>
+            <p class="text-[11px] text-charcoal/60">Includes website creation, setup, and selected features.</p>
+          </div>
+
+          <div class="pt-4 border-t border-parchment space-y-3">
+            
+			<div class="space-y-2">
+            <label class="text-xs font-bold uppercase tracking-wider text-charcoal block">Lets create your digital invitaion</label>
+			<input type="text" autocomplete="name" required maxlength="90"  class="w-full text-xs p-3 bg-paper-dark border border-parchment rounded focus:outline-none focus:border-gold"
+                    placeholder="Your Name ">
+			<input type="email" autocomplete="email" required maxlength="150"  class="w-full text-xs p-3 bg-paper-dark border border-parchment rounded focus:outline-none focus:border-gold"
+                    placeholder="Email address">
+		  </div>	
+			
+            <a href="https://facebook.com" target="_blank" class="w-full py-3 bg-terracotta text-white text-xs uppercase tracking-widest font-semibold rounded text-center block hover:bg-charcoal transition-colors shadow">
+              Submit Inquiry
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONALIZED VA & PROFESSIONAL PORTFOLIO SERVICE SECTION (POSITIONED AT ABSOLUTE END) -->
+  <section id="va-portfolio" class="py-20 bg-charcoal text-parchment border-t-4 border-gold">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      
+      <!-- Top Label -->
+      <div class="text-center space-y-3">
+        <span class="bg-olive text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full inline-block">
+          Specialized Web Crafting
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-white">
+          Personalized Virtual Assistant & Professional Portfolio
+        </h2>
+        <p class="text-xs sm:text-sm text-parchment/70 max-w-2xl mx-auto leading-relaxed">
+          In addition to digital event invitations, Tagle & Co. builds high-converting, custom online portfolios tailored for Virtual Assistants, Freelancers, and Remote Professionals seeking to win premium international clients.
+        </p>
+      </div>
+
+      <!-- Feature Card Box -->
+      <div class="bg-charcoal-light p-8 sm:p-10 rounded-2xl border border-gold/30 space-y-8 shadow-2xl">
+        <div class="grid md:grid-cols-12 gap-8 items-center">
+          
+          <div class="md:col-span-7 space-y-4">
+            <h3 class="font-serif text-2xl font-bold text-gold">Complete Portfolio Solution</h3>
+            <p class="text-xs text-parchment/80 leading-relaxed font-light">
+              Stand out from thousands of applicants with a personalized, high-speed portfolio website showcasing your skills, case studies, service offerings, work samples, and direct booking integration.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-infinity text-gold"></i>
+                <span><strong>Lifetime Online</strong> Portfolio</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-headset text-gold"></i>
+                <span><strong>3 Months Technical Support</strong></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-mobile-screen text-gold"></i>
+                <span>100% Mobile Responsive</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-bolt text-gold"></i>
+                <span>Optimized Fast Loading</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Price & Investment CTA -->
+          <div class="md:col-span-5 bg-charcoal p-6 rounded-xl border border-parchment/20 text-center space-y-4">
+            <span class="text-[10px] uppercase tracking-widest text-parchment/60 font-semibold">Total Package Price</span>
+            <div class="font-serif text-4xl font-bold text-gold">₱25,000</div>
+            <p class="text-[11px] text-parchment/70">3 Months Dedicated Support</p>
+            
+            <a href="https://cedrictagleportfolio.blogspot.com/#contact" target="_blank" class="w-full py-3 bg-gold text-charcoal text-xs uppercase tracking-widest font-bold rounded block hover:bg-terracotta hover:text-white transition-colors shadow">
+              CONTACT THE DEVELOPER
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-charcoal text-parchment/80 py-12 border-t border-parchment/10 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <!-- Logo & Copyright -->
+      <div class="flex items-center gap-3">
+        <img src="icon/tagleandco.ico" alt="Tagle & Co." class="w-10 h-10 rounded-full border border-gold/40 object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100/1C1917/D4AF37?text=T%26C'">
+        <div>
+          <p class="font-serif text-base text-white font-bold">Tagle & Co. Art and Craft</p>
+          <p class="text-[10px] text-parchment/60">Crafting Memories & Digital Experiences</p>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="flex gap-6 uppercase tracking-wider text-[11px]">
+        <a href="#showcase" class="hover:text-gold transition-colors">Invitations</a>
+        <a href="#pricing" class="hover:text-gold transition-colors">Pricing</a>
+        <a href="#showcase" class="hover:text-gold transition-colors">Simulator</a>
+        <a href="#va-portfolio" class="hover:text-gold transition-colors">VA Portfolio</a>
+      </div>
+
+      <p class="text-[10px] text-parchment/40">© 2026 Tagle & Co. Art and Craft. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <!-- INVITATION PREVIEW POP-UP (full screen) -->
+  <div id="previewModal" class="fixed inset-0 z-50 hidden bg-charcoal flex flex-col" style="height:100dvh" role="dialog" aria-modal="true" aria-labelledby="previewModalTitle">
+
+    <!-- Top bar -->
+    <div class="shrink-0 flex items-center justify-between gap-3 px-3 sm:px-5 py-2.5 bg-charcoal text-parchment border-b border-gold/30" style="padding-top:max(0.625rem, env(safe-area-inset-top))">
+      <div class="min-w-0">
+        <span class="font-script text-xl text-gold block leading-none">Live Preview</span>
+        <h3 id="previewModalTitle" class="font-serif text-lg font-semibold truncate">Invitation</h3>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <a id="previewNewTab" href="#" target="_blank" rel="noopener" aria-label="Open in new tab" class="h-10 px-3 rounded-full border border-gold/40 text-parchment text-[11px] uppercase tracking-wider font-semibold hover:bg-parchment/10 transition-colors inline-flex items-center gap-1.5"><i class="fa-solid fa-arrow-up-right-from-square"></i><span class="hidden sm:inline">New tab</span></a>
+        <button type="button" id="previewClose" aria-label="Close preview" class="w-10 h-10 rounded-full bg-terracotta text-white hover:bg-gold-dark transition-colors flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    </div>
+
+    <!-- Invitation fills the rest of the screen -->
+    <div class="relative flex-1 min-h-0 bg-white">
+      <div id="previewLoader" class="absolute inset-0 flex flex-col items-center justify-center gap-2 text-charcoal/60 text-xs bg-paper"><i class="fa-solid fa-circle-notch fa-spin text-gold-dark text-xl"></i>Loading invitation…</div>
+      <iframe id="previewModalFrame" title="Invitation preview" src="about:blank" class="relative w-full h-full border-0 bg-transparent block" allow="autoplay; fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="shrink-0 flex items-center justify-between gap-2 px-3 sm:px-5 py-2.5 bg-charcoal border-t border-gold/30" style="padding-bottom:max(0.625rem, env(safe-area-inset-bottom))">
+      <button type="button" id="previewPrev" class="flex-1 px-4 py-2.5 border border-gold/40 text-parchment text-xs uppercase tracking-wider font-semibold rounded hover:bg-parchment/10 transition-colors"><i class="fa-solid fa-chevron-left mr-1"></i> Prev</button>
+      <button type="button" id="previewNext" class="flex-1 px-4 py-2.5 border border-gold/40 text-parchment text-xs uppercase tracking-wider font-semibold rounded hover:bg-parchment/10 transition-colors">Next <i class="fa-solid fa-chevron-right ml-1"></i></button>
+    </div>
+  </div>
+
+  <script>
+    // These are separate HTML files kept beside this main website file.
+    const invitationDemos = [
+      { name: 'Passport Wedding', category: 'wedding', url: 'passport-wedding.html', theme: 'classic' },
+      { name: 'Vogue Wedding Issue 01', category: 'wedding', url: 'vogue-wedding-01.html', theme: 'modern' },
+      { name: 'Vogue Wedding Issue 02', category: 'wedding', url: 'vogue-wedding-02.html', theme: 'modern' },
+      { name: 'Julian & Sophia', category: 'wedding', url: 'julian-sophia-wedding.html', theme: 'rustic' }
+    ];
+
+    const modal = document.getElementById('previewModal');
+    const modalFrame = document.getElementById('previewModalFrame');
+    const modalTitle = document.getElementById('previewModalTitle');
+    const modalNewTab = document.getElementById('previewNewTab');
+    const modalLoader = document.getElementById('previewLoader');
+    const designCards = Array.from(document.querySelectorAll('.design-choice'));
+    const designFilters = Array.from(document.querySelectorAll('.design-filter'));
+    let currentIndex = 0;
+    let lastTrigger = null;
+
+    function buildThemePreview(demo) {
+      const themes = {
+        classic: { bg: '#f8f1e8', ink: '#60483e', accent: '#a77b62', label: 'Together with their families', title: 'The Wedding Celebration', names: 'Alexandra & Alexander', detail: 'REQUEST THE HONOUR OF YOUR PRESENCE', date: 'SATURDAY • JUNE 20 • 2027' },
+        rustic: { bg: '#f1eee4', ink: '#45513d', accent: '#879276', label: 'With joyful hearts', title: 'A Day to Remember', names: 'Mia & Gabriel', detail: 'INVITE YOU TO CELEBRATE THEIR LOVE', date: 'SUNDAY • AUGUST 08 • 2027' },
+        baptism: { bg: '#f4f0e9', ink: '#5b6b78', accent: '#a9bdc7', label: 'With grateful hearts', title: 'A Holy Baptism', names: 'Baby Angel', detail: 'PLEASE JOIN US FOR THIS SPECIAL DAY', date: 'SUNDAY • MAY 16 • 2027' },
+        birthday: { bg: '#f6edf0', ink: '#704d5b', accent: '#c48da1', label: 'You are invited to celebrate', title: 'A Birthday to Remember', names: 'Sophia’s 18th Birthday', detail: 'AN EVENING OF JOY, LOVE & MEMORIES', date: 'SATURDAY • SEPTEMBER 18 • 2027' },
+        modern: { bg: '#eef0f2', ink: '#27364a', accent: '#b69a69', label: 'The pleasure of your company', title: 'The Wedding of', names: 'Olivia & Ethan', detail: 'A CELEBRATION OF LOVE', date: 'FRIDAY • DECEMBER 10 • 2027' }
+      };
+      const t = themes[demo.theme] || themes.classic;
+      const safe = (value) => String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+      return `<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>*{box-sizing:border-box}body{margin:0;background:${t.bg};color:${t.ink};font-family:Georgia,serif;text-align:center}.page{min-height:620px;padding:42px 22px 36px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:9px solid ${t.accent};outline:1px solid ${t.ink};outline-offset:-17px}.eyebrow{font:10px Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;margin:22px 0}.ornament{font-size:32px;color:${t.accent};margin:10px}.title{font-size:27px;line-height:1.2;font-weight:400;margin:12px 0}.names{font-size:30px;font-style:italic;line-height:1.25;margin:18px 0}.line{width:55px;height:1px;background:${t.accent};margin:17px auto}.date{font:11px Arial,sans-serif;letter-spacing:1.5px;margin-top:18px}.note{font:10px Arial,sans-serif;line-height:1.7;letter-spacing:1px;margin-top:34px;max-width:230px}.sample{font:9px Arial,sans-serif;opacity:.6;margin-top:40px;letter-spacing:1px}</style></head><body><main class="page"><div class="eyebrow">${safe(t.label)}</div><div class="ornament">✧</div><h1 class="title">${safe(t.title)}</h1><div class="line"></div><div class="names">${safe(t.names)}</div><div class="line"></div><div class="eyebrow">${safe(t.detail)}</div><div class="date">${safe(t.date)}</div><p class="note">Please join us for a beautiful celebration filled with love, laughter, and cherished memories.</p><div class="sample">SAMPLE DESIGN PREVIEW • DETAILS ARE CUSTOMIZABLE</div></main></body></html>`;
+    }
+
+    function loadPreview(index) {
+      const demo = invitationDemos[index];
+      if (!demo) return;
+      currentIndex = index;
+      modalTitle.textContent = demo.name;
+      modalLoader.classList.remove('hidden');
+      if (demo.url) {
+        modalFrame.removeAttribute('srcdoc');
+        modalFrame.src = demo.url;
+        modalNewTab.href = demo.url;
+        modalNewTab.classList.remove('hidden');
+      } else {
+        modalFrame.src = 'about:blank';
+        modalFrame.srcdoc = buildThemePreview(demo);
+        modalNewTab.classList.add('hidden');
+      }
+    }
+
+    function openPreview(index, trigger) {
+      lastTrigger = trigger || null;
+      loadPreview(index);
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('previewClose').focus();
+    }
+
+    function closePreview() {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+      // Unload the page so its background music stops playing.
+      modalFrame.removeAttribute('srcdoc');
+      modalFrame.src = 'about:blank';
+      if (lastTrigger) lastTrigger.focus();
+    }
+
+    function stepPreview(direction) {
+      const visible = designCards.map((card, i) => i).filter(i => !designCards[i].hidden);
+      if (!visible.length) return;
+      const pos = visible.indexOf(currentIndex);
+      loadPreview(visible[(pos + direction + visible.length) % visible.length]);
+    }
+
+    modalFrame.addEventListener('load', () => {
+      if (modalFrame.getAttribute('src') !== 'about:blank' || modalFrame.hasAttribute('srcdoc')) {
+        modalLoader.classList.add('hidden');
+      }
+    });
+
+    document.querySelectorAll('[data-action="popup"]').forEach((button) => {
+      button.addEventListener('click', () => openPreview(Number(button.dataset.demo), button));
+    });
+    document.getElementById('previewClose').addEventListener('click', closePreview);
+    document.getElementById('previewPrev').addEventListener('click', () => stepPreview(-1));
+    document.getElementById('previewNext').addEventListener('click', () => stepPreview(1));
+
+    document.addEventListener('keydown', (e) => {
+      if (modal.classList.contains('hidden')) return;
+      if (e.key === 'Escape') { closePreview(); return; }
+      if (e.key === 'ArrowLeft') stepPreview(-1);
+      if (e.key === 'ArrowRight') stepPreview(1);
+      if (e.key === 'Tab') {
+        const focusable = Array.from(modal.querySelectorAll('button, a[href], iframe')).filter(el => !el.classList.contains('hidden') && el.offsetParent !== null);
+        if (!focusable.length) return;
+        const first = focusable[0], last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+
+    designFilters.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+        designFilters.forEach((item) => {
+          const active = item === button;
+          item.setAttribute('aria-pressed', String(active));
+          item.classList.toggle('bg-charcoal', active);
+          item.classList.toggle('text-white', active);
+          item.classList.toggle('shadow-sm', active);
+          item.classList.toggle('bg-paper', !active);
+          item.classList.toggle('border', !active);
+          item.classList.toggle('border-parchment', !active);
+        });
+        designCards.forEach((card) => {
+          card.hidden = filter !== 'all' && card.dataset.category !== filter;
+        });
+      });
+    });
+
+    // Open Wax Seal Overlay in Simulator
+    function openInvitation() {
+      const overlay = document.getElementById('waxOverlay');
+      overlay.style.opacity = '0';
+      overlay.style.pointerEvents = 'none';
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+      }, 700);
+    }
+
+    // Toggle Audio Player Demo
+    let isPlaying = false;
+    function toggleAudioDemo() {
+      const btnIcon = document.getElementById('audioIcon');
+      isPlaying = !isPlaying;
+      if (isPlaying) {
+        btnIcon.className = 'fa-solid fa-pause';
+      } else {
+        btnIcon.className = 'fa-solid fa-play';
+      }
+    }
+
+    // Submit Demo RSVP
+    function submitDemoRsvp() {
+      const name = document.getElementById('demoName').value;
+      const msg = document.getElementById('demoMsg');
+      if (name.trim() === '') {
+        msg.textContent = 'Please enter your name first.';
+        msg.classList.remove('hidden');
+      } else {
+        msg.textContent = 'Thank you, ' + name + '! RSVP successfully saved.';
+        msg.classList.remove('hidden');
+      }
+    }
+
+    // Quote Estimator Logic
+    function calculateQuote() {
+      const packagePrice = parseInt(document.getElementById('calcPackage').value);
+      let total = packagePrice;
+
+      if (document.getElementById('addonDomain').checked) total += 850;
+      if (document.getElementById('addonHosting').checked) total += 500;
+      if (document.getElementById('addonRush').checked) total += 400;
+
+      document.getElementById('totalPrice').textContent = '₱' + total.toLocaleString();
+    }
+  </script>
+
+</body>
+</html>
