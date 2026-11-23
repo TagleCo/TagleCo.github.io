@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE WEDDING EDITION | Lopez – Gomez Nuptials</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&family=Great+Vibes&display=swap');
+
+  :root {
+    --passport-maroon: #4a0e17;
+    --paper-bg: #fdfbf7;
+  }
+
+  body {
+    background: radial-gradient(circle at center, #2d1016 0%, #0d0204 100%);
+    font-family: 'Montserrat', sans-serif;
+    color: #222;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .font-cinzel { font-family: 'Cinzel', serif; }
+  .font-serif { font-family: 'Playfair Display', serif; }
+  .font-mrz { font-family: 'Courier Prime', monospace; }
+  .font-script { font-family: 'Great Vibes', cursive; }
+
+  /* Gold Foil Metallic Effect */
+  .gold-foil {
+    background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0px 1px 2px rgba(0,0,0,0.8));
+  }
+
+  /* Authentic Philippine Maroon Leather Cover */
+  .passport-cover-bg {
+    background-color: var(--passport-maroon);
+    background-image: 
+      radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0),
+      radial-gradient(rgba(0, 0, 0, 0.65) 1px, transparent 0);
+    background-size: 3px 3px;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.9), 0 20px 35px rgba(0,0,0,0.8);
+  }
+
+  /* Passport Inner Paper Texture */
+  .passport-page-bg {
+    background-color: var(--paper-bg);
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.06) 0%, transparent 60%),
+      repeating-linear-gradient(45deg, rgba(74, 14, 23, 0.02) 0px, rgba(74, 14, 23, 0.02) 2px, transparent 2px, transparent 8px);
+	background-size: 3px 3px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.08);
+  }
+
+  /* Stamp Badges */
+  .stamp {
+    border: 3px double rgba(184, 51, 42, 0.7);
+    color: rgba(184, 51, 42, 0.85);
+    transform: rotate(-5deg);
+    border-radius: 8px;
+    text-transform: uppercase;
+    font-weight: bold;
+    pointer-events: none;
+  }
+
+  .stamp-approved {
+    border-color: rgba(22, 101, 52, 0.8);
+    color: rgba(22, 101, 52, 0.85);
+    transform: rotate(4deg);
+  }
+
+  /* Book container (flat, fade transition) */
+  .book-viewport { width:100%; max-width:420px; height:640px; position:relative; }
+  .passport-card {
+    position:absolute; inset:0; width:100%; height:100%; border-radius:14px;
+    opacity:0; visibility:hidden; pointer-events:none;
+    transition:opacity .35s ease, visibility 0s linear .35s;
+  }
+  .passport-card.is-active {
+    opacity:1; visibility:visible; pointer-events:auto; z-index:20 !important;
+    transition-delay:0s;
+  }
+  @media (prefers-reduced-motion: reduce) { .passport-card { transition:none; } }
+
+  .custom-scroll::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scroll::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.05);
+  }
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background: #a8792a;
+    border-radius: 4px;
+  }
+
+  .watermark-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 60%;
+    height: 100%;
+
+    opacity: 0.05;
+    pointer-events: none;
+
+    background: url("Taglelogo.webp") no-repeat center center;
+    background-size: contain;
+}
+
+  footer button:disabled { opacity: .35; cursor: not-allowed; }
+  footer button { transition: opacity .2s ease, color .2s ease, transform .2s ease; }
+  footer button:not(:disabled):active { transform: scale(.96); }
+
+  /* In-page navigation: styled like a small gold passport control strip */
+  .book-navigation {
+    width: min(88%, 340px);
+    min-height: 42px;
+    background: linear-gradient(145deg, rgba(65, 10, 20, .97), rgba(91, 18, 29, .96));
+    border: 1px solid rgba(212, 175, 55, .72);
+    box-shadow: 0 5px 18px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,239,180,.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .nav-page-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-width: 86px;
+    min-height: 30px;
+    padding: 6px 10px;
+    color: #f8e7b0;
+    border: 1px solid rgba(218, 183, 93, .38);
+    border-radius: 999px;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    transition: background .2s ease, color .2s ease, transform .2s ease, opacity .2s ease;
+  }
+  .nav-page-button:hover:not(:disabled) {
+    color: #4a0e17;
+    background: linear-gradient(135deg, #f8e7b0, #c99b42);
+    transform: translateY(-1px);
+  }
+  .nav-page-button:active:not(:disabled) { transform: scale(.96); }
+  .nav-page-button:disabled { opacity: .28; cursor: not-allowed; }
+  .page-indicator {
+    min-width: 76px;
+    text-align: center;
+    color: #f4d98d;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+    padding: 0 8px;
+    border-left: 1px solid rgba(218,183,93,.38);
+    border-right: 1px solid rgba(218,183,93,.38);
+  }
+
+  /* Responsive passport sizing for phones, tablets, and desktop */
+  html, body { width: 100%; }
+  body { min-height: 100svh; }
+  .book-container { width: 100%; padding-inline: 12px; }
+  .book-viewport {
+    width: min(420px, calc(100vw - 24px));
+    height: min(640px, calc(100svh - 176px));
+    min-height: 520px;
+    margin-inline: auto;
+  }
+  .passport-card { overflow: hidden; }
+  .passport-card > .custom-scroll,
+  .passport-card .custom-scroll {
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  img { max-width: 100%; }
+
+  @media (max-width: 480px) {
+    body { padding-left: 0; padding-right: 0; }
+    .book-viewport {
+      width: calc(100vw - 18px);
+      height: min(660px, calc(100svh - 150px));
+      min-height: 540px;
+    }
+    .passport-card { border-radius: 11px; }
+    .book-navigation {
+      width: min(92%, 330px);
+      bottom: 8px;
+      gap: 5px;
+      padding: 5px 6px;
+    }
+    .nav-page-button {
+      min-width: 76px;
+      min-height: 32px;
+      font-size: 8px;
+      padding: 6px 8px;
+    }
+    .page-indicator { min-width: 68px; font-size: 9px; padding-inline: 6px; }
+  }
+  @media (max-width: 360px) {
+    .book-viewport { width: calc(100vw - 12px); }
+    .book-navigation { width: 94%; }
+    .nav-page-button { min-width: 68px; gap: 5px; font-size: 7.5px; }
+    .page-indicator { min-width: 60px; }
+  }
+  @media (max-height: 700px) and (min-width: 481px) {
+    .book-viewport { height: calc(100svh - 150px); min-height: 500px; }
+  }
+
+
+  /* Cover title plaque */
+  .cover-title-plaque {
+    position: relative;
+    z-index: 2;
+    padding: 10px 8px 9px;
+    border: 1px solid rgba(220,184,95,.58);
+    border-radius: 9px;
+    background: linear-gradient(135deg, rgba(54,8,17,.88), rgba(92,22,31,.78));
+    box-shadow: inset 0 0 0 2px rgba(220,184,95,.10), 0 5px 14px rgba(0,0,0,.2);
+  }
+  .cover-kicker {
+    color: #e9ce88;
+    font: 700 8px/1.4 'Cinzel', serif;
+    letter-spacing: .2em;
+  }
+  .cover-couple-title {
+    margin-top: 4px;
+    color: #f5dda0;
+    font: 700 clamp(14px, 3.8vw, 19px)/1.25 'Cinzel', serif;
+    letter-spacing: .055em;
+    text-shadow: 0 2px 5px rgba(0,0,0,.65);
+  }
+  .cover-date-line {
+    margin-top: 4px;
+    color: rgba(255,239,195,.88);
+    font: 600 7px/1.4 'Courier Prime', monospace;
+    letter-spacing: .12em;
+  }
+
+  /* Keep the complete passport page unobstructed; controls sit on the frame just below it. */
+  .book-container {
+    padding-top: 8px !important;
+    padding-bottom: 66px !important;
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+  }
+  .book-viewport {
+    width: min(440px, calc(100vw - 28px)) !important;
+    max-width: 440px !important;
+    height: 640px !important;
+    min-height: 640px !important;
+    flex: 0 0 auto;
+  }
+  .book-navigation {
+    top: auto !important;
+    bottom: -53px !important;
+    width: min(88%, 340px) !important;
+  }
+  .passport-card { overflow: hidden; }
+
+  @media (max-width: 600px) {
+    body { padding: 8px 0 12px !important; min-height: 100svh; }
+    .book-container {
+      padding: 6px 0 62px !important;
+      margin: 0 auto !important;
+    }
+    .book-viewport {
+      width: calc(100vw - 18px) !important;
+      height: min(640px, calc(100svh - 105px)) !important;
+      min-height: 560px !important;
+      max-width: 440px !important;
+    }
+    .book-navigation { bottom: -50px !important; width: min(92%, 340px) !important; }
+    .cover-title-plaque { padding: 8px 6px; margin-bottom: 8px; }
+    .cover-kicker { font-size: 7px; }
+    .cover-couple-title { font-size: clamp(13px, 4.3vw, 17px); }
+    .cover-date-line { font-size: 6.5px; }
+  }
+  @media (max-width: 380px) {
+    .book-viewport { width: calc(100vw - 12px) !important; }
+    .book-navigation { width: 94% !important; }
+  }
+  @media (max-height: 700px) and (min-width: 601px) {
+    body { overflow-y: auto; }
+    .book-container { margin: 10px auto !important; }
+  }
+
+
+  /* Elegant initials seal replacing the stars and sun */
+  .cover-flight-ornament {
+    display:flex; align-items:center; justify-content:center; gap:9px;
+    color:#e7c777; margin:0 auto 5px; opacity:.9;
+  }
+  .cover-flight-ornament span { width:34px; height:1px; background:linear-gradient(90deg,transparent,#d8b45f); }
+  .cover-flight-ornament span:last-child { transform:rotate(180deg); }
+  .cover-flight-ornament i { font-size:12px; transform:rotate(-8deg); }
+  .cover-emblem-wrap { position:relative; width:100%; display:flex; justify-content:center; }
+  .cover-monogram {
+    position:relative; isolation:isolate; width:174px; height:174px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    border:0; border-radius:50%; color:#f3dda0; cursor:pointer;
+    background:radial-gradient(circle,rgba(255,226,155,.13),rgba(76,14,24,.2) 64%,transparent 66%);
+    transition:transform .35s ease, filter .35s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .cover-monogram:hover { transform:scale(1.045); filter:drop-shadow(0 0 12px rgba(222,185,94,.32)); }
+  .cover-monogram:active { transform:scale(.97); }
+  .cover-monogram:focus-visible { outline:2px solid #f2d88c; outline-offset:7px; }
+  .monogram-orbit {
+    position:absolute; inset:7px; border:1px solid rgba(230,194,112,.86);
+    border-radius:50%; pointer-events:none;
+  }
+  .orbit-one { transform:rotate(-13deg) scaleX(.88); }
+  .orbit-two { inset:15px; border-color:rgba(230,194,112,.42); transform:rotate(13deg) scaleX(.88); }
+  .monogram-initials {
+    position:relative; z-index:1; font-family:'Great Vibes',cursive;
+    font-size:76px; line-height:.95; letter-spacing:-.08em;
+    color:#f8e7b3; text-shadow:0 2px 3px rgba(0,0,0,.55),0 0 15px rgba(225,190,104,.18);
+  }
+  .monogram-amp { font-family:'Playfair Display',serif; font-size:28px; font-style:italic; margin:0 2px; vertical-align:middle; }
+  .monogram-caption {
+    margin-top:8px; font:600 7px/1 'Cinzel',serif; letter-spacing:.22em;
+    color:#e8ce8d;
+  }
+  .monogram-open-hint {
+    margin-top:11px; padding:5px 10px; border:1px solid rgba(222,187,105,.42);
+    border-radius:99px; color:rgba(248,228,174,.88);
+    font:700 7px/1 'Montserrat',sans-serif; letter-spacing:.16em;
+    background:rgba(55,8,16,.45); transition:background .2s ease,color .2s ease;
+  }
+  .cover-monogram:hover .monogram-open-hint { background:#e7cc88; color:#4a0e17; }
+  .flight-path {
+    position:absolute; right:calc(50% - 112px); top:5px; width:62px; height:38px;
+    transform:rotate(-22deg); pointer-events:none; opacity:.8;
+  }
+  .flight-dash {
+    position:absolute; left:0; top:18px; width:43px; height:17px;
+    border-top:1px dashed rgba(235,204,131,.85); border-radius:50%;
+    transform:rotate(-18deg);
+  }
+  .flight-plane { position:absolute; right:0; top:4px; color:#f0d58e; font-size:19px; transform:rotate(-8deg); }
+  @media(max-width:480px) {
+    .cover-monogram { width:158px; height:158px; }
+    .monogram-initials { font-size:68px; }
+    .flight-path { right:calc(50% - 103px); top:0; transform:scale(.88) rotate(-22deg); }
+  }
+
+
+
+
+  /* =========================================================
+     EDITORIAL MAGAZINE SKIN — preserves the original booklet
+     navigation, content, RSVP, countdown, gallery and 3D flip.
+     ========================================================= */
+  :root {
+    --passport-maroon: #090909;
+    --paper-bg: #fdfbf7;
+    --editorial-ink: #111111;
+    --editorial-gold: #c5a059;
+  }
+  body {
+    background: radial-gradient(circle at 50% 35%, #292521 0%, #11100f 48%, #050505 100%) !important;
+    color: #111;
+  }
+  .passport-cover-bg {
+    background:
+      radial-gradient(circle at 50% 40%, rgba(197,160,89,.16), transparent 38%),
+      linear-gradient(145deg, #171717 0%, #050505 100%) !important;
+    border: 1px solid rgba(197,160,89,.75) !important;
+    box-shadow: 0 30px 60px rgba(0,0,0,.72), inset 0 0 0 7px rgba(197,160,89,.07),
+                inset 0 0 0 8px rgba(197,160,89,.24) !important;
+  }
+  .passport-page-bg {
+    background-color: #fdfbf7 !important;
+    background-image:
+      radial-gradient(circle at 50% 50%, rgba(197,160,89,.055), transparent 65%),
+      repeating-linear-gradient(0deg, rgba(20,20,20,.012) 0px, rgba(20,20,20,.012) 1px, transparent 1px, transparent 5px) !important;
+    box-shadow: inset 0 0 28px rgba(0,0,0,.045), 0 18px 40px rgba(0,0,0,.45) !important;
+    border-color: #ded8cc !important;
+  }
+  .passport-card { border-radius: 2px !important; }
+  .cover-title-plaque {
+    width: 100%;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(197,160,89,.65) !important;
+    border-radius: 0 !important;
+    padding: 4px 5px 13px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .cover-flight-ornament { color: #c5a059 !important; }
+  .cover-flight-ornament i { font-size: 10px !important; }
+  .cover-flight-ornament span {
+    background: linear-gradient(90deg, transparent, #c5a059) !important;
+  }
+  .cover-kicker {
+    color: #d9bd82 !important;
+    font: 700 8px/1.6 'Montserrat', sans-serif !important;
+    letter-spacing: .32em !important;
+  }
+  .cover-couple-title {
+    color: #fffdf8 !important;
+    font: 800 clamp(17px, 4.6vw, 23px)/1.2 'Bodoni Moda', 'Playfair Display', serif !important;
+    letter-spacing: .055em !important;
+    text-transform: uppercase;
+    text-shadow: 0 3px 12px rgba(0,0,0,.8) !important;
+  }
+  .cover-date-line {
+    color: #d8c7a4 !important;
+    font: 600 7px/1.5 'Montserrat', sans-serif !important;
+    letter-spacing: .18em !important;
+  }
+  #coverPage > .absolute.inset-3 {
+    border: 1px solid rgba(197,160,89,.35) !important;
+    border-radius: 0 !important;
+    inset: 12px !important;
+  }
+  #coverPage .mt-4.space-y-1 h2 {
+    color: #d6b979 !important;
+    font-family: 'Bodoni Moda', serif !important;
+    font-size: 11px !important;
+    letter-spacing: .28em !important;
+  }
+  #coverPage .mt-4.space-y-1 p {
+    color: rgba(255,255,255,.58) !important;
+    font-size: 7px !important;
+    letter-spacing: .25em !important;
+  }
+  .cover-monogram {
+    width: 154px !important;
+    height: 154px !important;
+    background: radial-gradient(circle, rgba(197,160,89,.13), rgba(0,0,0,.05) 65%, transparent 68%) !important;
+  }
+  .monogram-orbit { border-color: rgba(197,160,89,.9) !important; }
+  .orbit-two { border-color: rgba(197,160,89,.4) !important; }
+  .monogram-initials {
+    color: #f4e4bf !important;
+    font-family: 'Great Vibes', cursive !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,.8) !important;
+  }
+  .monogram-caption { color: #d9bd82 !important; }
+  .monogram-open-hint {
+    color: #e8d4a8 !important;
+    border-color: rgba(197,160,89,.5) !important;
+    background: rgba(0,0,0,.5) !important;
+    letter-spacing: .2em !important;
+  }
+  .cover-monogram:hover .monogram-open-hint {
+    background: #c5a059 !important;
+    color: #090909 !important;
+  }
+  .flight-path { display: none !important; }
+  #coverPage .mb-4.space-y-2 h3 {
+    font-family: 'Bodoni Moda', serif !important;
+    font-size: clamp(35px, 9vw, 51px) !important;
+    line-height: 1 !important;
+    letter-spacing: .18em !important;
+    color: #fdfbf7 !important;
+    text-shadow: 0 3px 14px rgba(0,0,0,.8);
+  }
+  #coverPage .mb-4.space-y-2 p {
+    color: #c5a059 !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 9px !important;
+    letter-spacing: .42em !important;
+  }
+  #coverPage .mb-2 .w-8 { display: none !important; }
+  /* Editorial paper treatment for every inside page */
+  .passport-page-bg h2, .passport-page-bg h3 {
+    font-family: 'Bodoni Moda', 'Playfair Display', serif !important;
+    color: #171513 !important;
+  }
+  .passport-page-bg .font-cinzel { font-family: 'Montserrat', sans-serif !important; }
+  .passport-page-bg .watermark-bg { opacity: .035 !important; }
+  .passport-page-bg .stamp {
+    border-color: rgba(158,27,27,.55) !important;
+    color: rgba(158,27,27,.72) !important;
+  }
+  .passport-page-bg a[class*="bg-red-950"] {
+    background: #171513 !important;
+    color: #e8d4a8 !important;
+    border: 1px solid rgba(197,160,89,.6);
+  }
+  .passport-page-bg .bg-amber-50,
+  .passport-page-bg .bg-amber-50\/90 { background-color: #f5f0e6 !important; }
+  .passport-page-bg [class*="border-amber-900"] { border-color: #d8cdbb !important; }
+  .passport-page-bg [class*="text-amber-950"],
+  .passport-page-bg [class*="text-amber-900"] { color: #8b6b35 !important; }
+  .passport-page-bg [class*="bg-amber-200"] { background-color: #eee2c9 !important; }
+  .passport-page-bg [class*="bg-red-950"] { background-color: #171513 !important; }
+  .passport-page-bg [class*="text-slate-900"] { color: #171513 !important; }
+  .passport-page-bg [class*="text-slate-600"],
+  .passport-page-bg [class*="text-slate-700"] { color: #625d55 !important; }
+  .passport-page-bg [class*="border-slate-900"] { border-color: #171513 !important; }
+  .passport-page-bg .bg-white\/90,
+  .passport-page-bg .bg-white { box-shadow: 0 4px 13px rgba(0,0,0,.055); }
+  .book-viewport { filter: drop-shadow(0 22px 30px rgba(0,0,0,.38)); }
+  .book-navigation {
+    background: linear-gradient(145deg, rgba(12,12,12,.98), rgba(35,31,25,.98)) !important;
+    border: 1px solid rgba(197,160,89,.75) !important;
+    box-shadow: 0 7px 22px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.04) !important;
+  }
+  .nav-page-button {
+    color: #ead7ad !important;
+    border-color: rgba(197,160,89,.38) !important;
+    font-family: 'Montserrat', sans-serif !important;
+  }
+  .nav-page-button:hover:not(:disabled) {
+    color: #111 !important;
+    background: linear-gradient(135deg, #e7d3a4, #b58a45) !important;
+  }
+  .page-indicator { color: #e8d4a8 !important; }
+  @media (max-width: 600px) {
+    #coverPage { padding: 22px !important; }
+    .cover-monogram { width: 140px !important; height: 140px !important; }
+    .monogram-initials { font-size: 65px !important; }
+  }
+
+
+  /* High-fashion editorial cover and closing back cover */
+  .editorial-cover { isolation:isolate; background:#100e0d !important; border-radius:2px !important; }
+  .editorial-cover-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+  .editorial-cover-shade { position:absolute; inset:0; z-index:1; background:linear-gradient(180deg,rgba(10,8,8,.66),rgba(10,8,8,.18) 35%,rgba(10,8,8,.35) 58%,rgba(10,8,8,.78)); }
+  .editorial-cover-frame { position:absolute; inset:12px; border:1px solid rgba(226,197,139,.58); pointer-events:none; z-index:2; }
+  .editorial-cover .cover-monogram { background:radial-gradient(circle,rgba(15,12,10,.25),transparent 68%) !important; }
+  .editorial-back-cover { background:#100e0d !important; border:1px solid rgba(197,160,89,.7) !important; border-radius:2px !important; isolation:isolate; }
+  .editorial-back-cover > img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter:brightness(.72) saturate(.78); }
+  .editorial-back-overlay { position:absolute; inset:0; z-index:1; background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.62)); }
+  .editorial-back-cover > .relative { z-index:2; }
+  /* The back cover is the final outside panel, not an extra numbered inside page. */
+  #backCover { transform-origin:right center; }
+  /* Editorial typography replaces document/passport cues. */
+  .passport-page-bg h2,.passport-page-bg h3 { letter-spacing:.015em; }
+  .passport-page-bg .font-mrz { font-family:'Montserrat',sans-serif !important; }
+
+
+
+  /* FINAL MAGAZINE POLISH: front cover, controls and reliable end-page turns */
+  #coverPage {
+    background:#17120f !important;
+    border:1px solid rgba(218,190,137,.9) !important;
+    box-shadow:0 28px 65px rgba(0,0,0,.62), inset 0 0 0 5px rgba(255,245,225,.045) !important;
+  }
+  #coverPage .editorial-cover-shade {
+    background:linear-gradient(180deg,rgba(12,10,9,.78) 0%,rgba(12,10,9,.16) 29%,rgba(12,10,9,.12) 49%,rgba(12,10,9,.82) 100%) !important;
+  }
+  #coverPage > .relative.z-10:first-of-type {
+    padding:10px 2px 12px;
+    border-bottom:1px solid rgba(226,197,139,.8) !important;
+    font-size:7px !important;
+    letter-spacing:.16em !important;
+  }
+  #coverPage h1 {
+    font-family:'Bodoni Moda','Playfair Display',serif !important;
+    font-size:clamp(43px,11vw,61px) !important;
+    font-weight:500 !important;
+    line-height:.98 !important;
+    letter-spacing:-.045em !important;
+    text-shadow:0 4px 18px rgba(0,0,0,.55) !important;
+  }
+  #coverPage h1 span { color:#e8cf9d !important; }
+  #coverPage .cover-monogram {
+    width:164px !important;height:164px !important;
+    border:1px solid rgba(232,207,157,.45) !important;
+    border-radius:50% !important;
+    background:radial-gradient(circle,rgba(15,12,10,.55),rgba(15,12,10,.12) 68%,transparent 70%) !important;
+    transition:transform .35s ease,filter .35s ease !important;
+  }
+  #coverPage .cover-monogram:hover { transform:scale(1.035); filter:drop-shadow(0 8px 18px rgba(0,0,0,.35)); }
+  #coverPage .monogram-open-hint {
+    display:inline-flex !important;align-items:center;justify-content:center;
+    min-width:142px;padding:10px 15px !important;margin-top:9px;
+    border:1px solid #d8bd86 !important;border-radius:2px !important;
+    background:#e6d4b1 !important;color:#241d17 !important;
+    font:700 8px 'Montserrat',sans-serif !important;letter-spacing:.2em !important;
+    box-shadow:0 4px 14px rgba(0,0,0,.24);
+  }
+  #coverPage .cover-monogram:hover .monogram-open-hint { background:#f4e8d0 !important;color:#241d17 !important; }
+  #coverPage .monogram-caption { color:#ead7b3 !important;font-size:8px !important;letter-spacing:.16em !important; }
+  #coverPage .relative.z-10.border-t { border-color:rgba(226,197,139,.75) !important;padding-top:14px !important; }
+  #coverPage .relative.z-10.border-t p:first-child { font-size:clamp(18px,5vw,24px) !important;color:#f7efe2 !important; }
+  #coverPage .relative.z-10.border-t p:last-child { color:#e5d0a7 !important;font-size:7px !important;letter-spacing:.2em !important; }
+
+  /* Champagne / warm ivory / ink buttons throughout the magazine */
+  .nav-page-button {
+    background:linear-gradient(135deg,#e9dcc2,#c9ad7b) !important;
+    color:#2b2118 !important;
+    border:1px solid #f0e4cc !important;
+    border-radius:2px !important;
+    box-shadow:inset 0 1px rgba(255,255,255,.55),0 2px 7px rgba(0,0,0,.2) !important;
+    font-family:'Montserrat',sans-serif !important;
+    font-weight:700 !important;letter-spacing:.14em !important;
+  }
+  .nav-page-button:hover:not(:disabled) {
+    background:linear-gradient(135deg,#f7eedc,#ddc391) !important;
+    color:#17120f !important;transform:translateY(-1px) !important;
+  }
+  .nav-page-button:disabled { background:#8c806e !important;color:#eee4d3 !important;opacity:.45 !important; }
+  .book-navigation {
+    background:rgba(28,23,19,.96) !important;
+    border:1px solid rgba(218,190,137,.78) !important;
+    border-radius:3px !important;
+    padding:7px 9px !important;
+  }
+  .page-indicator { color:#e8d6b5 !important;border-color:rgba(218,190,137,.4) !important;font-family:'Montserrat',sans-serif !important;font-size:8px !important;letter-spacing:.12em !important; }
+  #rsvpSubmit {
+    background:linear-gradient(135deg,#e8dcc4,#c6aa79) !important;
+    color:#241d16 !important;border:1px solid #b99a66 !important;
+    border-radius:2px !important;box-shadow:0 4px 12px rgba(40,28,12,.15) !important;
+    letter-spacing:.18em !important;
+  }
+  #rsvpSubmit:hover:not(:disabled) { background:linear-gradient(135deg,#f4ead7,#d8bd8b) !important;transform:translateY(-1px); }
+  #lightbox > button {
+    background:#e8dcc4 !important;color:#241d16 !important;
+    border:1px solid #c6aa79 !important;border-radius:2px !important;
+    font:700 9px 'Montserrat',sans-serif !important;letter-spacing:.12em !important;
+  }
+  .passport-page-bg button:not(#rsvpSubmit),
+  .passport-page-bg a[class*="bg-red-950"] {
+    border-radius:2px !important;
+  }
+  .editorial-back-cover { isolation:isolate; }
+  .editorial-back-cover img { z-index:0; }
+  .editorial-back-overlay { z-index:1; }
+  .editorial-back-cover > .relative { z-index:2; }
+  @media(max-width:600px) {
+    #coverPage h1 { font-size:clamp(39px,10vw,53px) !important; }
+    #coverPage .cover-monogram { width:148px !important;height:148px !important; }
+  }
+
+
+  /* ===== FIXED SINGLE-POSITION MAGAZINE + EDITORIAL TYPOGRAPHY ===== */
+  html, body {
+    width:100%;
+    height:100%;
+    min-height:100%;
+    margin:0;
+    overflow:hidden !important;
+  }
+  body {
+    min-height:100svh !important;
+    height:100svh !important;
+    padding:0 !important;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .book-container {
+    width:100%;
+    height:100svh;
+    min-height:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:visible;
+  }
+  .book-viewport {
+    position:relative;
+    width:min(440px, calc(100vw - 28px)) !important;
+    height:min(640px, calc(100svh - 104px)) !important;
+    min-height:0 !important;
+    max-height:640px;
+    margin:0 auto !important;
+    flex:0 1 auto !important;
+    isolation:isolate;
+  }
+  .passport-card {
+    position:absolute !important;
+    inset:0 !important;
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+    overflow:hidden !important;
+  }
+  #backCover {
+    position:absolute !important;
+    inset:0 !important;
+    transform-origin:right center !important;
+    z-index:1;
+  }
+  .book-navigation {
+    position:absolute !important;
+    left:50% !important;
+    top:calc(100% + 12px) !important;
+    bottom:auto !important;
+    transform:translateX(-50%) !important;
+    z-index:50 !important;
+  }
+  /* Consistent magazine type system: refined serif headlines, clean readable body. */
+  .passport-page-bg {
+    color:#332d27 !important;
+    background-color:#fbf8f1 !important;
+  }
+  .passport-page-bg h1,
+  .passport-page-bg h2,
+  .passport-page-bg h3,
+  .passport-page-bg .font-serif {
+    font-family:'Cormorant Garamond','Bodoni Moda',serif !important;
+    color:#34271f !important;
+  }
+  .passport-page-bg h2 { font-weight:600 !important; letter-spacing:.035em !important; }
+  .passport-page-bg h3 { font-weight:600 !important; letter-spacing:.025em !important; }
+  .passport-page-bg p,
+  .passport-page-bg span,
+  .passport-page-bg label,
+  .passport-page-bg input,
+  .passport-page-bg textarea,
+  .passport-page-bg select,
+  .passport-page-bg button,
+  .passport-page-bg a {
+    font-family:'DM Sans','Montserrat',sans-serif !important;
+  }
+  .passport-page-bg p { color:#62574d; }
+  .passport-page-bg .text-slate-900,
+  .passport-page-bg .text-amber-950 { color:#34271f !important; }
+  .passport-page-bg .text-slate-700,
+  .passport-page-bg .text-slate-600,
+  .passport-page-bg .text-slate-500 { color:#70665c !important; }
+  .passport-page-bg .text-amber-900,
+  .passport-page-bg .text-amber-800 { color:#80633e !important; }
+  .passport-page-bg .text-amber-300,
+  .passport-page-bg .text-amber-200 { color:#a27d48 !important; }
+  .passport-page-bg .font-script {
+    font-family:'Cormorant Garamond',serif !important;
+    font-style:italic;
+    color:#805d48 !important;
+  }
+  .passport-page-bg .bg-amber-50,
+  .passport-page-bg .bg-amber-50\/90 { background:#f2ece1 !important; }
+  .passport-page-bg .bg-white,
+  .passport-page-bg .bg-white\/90 { background:#fffdf8 !important; }
+  .passport-page-bg .border-amber-900\/20,
+  .passport-page-bg .border-amber-200 { border-color:#ded2bd !important; }
+  .passport-page-bg .stamp-approved {
+    color:#55715e !important;
+    border-color:rgba(85,113,94,.65) !important;
+  }
+  #backCover h2 {
+    font-family:'Cormorant Garamond','Bodoni Moda',serif !important;
+    font-size:clamp(38px,9vw,54px) !important;
+    font-weight:500 !important;
+    letter-spacing:.015em !important;
+  }
+  @media(max-width:600px) {
+    .book-viewport {
+      width:calc(100vw - 20px) !important;
+      height:min(640px, calc(100svh - 112px)) !important;
+      min-height:0 !important;
+    }
+    .book-navigation { top:calc(100% + 10px) !important; }
+  }
+  @media(max-height:620px) {
+    .book-viewport { height:calc(100svh - 90px) !important; }
+  }
+
+
+/* ===================== MAGAZINE FIT + LOOK (final overrides) ===================== */
+html body .book-viewport{
+  width:420px !important;height:610px !important;max-width:none !important;min-height:0 !important;max-height:none !important;
+  flex:none !important;zoom:var(--book-scale,1);margin-top:-26px !important;
+}
+.passport-card{will-change:auto !important}
+/* stacked paper edges + spine */
+.book-viewport::before,.book-viewport::after{content:"";position:absolute;pointer-events:none;z-index:0}
+.book-viewport::before{top:5px;bottom:-3px;right:-7px;width:9px;border-radius:0 2px 2px 0;
+  background:repeating-linear-gradient(180deg,#fbf8f1 0 1px,#d6ccb8 1px 2px);box-shadow:2px 3px 8px rgba(0,0,0,.45)}
+.book-viewport::after{left:6px;right:-3px;bottom:-7px;height:9px;border-radius:0 0 2px 2px;
+  background:repeating-linear-gradient(90deg,#fbf8f1 0 1px,#d6ccb8 1px 2px)}
+.passport-card::after{content:"";position:absolute;inset:0 auto 0 0;width:30px;pointer-events:none;z-index:15;
+  background:linear-gradient(90deg,rgba(0,0,0,.34),rgba(0,0,0,.1) 45%,transparent)}
+#coverPage::before{content:"";position:absolute;left:5px;top:0;bottom:0;width:12px;z-index:16;pointer-events:none;
+  background:linear-gradient(#0000 0 23%,#b9b4aa 23% 24%,#0000 24% 75%,#b9b4aa 75% 76%,#0000 76%)}
+/* inside pages: double rule masthead line, running folio */
+html body .passport-page-bg{padding:24px 18px 10px 28px !important;border:0 !important}
+.passport-page-bg::before{content:"";position:absolute;left:28px;right:18px;top:10px;height:3px;z-index:2;
+  border-top:2px solid #171513;border-bottom:1px solid #171513}
+.passport-page-bg h2,.passport-page-bg h3{font-family:'Bodoni Moda',serif !important;letter-spacing:.01em !important;text-transform:none !important}
+.passport-page-bg h2{font-size:24px !important;line-height:1.1 !important;font-weight:700 !important}
+.passport-page-bg h3{font-size:16px !important;line-height:1.15 !important}
+.passport-page-bg .rounded-lg,.passport-page-bg .rounded-xl,.passport-page-bg .rounded{border-radius:2px !important}
+.mag-folio{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid #171513;padding-top:4px;margin:0;
+  font:italic 400 10.5px 'Bodoni Moda',serif;color:#6b5f50 !important}
+.mag-folio b{font:700 14px 'Bodoni Moda',serif;font-style:normal;color:#171513}
+.mag-folio span{order:-1}
+.passport-page-bg:nth-of-type(odd) .mag-folio{flex-direction:row-reverse}
+/* legible minimum sizes (page auto-fit keeps everything inside) */
+.passport-card [class*="text-[6"],.passport-card [class*="text-[7"]{font-size:9px !important}
+.passport-card [class*="text-[8"]{font-size:10px !important}
+.passport-card [class*="text-[9"]{font-size:10.5px !important}
+.passport-card [class*="text-[10"]{font-size:11.5px !important}
+#page5 .custom-scroll{max-height:400px !important}
+#page6 .custom-scroll{max-height:220px !important}
+#page9 .custom-scroll{max-height:240px !important}
+/* ---- cover ---- */
+html body #coverPage{padding:0 !important;text-align:left !important;display:block !important}
+.editorial-cover-frame{display:none !important}
+#coverPage .editorial-cover-shade{background:linear-gradient(180deg,rgba(10,8,8,.8) 0,rgba(10,8,8,.1) 30%,rgba(10,8,8,.05) 50%,rgba(10,8,8,.88) 100%) !important}
+.mag-cover-inner{position:absolute;inset:0;z-index:10;padding:16px 20px 16px 30px;display:flex;flex-direction:column;justify-content:space-between;color:#fffaf0}
+.mag-issue-row{display:flex;justify-content:space-between;font:600 9.5px 'Montserrat',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#f0dfbd;border-bottom:1px solid rgba(240,223,189,.6);padding-bottom:5px}
+.mag-title{font:800 112px/.9 'Bodoni Moda',serif;letter-spacing:.015em;text-align:center;margin-top:6px;color:#fffaf0;text-shadow:0 3px 18px rgba(0,0,0,.5)}
+.mag-tag{font:italic 500 15px 'Bodoni Moda',serif;text-align:center;color:#ecd29b;margin-top:2px}
+/* Cover contents: align the editorial index with the open button */
+.mag-cover-mid{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+  width:100%;
+  margin:8px 0 10px;
+}
+.mag-lines{
+  list-style:none;
+  margin:0;
+  padding:0;
+  width:min(205px, calc(100% - 104px));
+  font:500 13px/1.28 'Cormorant Garamond',serif;
+}
+.mag-lines li{
+  display:grid;
+  grid-template-columns:25px minmax(0,1fr);
+  align-items:center;
+  gap:8px;
+  margin:0 0 11px;
+  color:#fffaf0;
+  text-shadow:0 2px 8px rgba(0,0,0,.7);
+}
+.mag-lines li:last-child{margin-bottom:0}
+.mag-lines b{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:24px;
+  height:24px;
+  border:1px solid rgba(236,210,155,.8);
+  border-radius:50%;
+  color:#ecd29b;
+  font:700 8px/1 'Montserrat',sans-serif;
+  letter-spacing:.04em;
+  text-shadow:none;
+  background:rgba(18,13,10,.28);
+  box-shadow:inset 0 1px 3px rgba(255,255,255,.12),0 2px 7px rgba(0,0,0,.2);
+}
+.mag-open{flex:0 0 92px}
+@media(max-width:380px){
+  .mag-cover-mid{gap:8px}
+  .mag-lines{font-size:12px;width:calc(100% - 86px)}
+  .mag-lines li{grid-template-columns:22px minmax(0,1fr);gap:6px;margin-bottom:9px}
+  .mag-lines b{width:21px;height:21px;font-size:7px}
+  .mag-open{flex-basis:78px;width:78px;height:78px;font-size:9px}
+}
+.mag-open{width:92px;height:92px;border-radius:50%;border:2px solid #fff6dc;cursor:pointer;transform:rotate(-9deg);
+  background:radial-gradient(circle at 35% 30%,#f6e3ab,#c49a47);color:#2a1d0c;box-shadow:0 6px 16px rgba(0,0,0,.45);
+  font:800 11px/1.25 'Montserrat',sans-serif;letter-spacing:.06em;text-transform:uppercase;transition:transform .25s}
+.mag-open:hover{transform:rotate(-3deg) scale(1.07)}
+.mag-open:focus-visible{outline:2px solid #fff;outline-offset:4px}
+.mag-names{font:500 58px/.95 'Bodoni Moda',serif;letter-spacing:-.03em;text-shadow:0 4px 18px rgba(0,0,0,.6)}
+.mag-names em{color:#ecd29b;font-weight:400}
+.mag-sub{font:500 10.5px/1.45 'Montserrat',sans-serif;letter-spacing:.08em;color:#f3e6c9;margin:8px 0 10px;max-width:250px}
+.mag-barcode{position:absolute;right:20px;bottom:16px;background:#fff;padding:4px 6px 3px;text-align:center}
+.mag-barcode i{display:block;width:84px;height:30px;background:repeating-linear-gradient(90deg,#111 0 2px,#fff 2px 3px,#111 3px 4px,#fff 4px 7px,#111 7px 8px,#fff 8px 9px)}
+.mag-barcode span{font:500 6.5px 'Montserrat',sans-serif;color:#111;letter-spacing:.08em}
+
+/* ===================== EDITORIAL INSIDE PAGES ===================== */
+.mag-page{display:flex !important;flex-direction:column;padding:26px 18px 10px 30px !important;background:#f7f2e8 !important;
+  background-image:repeating-linear-gradient(0deg,rgba(26,22,19,.014) 0 1px,transparent 1px 4px) !important;color:#1a1613;border:0 !important;
+  font:500 14.5px/1.38 'Cormorant Garamond',serif !important;overflow:hidden}
+.mag-page *{box-sizing:border-box}
+.mag-page::before{content:"";position:absolute;left:30px;right:18px;top:10px;height:3px;border-top:2px solid #1a1613;border-bottom:1px solid #1a1613}
+#page1::before{display:none}
+.mag-body{flex:1 1 auto;min-height:0}
+.mag-head{display:flex;justify-content:space-between;margin:4px 0 8px;font:700 8.5px 'Montserrat',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#7a1f2b}
+.mag-h{font:700 33px/1.02 'Bodoni Moda',serif;letter-spacing:-.025em;margin:2px 0 6px;color:#1a1613}
+.mag-h i{font-weight:500;color:#7a1f2b}
+.mag-deck{font:italic 500 16.5px/1.25 'Cormorant Garamond',serif;color:#5a4e42;margin:0 0 12px}
+.mag-lab{display:block;font:700 8.5px 'Montserrat',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#a07d3c;margin-bottom:3px}
+.mag-big{font:700 17px/1.12 'Bodoni Moda',serif}
+.mag-page p{margin:2px 0 6px;color:#3b3229}
+.mag-page small,.mag-small{font:500 10.5px 'Montserrat',sans-serif;letter-spacing:.06em;color:#6b5f50}
+.mag-2{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;padding:10px 0;border-top:1px solid rgba(26,22,19,.3)}
+.mag-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:10px 0;border-top:1px solid rgba(26,22,19,.3);border-bottom:1px solid rgba(26,22,19,.3)}
+.mag-link{display:inline-block;margin-top:4px;font:700 9px 'Montserrat',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#7a1f2b;text-decoration:none;border-bottom:1px solid #7a1f2b}
+.mag-pull{font:italic 500 23px/1.2 'Bodoni Moda',serif;color:#7a1f2b;border-top:3px solid #7a1f2b;border-bottom:1px solid #1a1613;padding:12px 0;margin:12px 0}
+.mag-text{font-size:15.5px !important;line-height:1.45 !important;text-align:justify;hyphens:auto}
+.mag-dropcap::first-letter{float:left;font:700 56px/.82 'Bodoni Moda',serif;padding:5px 7px 0 0;color:#7a1f2b}
+.mag-sign{font:italic 600 20px 'Bodoni Moda',serif !important;text-align:right;color:#1a1613 !important}
+.mag-tl{list-style:none;margin:6px 0 0;padding:0;border-top:1px solid rgba(26,22,19,.3)}
+.mag-tl li{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid rgba(26,22,19,.18)}
+.mag-tl b{font:700 24px/1 'Bodoni Moda',serif;color:#7a1f2b;min-width:62px}
+.mag-tl strong{font:700 15px 'Bodoni Moda',serif}
+.mag-sw{display:flex;gap:16px}.mag-sw div{font:600 9px 'Montserrat',sans-serif;letter-spacing:.1em;text-transform:uppercase;text-align:center}
+.mag-sw i{display:block;width:46px;height:46px;border-radius:50%;margin:0 auto 5px;border:1px solid rgba(26,22,19,.3)}
+.mag-scroll{overflow-y:auto;overscroll-behavior:contain;padding-right:6px;scrollbar-width:thin;scrollbar-color:#a07d3c transparent}
+.mag-names2 p,.mag-names2 div div{font:600 13px/1.5 'Cormorant Garamond',serif}
+.mag-names2 #ninongList div,.mag-names2 #ninangList div{padding:1px 0;border-bottom:1px solid rgba(26,22,19,.1)}
+.mag-sec div{font:500 12.5px/1.25 'Cormorant Garamond',serif;font-style:italic}.mag-sec b{display:block;font:700 14px 'Bodoni Moda',serif;font-style:normal}
+.mag-gift{display:flex;gap:16px;align-items:center;border-top:1px solid rgba(26,22,19,.3);padding-top:12px}
+.mag-gift svg{width:104px;height:104px;flex:none;padding:6px;background:#fff;border:1px solid #1a1613}
+.mag-form{display:grid;gap:8px}.mag-form label{display:block;font:700 8.5px 'Montserrat',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#7a1f2b}
+.mag-in{display:block;width:100%;border:0 !important;border-bottom:1px solid #1a1613 !important;border-radius:0 !important;background:transparent !important;padding:5px 1px !important;
+  font:500 15px 'Cormorant Garamond',serif !important;letter-spacing:0;text-transform:none;color:#1a1613 !important;outline:0;resize:none}
+.mag-in:focus{border-bottom:2px solid #7a1f2b !important}
+#rsvpSubmit{width:100%;padding:11px !important;font:700 10px 'Montserrat',sans-serif !important;color:#f7f2e8 !important;background:#1a1613 !important;border:0 !important;letter-spacing:.2em !important}
+.mag-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.mag-ph{padding:0;border:0;background:#ddd;cursor:pointer;overflow:hidden;height:84px}.mag-ph.wide{grid-column:1/-1;height:120px}
+.mag-ph img{width:100%;height:100%;object-fit:cover;display:block}
+.mag-folio{margin-top:auto !important;flex:none}
+/* page 1 */
+.p1{padding:0 18px 10px 30px !important}
+.mag-photo{margin:0 -18px 0 -30px;height:268px;position:relative;background:linear-gradient(0deg,rgba(10,8,8,.85),rgba(10,8,8,.1) 60%),url("https://eventnest.ph/assets/images/blog/the-prenuptial-video-vs-save-the-date-video-what-is-the-difference-and-do-you-need-both3.avif") center/cover}
+.mag-photo-txt{position:absolute;left:30px;right:18px;bottom:14px}
+.mag-count{margin-top:12px}.mag-cd{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;font:600 8.5px 'Montserrat',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6b5f50}
+.mag-cd b{display:block;font:700 28px/1.1 'Bodoni Moda',serif;color:#7a1f2b;letter-spacing:0}
+.mag-count .mag-small{text-align:center;margin-top:6px}
+
+/* =========================================================
+   LUXURY EDITORIAL WEDDING MAGAZINE — FINAL ART DIRECTION
+   Black / antique gold / warm ivory. Existing content,
+   navigation, RSVP, media, gallery and page-turn logic kept.
+   ========================================================= */
+:root{
+  --lux-ink:#252321;
+  --lux-charcoal:#494642;
+  --lux-gold:#A48654;
+  --lux-bronze:#917650;
+  --lux-grey:#8A837A;
+  --lux-ivory:#F3EDE4;
+  --lux-paper:#FBF8F2;
+  --lux-rule:rgba(164,134,84,.42);
+}
+html,body{font-family:'Lato',sans-serif;color:var(--lux-ink)}
+body{
+  background:radial-gradient(ellipse at 50% 36%,#302c27 0%,#171614 54%,#090909 100%) !important;
+}
+.passport-page-bg,.mag-page{
+  color:var(--lux-ink) !important;
+  background-color:var(--lux-paper) !important;
+}
+.mag-page{
+  background-image:
+    radial-gradient(ellipse at 14% 4%,rgba(255,255,255,.7),transparent 46%),
+    linear-gradient(165deg,#fffdf9 0%,#f8f3eb 58%,#f1e9dd 100%) !important;
+  font-family:'Lato',sans-serif !important;
+}
+.mag-page h1,.mag-page h2,.mag-page h3,
+.mag-page .mag-h,.mag-page .mag-big,.mag-page .mag-pull,
+.mag-page .mag-tl strong,.mag-page .mag-tl b,
+.mag-page .mag-cd b,.mag-page .mag-names2,
+.passport-page-bg h1,.passport-page-bg h2,.passport-page-bg h3,
+#backCover h2{
+  font-family:'Cormorant Garamond',serif !important;
+  color:var(--lux-ink) !important;
+}
+.mag-page p,.mag-page li,.mag-page label,.mag-page input,
+.mag-page textarea,.mag-page select,.mag-page button,
+.mag-page .mag-small,.mag-page .mag-text{
+  font-family:'Lato',sans-serif !important;
+}
+.mag-page p{color:#625c54}
+.mag-head,.mag-lab,.mag-page small,.mag-small,
+.mag-page label,.mag-page .mag-link,
+.mag-page .mag-form label,.mag-page .mag-cd{
+  font-family:'Montserrat',sans-serif !important;
+}
+.mag-head,.mag-lab,.mag-link,.mag-form label{
+  color:var(--lux-bronze) !important;
+}
+.mag-h{
+  font-size:35px !important;
+  font-weight:600 !important;
+  line-height:1.02 !important;
+  letter-spacing:-.018em !important;
+}
+.mag-h i,.mag-pull,.mag-tl b,.mag-cd b,.mag-dropcap::first-letter{
+  color:var(--lux-gold) !important;
+}
+.mag-pull{
+  border-top-color:var(--lux-gold) !important;
+}
+.mag-link{
+  border-bottom-color:var(--lux-gold) !important;
+}
+.mag-page::before{
+  border-top-color:var(--lux-ink) !important;
+  border-bottom-color:var(--lux-gold) !important;
+}
+.mag-page .mag-2,.mag-page .mag-3,.mag-tl,
+.mag-tl li,.mag-gift,.mag-form{
+  border-color:var(--lux-rule) !important;
+}
+.mag-in{
+  font-family:'Lato',sans-serif !important;
+  color:var(--lux-ink) !important;
+  border-bottom-color:#b7a586 !important;
+}
+.mag-in:focus{border-bottom-color:var(--lux-gold) !important}
+#rsvpSubmit{
+  background:var(--lux-ink) !important;
+  color:var(--lux-ivory) !important;
+  border:1px solid var(--lux-gold) !important;
+  font-family:'Montserrat',sans-serif !important;
+  transition:background .25s ease,color .25s ease,transform .25s ease;
+}
+#rsvpSubmit:hover:not(:disabled){
+  background:var(--lux-gold) !important;
+  color:#171512 !important;
+}
+.mag-cd b{color:var(--lux-gold) !important}
+.mag-photo-txt .mag-lab{color:#e6d2ad !important}
+.mag-photo-txt .mag-h,.mag-photo-txt h2{color:#fffaf2 !important}
+
+/* Cover: high-fashion masthead with restrained antique-gold accents. */
+#coverPage{
+  background:#11100e !important;
+  border:1px solid rgba(164,134,84,.8) !important;
+  box-shadow:0 26px 60px rgba(0,0,0,.58),inset 0 0 0 4px rgba(164,134,84,.08) !important;
+}
+#coverPage .editorial-cover-shade{
+  background:linear-gradient(180deg,rgba(8,8,7,.76) 0%,rgba(8,8,7,.12) 34%,rgba(8,8,7,.2) 58%,rgba(8,8,7,.86) 100%) !important;
+}
+.mag-issue-row{
+  color:#e8dcc6 !important;
+  border-bottom-color:rgba(164,134,84,.72) !important;
+  font-family:'Montserrat',sans-serif !important;
+  letter-spacing:.18em !important;
+}
+.mag-title{
+  font-family:'Cormorant Garamond',serif !important;
+  font-weight:500 !important;
+  letter-spacing:-.035em !important;
+  color:#fbf7ef !important;
+}
+.mag-tag{
+  font-family:'Cormorant Garamond',serif !important;
+  color:#c9ad7c !important;
+}
+.mag-lines{font-family:'Cormorant Garamond',serif !important}
+.mag-lines b{font-family:'Montserrat',sans-serif !important;color:#c9ad7c !important}
+.mag-names{
+  font-family:'Cormorant Garamond',serif !important;
+  font-weight:500 !important;
+  color:#fffaf2 !important;
+}
+.mag-names em{color:#c6a46b !important}
+.mag-sub{font-family:'Lato',sans-serif !important;color:#e8dfd0 !important}
+.mag-open{
+  background:linear-gradient(145deg,#e7d8b9,#b39158) !important;
+  border:1px solid #f1e5ce !important;
+  color:#211d17 !important;
+  font-family:'Montserrat',sans-serif !important;
+  font-size:10px !important;
+  transition:transform .3s ease,box-shadow .3s ease !important;
+}
+.mag-open:hover{box-shadow:0 8px 22px rgba(0,0,0,.38) !important}
+.mag-barcode{background:#f7f1e7 !important}
+.mag-barcode span{color:#252321 !important}
+
+/* Closing cover and booklet controls. */
+.editorial-back-cover{
+  border-color:rgba(164,134,84,.78) !important;
+}
+.book-navigation{
+  background:rgba(24,22,19,.97) !important;
+  border:1px solid rgba(164,134,84,.72) !important;
+  box-shadow:0 8px 24px rgba(0,0,0,.4) !important;
+}
+.nav-page-button{
+  background:linear-gradient(135deg,#e8dcc7,#c7ad82) !important;
+  color:#252321 !important;
+  border:1px solid #ddcba8 !important;
+  border-radius:2px !important;
+  font-family:'Montserrat',sans-serif !important;
+  letter-spacing:.13em !important;
+}
+.nav-page-button:hover:not(:disabled){
+  background:linear-gradient(135deg,#f5eddf,#d8c29a) !important;
+  color:#171512 !important;
+}
+.nav-page-button:disabled{opacity:.38 !important}
+.page-indicator{
+  color:#e8d8ba !important;
+  border-color:rgba(164,134,84,.45) !important;
+  font-family:'Montserrat',sans-serif !important;
+}
+.book-viewport::before,.book-viewport::after{
+  background:repeating-linear-gradient(180deg,#fbf8f2 0 1px,#d8cdbb 1px 2px) !important;
+}
+.passport-card::after{
+  background:linear-gradient(90deg,rgba(0,0,0,.25),rgba(0,0,0,.07) 45%,transparent) !important;
+}
+.stamp,.stamp-approved{filter:saturate(.65)}
+.watermark-bg{opacity:.035 !important}
+
+/* Responsive editorial scale and readable spacing. */
+@media(max-width:600px){
+  .mag-page{padding:25px 14px 10px 24px !important}
+  .mag-page::before{left:24px;right:14px}
+  .mag-h{font-size:clamp(27px,7vw,34px) !important}
+  .mag-deck{font-size:15px !important}
+  .mag-text{font-size:14px !important;line-height:1.42 !important}
+  .mag-2{gap:6px 10px}
+  .mag-3{gap:8px}
+  .mag-names{font-size:clamp(36px,11vw,48px) !important}
+  .mag-title{font-size:clamp(68px,20vw,94px) !important}
+  .mag-open{width:82px;height:82px;font-size:9px !important}
+  .mag-issue-row{font-size:8px}
+}
+@media(max-width:360px){
+  .mag-page{padding-left:21px !important;padding-right:12px !important}
+  .mag-page::before{left:21px;right:12px}
+  .mag-head{font-size:7.5px}
+  .mag-h{font-size:26px !important}
+  .mag-text{font-size:13px !important}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    scroll-behavior:auto !important;
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
+}
+
+
+/* =========================================================
+   CONSISTENT TYPOGRAPHIC SYSTEM — ALL BOOKLET PAGES
+   Cormorant Garamond: display / editorial
+   Montserrat: navigation / labels / captions
+   Lato: body / readable content
+   ========================================================= */
+:root{
+  --font-display:'Cormorant Garamond', Georgia, serif;
+  --font-label:'Montserrat', Arial, sans-serif;
+  --font-body:'Lato', Arial, sans-serif;
+}
+
+/* Readable default for every page and all inherited content. */
+html, body, button, input, textarea, select{
+  font-family:var(--font-body) !important;
+}
+.passport-card, .passport-page-bg, .mag-page,
+.passport-card *:not(i):not(.fa):not([class*="icon"]){
+  font-family:var(--font-body);
+}
+
+/* Editorial display hierarchy: masthead, couple names, page titles. */
+#coverPage .mag-title,
+#coverPage .mag-names,
+#coverPage .mag-tag,
+.mag-page h1, .mag-page h2, .mag-page h3, .mag-page h4,
+.mag-page .mag-h, .mag-page .mag-big, .mag-page .mag-pull,
+.mag-page .mag-deck, .mag-page .mag-names2,
+.mag-page .mag-sec div, .mag-page .mag-sec b,
+.mag-page .mag-tl strong, .mag-page .mag-tl b,
+.mag-page .mag-cd b,
+.passport-page-bg h1, .passport-page-bg h2, .passport-page-bg h3,
+.passport-page-bg h4, #backCover h1, #backCover h2, #backCover h3{
+  font-family:var(--font-display) !important;
+}
+
+/* Body copy and form content. */
+.mag-page p, .mag-page li, .mag-page blockquote,
+.mag-page .mag-text, .mag-page .mag-sub,
+.mag-page input, .mag-page textarea, .mag-page select,
+.passport-page-bg p, .passport-page-bg li,
+#backCover p, #backCover li{
+  font-family:var(--font-body) !important;
+}
+
+/* Navigation, metadata, labels and compact uppercase editorial details. */
+.mag-issue-row, .mag-head, .mag-lab, .mag-small,
+.mag-page small, .mag-link, .mag-form label,
+.mag-cd, .mag-sw, .mag-lines b, .mag-barcode span,
+.mag-open, .book-navigation, .nav-page-button,
+.page-indicator, .passport-card .font-cinzel,
+.passport-card .font-mrz, .passport-card label,
+#rsvpSubmit{
+  font-family:var(--font-label) !important;
+}
+
+/* Consistent sizes and line heights across the entire magazine. */
+.mag-page h1, .passport-page-bg h1{
+  font-size:clamp(34px, 8vw, 46px) !important;
+  line-height:1.02 !important;
+  font-weight:600 !important;
+  letter-spacing:-.025em !important;
+}
+.mag-page h2, .passport-page-bg h2, #backCover h2{
+  font-size:clamp(27px, 6vw, 35px) !important;
+  line-height:1.08 !important;
+  font-weight:600 !important;
+  letter-spacing:-.015em !important;
+}
+.mag-page h3, .passport-page-bg h3{
+  font-size:clamp(21px, 4.8vw, 27px) !important;
+  line-height:1.12 !important;
+  font-weight:600 !important;
+}
+.mag-page h4, .passport-page-bg h4{
+  font-size:18px !important;
+  line-height:1.2 !important;
+  font-weight:600 !important;
+}
+.mag-page .mag-h{
+  font-size:clamp(29px, 7vw, 38px) !important;
+  line-height:1.04 !important;
+  font-weight:600 !important;
+}
+.mag-page p, .mag-page li, .mag-page .mag-text,
+.passport-page-bg p, .passport-page-bg li, #backCover p{
+  font-size:15px;
+  line-height:1.55;
+}
+.mag-page .mag-deck{
+  font-size:clamp(16px, 3.8vw, 19px) !important;
+  line-height:1.35 !important;
+}
+.mag-lab, .mag-head, .mag-page small, .mag-small,
+.mag-form label, .mag-link, .nav-page-button, .page-indicator{
+  font-size:9px !important;
+  line-height:1.4 !important;
+  font-weight:600 !important;
+  letter-spacing:.14em !important;
+  text-transform:uppercase;
+}
+#coverPage .mag-title{
+  line-height:.88 !important;
+}
+#coverPage .mag-names{
+  line-height:1.02 !important;
+}
+@media(max-width:600px){
+  .mag-page p, .mag-page li, .mag-page .mag-text,
+  .passport-page-bg p, .passport-page-bg li, #backCover p{
+    font-size:14px;
+    line-height:1.5;
+  }
+  .mag-page h1, .passport-page-bg h1{
+    font-size:clamp(31px, 9vw, 40px) !important;
+  }
+  .mag-page h2, .passport-page-bg h2, #backCover h2{
+    font-size:clamp(25px, 7vw, 31px) !important;
+  }
+}
+
+/* =========================================================
+   HEADER SYSTEM — consistent placement on every inside page
+   masthead rule → running head → title → deck → content → folio
+   ========================================================= */
+html body .mag-page{padding:36px 20px 12px 36px !important}
+html body .mag-page.p1{padding:0 20px 12px 36px !important}
+.mag-page::before{left:36px !important;right:20px !important;top:16px !important;height:3px !important}
+.mag-page .mag-head{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  margin:0 0 14px !important;padding:0 0 7px;
+  border-bottom:1px solid var(--lux-rule);
+  font-size:8.5px !important;letter-spacing:.2em !important;line-height:1.3 !important;
+}
+.mag-page .mag-head span:last-child{color:var(--lux-grey) !important;text-align:right}
+.mag-page .mag-h{
+  margin:0 0 8px !important;
+  font-size:clamp(30px,7vw,36px) !important;line-height:1.05 !important;
+}
+.mag-page .mag-h i{font-style:italic;font-weight:500}
+.mag-page .mag-deck{
+  position:relative;margin:0 0 14px !important;padding-bottom:12px;
+}
+.mag-page .mag-deck::after{
+  content:"";position:absolute;left:0;bottom:0;width:42px;height:2px;background:var(--lux-gold);
+}
+.mag-page .mag-folio{
+  margin-top:auto !important;padding-top:6px;flex:none;
+  display:flex;justify-content:space-between;align-items:baseline;
+  border-top:1px solid var(--lux-rule) !important;
+}
+.mag-page .mag-folio span{
+  order:-1;font:600 7.5px 'Montserrat',sans-serif !important;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--lux-grey) !important;
+}
+.mag-page .mag-folio b{
+  font:600 17px 'Cormorant Garamond',serif !important;color:var(--lux-ink) !important;
+}
+/* Page 1: running head sits on top of the photo */
+.p1 .mag-photo{margin:0 -20px 0 -36px !important;height:276px}
+.mag-photo-txt{left:36px !important;right:20px !important}
+.mag-photo-txt .mag-h{font-size:36px !important;margin:2px 0 0 !important}
+.mag-head-photo{
+  position:absolute;top:16px;left:36px;right:20px;z-index:3;margin:0 !important;
+  border-bottom:1px solid rgba(240,223,189,.55) !important;
+}
+.mag-head-photo span,.mag-head-photo span:last-child{color:#f0dfbd !important}
+
+/* Paper edge removed on inside pages: clean shadow only */
+html body .book-viewport::before,html body .book-viewport::after{display:none !important}
+/* Page 1: slightly shorter photo so the countdown and footer fit without being cut */
+.p1 .mag-photo{height:236px !important}
+
+/* ===== Cleaner back cover ===== */
+#backCover{display:block !important;padding:0 !important;background:#14110f !important}
+#backCover .bc-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:brightness(.92) saturate(.95) !important}
+#backCover .bc-shade{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(10,8,8,.62) 0%,rgba(10,8,8,.12) 34%,rgba(10,8,8,.2) 58%,rgba(10,8,8,.82) 100%)}
+#backCover .bc-inner{position:absolute;inset:0;z-index:2;padding:22px 22px 24px 32px;
+  display:flex;flex-direction:column;justify-content:space-between;text-align:center;color:#fffaf0}
+#backCover .bc-top{display:flex;justify-content:space-between;padding-bottom:7px;border-bottom:1px solid rgba(240,223,189,.6);
+  font:600 8.5px 'Montserrat',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#f0dfbd}
+#backCover .bc-mid{margin-top:26px}
+#backCover .bc-mid h2{margin:0;font:500 clamp(40px,10vw,52px)/1.02 'Cormorant Garamond',serif !important;letter-spacing:-.01em !important;color:#fffaf0 !important;text-shadow:0 3px 16px rgba(0,0,0,.5)}
+#backCover .bc-sub{margin:10px 0 0;font:italic 500 18px 'Cormorant Garamond',serif;color:#e9d3a3}
+#backCover .bc-sub::after{content:"";display:block;width:42px;height:2px;margin:14px auto 0;background:#c9ad7c}
+#backCover .bc-names{margin:0;font:500 34px/1.05 'Cormorant Garamond',serif;color:#fffaf0;text-shadow:0 3px 14px rgba(0,0,0,.55)}
+#backCover .bc-names em{color:#d6b97c;font-weight:400}
+#backCover .bc-date{margin:10px 0 0;font:600 9px 'Montserrat',sans-serif;letter-spacing:.34em;color:#f0dfbd}
+#backCover .bc-place{margin:6px 0 0;font:500 8.5px 'Montserrat',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,250,240,.78)}
+
+/* ===== Fewer, lighter lines: one top rule, hairline dividers only where they help ===== */
+html body .mag-page::before{height:0 !important;border-top:1px solid rgba(164,134,84,.75) !important;border-bottom:0 !important}
+.mag-page .mag-head{border-bottom:0 !important;padding-bottom:0 !important;margin:0 0 12px !important}
+.mag-page .mag-deck{padding-bottom:0 !important}
+.mag-page .mag-deck::after{display:none !important}
+.mag-page .mag-2,.mag-page .mag-3{border-top:1px solid rgba(26,22,19,.13) !important;border-bottom:0 !important}
+.mag-page .mag-tl{border-top:0 !important}
+.mag-page .mag-tl li{border-bottom:1px solid rgba(26,22,19,.09) !important}
+.mag-page .mag-tl li:last-child{border-bottom:0 !important}
+.mag-page .mag-folio{border-top:0 !important}
+.mag-page .mag-gift{border-top:1px solid rgba(26,22,19,.13) !important}
+.mag-page .mag-pull{border-top:1px solid var(--lux-gold) !important;border-bottom:0 !important;padding:10px 0 2px !important}
+#backCover .bc-sub::after{display:none}
+#backCover .bc-top{border-bottom:0}
+
+
+/* ===== BASIC CLASSIC: flat pages, no 3D, gloss or tilt ===== */
+html body .book-viewport{transform:none !important;transform-style:flat;filter:drop-shadow(0 12px 18px rgba(0,0,0,.35)) !important}
+.book-container{perspective:none !important}
+#coverPage::before{content:none !important;display:none !important}
+#coverPage .mag-title{color:#fbf7ef !important;background:none !important;filter:none !important;text-shadow:0 3px 18px rgba(0,0,0,.5) !important}
+/* ===== RSVP styled like a Google Form ===== */
+.gf-scroll{max-height:372px}
+.gf{display:grid;gap:8px;font-family:'Google Sans',Roboto,Arial,sans-serif}
+.gf-card{background:#fff;border:1px solid #dadce0;border-radius:8px;padding:12px 14px}
+.gf-title{border-top:8px solid #673ab7;padding-top:10px}
+.gf-card h4{margin:0 0 2px;font:400 22px/1.2 'Google Sans',Roboto,Arial,sans-serif !important;color:#202124 !important;letter-spacing:0 !important}
+.gf-title p{margin:0;font:400 12px/1.5 Roboto,Arial,sans-serif !important;color:#5f6368}
+.gf-card label,.gf-q{display:block;font:400 14px/1.4 Roboto,Arial,sans-serif !important;color:#202124;letter-spacing:0 !important;text-transform:none !important}
+.gf-req{color:#d93025}
+.gf-in{display:block;width:100%;margin-top:6px;border:0;border-bottom:1px solid #dadce0;border-radius:0;background:transparent;padding:5px 0;font:400 14px Roboto,Arial,sans-serif;color:#202124;outline:0;resize:none}
+.gf-in:focus{border-bottom:2px solid #673ab7;padding-bottom:4px}
+.gf-card .gf-radio{display:flex;align-items:center;gap:10px;margin-top:8px;cursor:pointer}
+.gf-radio input{position:absolute;opacity:0;width:0;height:0}
+.gf-radio i{flex:none;width:18px;height:18px;border:2px solid #5f6368;border-radius:50%;position:relative}
+.gf-radio input:checked+i{border-color:#673ab7}
+.gf-radio input:checked+i::after{content:"";position:absolute;inset:3px;border-radius:50%;background:#673ab7}
+.gf-radio input:focus-visible+i{box-shadow:0 0 0 3px rgba(103,58,183,.25)}
+.gf-actions{padding:2px 0}
+#rsvpSubmit{background:#673ab7 !important;background-image:none !important;color:#fff !important;border:0 !important;border-radius:4px !important;padding:9px 22px !important;width:auto !important;font:500 14px Roboto,Arial,sans-serif !important;letter-spacing:.02em !important;box-shadow:none !important;cursor:pointer}
+#rsvpSubmit:hover:not(:disabled){background:#5e35b1 !important}
+#rsvpSubmit:disabled{opacity:.6;cursor:not-allowed}
+.gf-feedback{padding:8px 12px;border-radius:4px;background:#fce8e6;color:#c5221f;font:400 13px Roboto,Arial,sans-serif}
+.gf-done h4{margin-bottom:6px}
+.gf-done p{margin:0;font:400 14px/1.5 Roboto,Arial,sans-serif !important;color:#202124}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Lato:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="flex flex-col items-center justify-between p-3 md:p-6 select-none min-h-screen">
+
+  <!-- INTERACTIVE MAGAZINE BOOKLET -->
+  <main class="book-container my-auto py-2 w-full flex justify-center items-center">
+    <div class="book-viewport relative" id="passportBook">
+
+      <!-- ================= COVER PAGE ================= -->
+      <div id="coverPage" class="passport-card editorial-cover shadow-2xl">
+        <img class="editorial-cover-photo" src="https://eventnest.ph/assets/images/blog/hiring-a-wedding-florist-and-event-stylist-in-the-philippines1.avif" alt="Wedding bridal car cover photograph" style="object-position: center">
+        <div class="editorial-cover-shade"></div>
+        <div class="mag-cover-inner">
+          <div class="mag-masthead">
+            <div class="mag-issue-row"><span>The Wedding Edition</span><span>DATE. 12/19/26</span></div>
+            
+			<div class="mag-title">VOWS</div>
+			
+            
+          </div>
+          <div class="mag-cover-mid">
+            <ul class="mag-lines">
+              <li><b>02</b> The Ceremony &amp; Celebration</li>
+              <li><b>04</b> The People Who Make Our Story Special</li>
+              <li><b>06</b> Kindly RSVP by November 15</li>
+            </ul>
+            <button type="button" class="mag-open" onclick="openPassportCover()" aria-label="Open the wedding magazine">
+              <span>Tap to<br>open<br>the issue</span>
+            </button>
+          </div>
+          <div class="mag-cover-foot">
+            <div class="mag-names" role="heading" aria-level="1">Richard <em>&amp;</em> Lucy</div>
+            <p class="mag-sub">The Lopez–Gomez wedding,<br>
+			19 December 2026, La Trinidad, Benguet</p>
+            
+          </div>
+        </div>
+      </div>
+
+      <div id="page1" class="passport-card mag-page p1"><div class="mag-photo"><div class="mag-head mag-head-photo"><span>The Invitation</span><span>Vows · No. 019</span></div><div class="mag-photo-txt"><span class="mag-lab" style="color:#ecd29b">The invitation</span><div class="mag-h" style="color:#fff;font-size:38px">Richard &amp; Lucy<br>are getting married</div></div></div>
+<div class="mag-body" style="margin-top:12px"><p class="mag-deck">Together with their parents, they request the honor of your presence at the celebration of their holy matrimony.</p>
+<div class="mag-3"><div><span class="mag-lab">When</span><div class="mag-big">19 December<br>2026</div><small>10:00 AM</small></div><div><span class="mag-lab">Where</span><div class="mag-big">La Trinidad,<br>Benguet</div><small>St. Paul Church</small></div><div><span class="mag-lab">Who</span><div class="mag-big">Richard A. Lopez<br>Lucy B. Gomez</div></div></div>
+<div class="mag-count"><span class="mag-lab" style="text-align:center">Countdown to the big day</span><div id="weddingCountdown" class="mag-cd" role="timer" aria-live="off"><div><b id="countDays">--</b>days</div><div><b id="countHours">--</b>hours</div><div><b id="countMinutes">--</b>minutes</div><div><b id="countSeconds">--</b>seconds</div></div><p id="countdownMessage" class="mag-small">Until 19 December 2026 • 10:00 AM</p></div></div><p class="mag-folio"><b>01</b><span>VOWS · The Wedding Edition</span></p></div>
+<div id="page2" class="passport-card mag-page"><div class="mag-body"><div class="mag-head"><span>The Day</span><span>Venues &amp; schedule</span></div><div class="mag-h">Where we say <i>I do</i></div><p class="mag-deck">Ceremony and celebration, both in La Trinidad.</p>
+<div class="mag-2"><div><span class="mag-lab">Ceremony · 10:00 AM</span><div class="mag-big">St. Paul Church</div><p>Camp Dangwa, La Trinidad, Benguet</p><a class="mag-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/dir/?api=1&destination=St.+Paul+Church+Camp+Dangwa+La+Trinidad+Benguet">Get Directions</a></div>
+<div><span class="mag-lab">Reception · Banquet follows</span><div class="mag-big">BSU Closed Gymnasium</div><p>La Trinidad, Benguet</p><a class="mag-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/dir/?api=1&destination=BSU+Closed+Gymnasium+La+Trinidad+Benguet">Get Directions</a></div></div>
+<span class="mag-lab" style="margin-top:14px">Time-line</span><ol class="mag-tl"><li><b>10:00</b><div><strong>Sacred Nuptial Mass</strong><p>Exchange of vows at St. Paul Church</p></div></li><li><b>12:00</b><div><strong>Grand Banquet Feast</strong><p>Welcome dinner at BSU Closed Gym</p></div></li><li><b>1:30</b><div><strong>Toast &amp; Celebration</strong><p>Speeches, cake cutting and festivities</p></div></li></ol></div><p class="mag-folio"><b>02</b><span>VOWS · The Wedding Edition</span></p></div>
+<div id="page3" class="passport-card mag-page"><div class="mag-body"><div class="mag-head"><span>Style Notes</span><span>Attire</span></div><div class="mag-h">What to <i>wear</i></div><p class="mag-deck">Semi-formal or formal Filipiniana.</p>
+<div class="mag-2"><div><span class="mag-lab">Gentlemen</span><div class="mag-big">Barong Tagalog</div><p>or a formal suit with black slacks.</p></div><div><span class="mag-lab">Ladies</span><div class="mag-big">Filipiniana</div><p>or a modern gown, or a long evening dress.</p></div></div>
+<span class="mag-lab" style="margin-top:16px">Our colors</span><div class="mag-sw"><div><i style="background:#4a0e17"></i>Maroon</div><div><i style="background:#d4af37"></i>Gold</div><div><i style="background:#fbeea2"></i>Champagne</div><div><i style="background:#2d3748"></i>Navy</div></div></div><p class="mag-folio"><b>03</b><span>VOWS · The Wedding Edition</span></p></div>
+<div id="page4" class="passport-card mag-page"><div class="mag-body"><div class="mag-head"><span>The Entourage</span><span>People beside us</span></div><div class="mag-h">The people <i>beside us</i></div><div class="mag-scroll" style="max-height:395px"><div class="mag-2"><div><span class="mag-lab">Groom's parents</span><p>Mr. Mark Anthony Lopez &amp; Mrs. Leonora Mercedez Lopez</p></div><div><span class="mag-lab">Bride's parents</span><p>Mr. Robin Bobet Gomez &amp; Mrs. Sarah G. Gomez</p></div></div>
+<div class="mag-2"><div><span class="mag-lab">Groom's grandparents</span><p>Mr. Margarito &amp; Mrs. Paula Lopez<br>Mr. Rosario &amp; Mrs. Marisol Mercedez</p></div><div><span class="mag-lab">Bride's grandparents</span><p>Mr. Randy &amp; Mrs. Lycka Gomez<br>Mr. Gabriel &amp; Mrs. Sarah Geronimo</p></div></div>
+<div class="mag-2"><div><span class="mag-lab">Best man</span><p>Honored Companion</p></div><div><span class="mag-lab">Maid of honor</span><p>Honored Companion</p></div></div>
+<div class="mag-2"><div><span class="mag-lab">Groomsmen</span><p>Groomsman 1<br>Groomsman 2</p></div><div><span class="mag-lab">Bridesmaids</span><p>Bridesmaid 1<br>Bridesmaid 2</p></div></div>
+<div class="mag-2"><div><span class="mag-lab">Coin, ring &amp; Bible bearers</span><p>Little Bearers</p></div><div><span class="mag-lab">Flower girls</span><p>Little Flowers</p></div></div></div></div><p class="mag-folio"><b>04</b><span>VOWS · The Wedding Edition</span></p></div>
+<div id="page5" class="passport-card mag-page"><div class="mag-body"><div class="mag-head"><span>The Sponsors</span><span>Honor list</span></div><div class="mag-h">Our <i>witnesses</i></div><p class="mag-deck">Principal sponsors, guides of our sacred union.</p>
+<div class="mag-scroll" style="max-height:255px"><div class="mag-2 mag-names2"><div><span class="mag-lab">Ninongs</span><div id="ninongList"></div></div><div><span class="mag-lab">Ninangs</span><div id="ninangList"></div></div></div></div>
+<span class="mag-lab" style="margin-top:12px">Secondary sponsors</span><div class="mag-3 mag-sec"><div><b>Candle</b>to light our way</div><div><b>Veil</b>to clothe us in unity</div><div><b>Cord</b>to bind us forever</div></div></div><p class="mag-folio"><b>05</b><span>VOWS · The Wedding Edition</span></p></div>
+<div id="page6" class="passport-card mag-page"><div class="mag-body"><div class="mag-head"><span>Reply Card</span><span>RSVP</span></div><div class="mag-h">Kindly <i>reply</i></div><p class="mag-deck">Please respond by <b>November 15, 2026</b>. We can’t wait to celebrate with you.</p>
+<div class="rsvp-shell"><div class="mag-scroll gf-scroll"><form id="rsvpForm" class="gf" novalidate>
+<div class="gf-card gf-title"><h4>Wedding RSVP</h4><p>Richard &amp; Lucy · 19 December 2026<br><span class="gf-req">* Required</span></p></div>
+<div class="gf-card"><label for="rsvpName">Full name <span class="gf-req">*</span></label><input id="rsvpName" name="entry.1258977946" type="text" autocomplete="name" required maxlength="120" placeholder="Your answer" class="gf-in"></div>
+<div class="gf-card"><label for="rsvpPhone">Contact number <span class="gf-req">*</span></label><input id="rsvpPhone" name="entry.1743091270" type="tel" autocomplete="tel" required maxlength="30" placeholder="Your answer" class="gf-in"></div>
+<div class="gf-card"><label for="rsvpEmail">Email address <span class="gf-req">*</span></label><input id="rsvpEmail" name="entry.1190084013" type="email" autocomplete="email" required maxlength="160" placeholder="Your answer" class="gf-in"></div>
+<div class="gf-card"><span class="gf-q">Will you attend? <span class="gf-req">*</span></span>
+<label class="gf-radio"><input type="radio" id="rsvpAttendance" name="entry.588706442" value="Yes, I'll be there!" required><i></i>Yes, I'll be there!</label>
+<label class="gf-radio"><input type="radio" name="entry.588706442" value="No, I can't make it"><i></i>No, I can't make it</label></div>
+<div class="gf-card"><label for="rsvpGuests">Number of guests <span class="gf-req">*</span></label><input id="rsvpGuests" name="entry.1843798017" type="number" min="1" max="20" step="1" value="1" required class="gf-in"></div>
+<div class="gf-card"><label for="rsvpMessage">Message for the couple (optional)</label><textarea id="rsvpMessage" name="entry.492096606" rows="2" maxlength="500" placeholder="Your answer" class="gf-in"></textarea></div>
+<div class="gf-actions"><button id="rsvpSubmit" type="submit"><span id="rsvpSubmitText">Submit</span></button></div>
+<div id="rsvpFeedback" role="status" aria-live="polite" class="gf-feedback" hidden></div></form></div></div></div><p class="mag-folio"><b>06</b><span>VOWS · The Wedding Edition</span></p></div>
+<div id="page7" class="passport-card mag-page"><div class="mag-body"><div class="mag-head"><span>Letter from the Couple</span><span>Gratitude</span></div><div class="mag-h">With all our<br><i>love &amp; gratitude</i></div><p class="mag-text mag-dropcap">As we step into this sacred covenant of marriage, having your presence, love and prayers is the greatest treasure. Thank you for walking alongside us as we begin our forever.</p><p class="mag-sign">Richard &amp; Lucy</p>
+<span class="mag-lab" style="margin-top:10px">Portraits · tap to enlarge</span><div class="mag-scroll" style="max-height:215px"><div class="mag-grid"><button type="button" class="mag-ph wide" onclick="openLightbox(0)" aria-label="View portrait 1"><img id="galImg0" alt="Portrait 1" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=80"></button><button type="button" class="mag-ph " onclick="openLightbox(1)" aria-label="View portrait 2"><img id="galImg1" alt="Portrait 2" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=700&q=80"></button><button type="button" class="mag-ph " onclick="openLightbox(2)" aria-label="View portrait 3"><img id="galImg2" alt="Portrait 3" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=80"></button><button type="button" class="mag-ph " onclick="openLightbox(3)" aria-label="View portrait 4"><img id="galImg3" alt="Portrait 4" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=700&q=80"></button><button type="button" class="mag-ph " onclick="openLightbox(4)" aria-label="View portrait 5"><img id="galImg4" alt="Portrait 5" src="https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=700&q=80"></button></div></div></div><p class="mag-folio"><b>07</b><span>VOWS · The Wedding Edition</span></p></div>
+<!-- ================= BACK COVER: EDITORIAL CLOSING IMAGE ================= -->
+      <div id="backCover" class="passport-card editorial-back-cover">
+        <img class="bc-photo" src="https://eventnest.ph/assets/images/blog/choosing-a-wedding-reception-venue-in-the-philippines2.avif" alt="Wedding reception venue editorial back cover photograph">
+        <div class="bc-shade"></div>
+        <div class="bc-inner">
+          <div class="bc-top"><span>Vows</span><span>The Wedding Edition</span></div>
+          <div class="bc-mid">
+            <h2>The Beginning</h2>
+            <p class="bc-sub">of everything beautiful.</p>
+          </div>
+          <div class="bc-bottom">
+            <p class="bc-names">Richard <em>&amp;</em> Lucy</p>
+            <p class="bc-date">19 · 12 · 2026</p>
+            <p class="bc-place">La Trinidad, Benguet</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- IN-PAGE BOOK NAVIGATION -->
+  <footer id="bookNavigation" aria-label="Wedding magazine page navigation" class="book-navigation absolute z-40 left-1/2 -translate-x-1/2 flex items-center justify-between gap-2 px-2 py-1.5 rounded-full">
+    <button type="button" onclick="prevPage()" aria-label="Previous page" class="nav-page-button nav-prev">
+      <i class="fa-solid fa-chevron-left"></i><span>PREV</span>
+    </button>
+    <span id="pageIndicator" class="page-indicator">
+      Cover
+    </span>
+    <button type="button" onclick="nextPage()" aria-label="Next page" class="nav-page-button nav-next">
+      <span>NEXT</span><i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </footer>
+
+      <!-- Page content remains fully interactive; use the navigation controls to turn pages. -->
+    </div>
+  </main>
+
+
+  <!-- LIGHTBOX MODAL -->
+  <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden flex flex-col items-center justify-center p-4 backdrop-blur-md" onclick="closeLightbox()">
+    <button class="absolute top-5 right-5 text-amber-200 hover:text-white text-lg px-3 py-1 bg-amber-950/80 border border-amber-400/40 rounded-full transition" onclick="closeLightbox()">
+      <i class="fa-solid fa-xmark mr-1"></i> Close
+    </button>
+    <img id="lightboxImg" onclick="event.stopPropagation()" src="" class="max-w-full max-h-[82vh] rounded-lg shadow-2xl border-2 border-amber-400/50 object-contain">
+    <p id="lightboxCaption" class="text-amber-200 text-xs font-serif mt-3 tracking-widest uppercase bg-black/60 px-4 py-1.5 rounded-full border border-amber-500/30"></p>
+  </div>
+
+  <script>
+    // Magazine pages: one visible page at a time, with directional page-turn transitions.
+    const pageCards = [
+      document.getElementById('coverPage'),
+      document.getElementById('page1'),
+      document.getElementById('page2'),
+      document.getElementById('page3'),
+      document.getElementById('page4'),
+      document.getElementById('page5'),
+      document.getElementById('page6'),
+      document.getElementById('page7'),
+      document.getElementById('backCover')
+    ].filter(Boolean);
+
+    const galleryImages = [
+      "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1200&q=80"
+    ];
+
+    let currentStep = 0;
+    const totalSteps = pageCards.length - 1;
+    const backCoverStep = pageCards.findIndex(card => card && card.id === 'backCover');
+
+    function getPageLabel(step) {
+      if (step === 0) return 'Front Cover';
+      if (step === backCoverStep) return 'Back Cover';
+      return `Page ${String(step).padStart(2, '0')} / ${String(backCoverStep - 1).padStart(2, '0')}`;
+    }
+
+    function updatePageStates() {
+      pageCards.forEach((card, idx) => {
+        card.classList.remove('is-active', 'is-turning-forward', 'is-turning-backward');
+        if (idx === currentStep) {
+          card.style.visibility = 'visible';
+          card.style.opacity = '1';
+          card.style.pointerEvents = 'auto';
+          card.style.zIndex = '20';
+          card.style.transform = '';
+          card.classList.add('is-active');
+        } else {
+          card.style.visibility = 'hidden';
+          card.style.opacity = '0';
+          card.style.pointerEvents = 'none';
+          card.style.zIndex = '1';
+          card.style.transform = '';
+        }
+      });
+
+      const indicator = document.getElementById('pageIndicator');
+      const navigation = document.getElementById('bookNavigation');
+      if (navigation) navigation.style.display = currentStep === 0 ? 'none' : 'flex';
+      if (indicator) indicator.textContent = getPageLabel(currentStep);
+      const prev = document.querySelector('#bookNavigation button[onclick="prevPage()"]');
+      const next = document.querySelector('#bookNavigation button[onclick="nextPage()"]');
+      if (prev) prev.disabled = currentStep === 0;
+      if (next) {
+        next.disabled = false;
+        const nextLabel = next.querySelector('span');
+        if (nextLabel) nextLabel.textContent = currentStep === totalSteps ? 'FRONT COVER' : 'NEXT';
+        next.setAttribute('aria-label', currentStep === totalSteps ? 'Turn back to the front cover' : 'Next page');
+      }
+    }
+
+    function turnToPage(nextStep) {
+      if (nextStep < 0 || nextStep > totalSteps || nextStep === currentStep) return;
+      currentStep = nextStep;
+      updatePageStates();
+    }
+
+    function openPassportCover() {
+      turnToPage(1);
+    }
+
+    function nextPage() { turnToPage(currentStep === totalSteps ? 0 : currentStep + 1); }
+    function prevPage() { turnToPage(currentStep - 1); }
+
+    // Keyboard Controls
+    document.addEventListener('keydown', (e) => {
+      if (e.target && e.target.matches('input, textarea, select, button')) return;
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+        nextPage();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevPage();
+      }
+    });
+
+    // Touch gestures: ignore inputs, textareas, selects, buttons and scrollable gallery areas.
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let swipeTarget = null;
+    const book = document.getElementById('passportBook');
+
+    if (book) {
+      book.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+        swipeTarget = e.target;
+      }, { passive: true });
+
+      book.addEventListener('touchend', (e) => {
+        if (swipeTarget && swipeTarget.closest('input, textarea, select, button, a, .custom-scroll')) return;
+        const dx = e.changedTouches[0].screenX - touchStartX;
+        const dy = e.changedTouches[0].screenY - touchStartY;
+        if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.25) {
+          dx < 0 ? nextPage() : prevPage();
+        }
+      }, { passive: true });
+    }
+
+    // Lightbox Controls
+    function openLightbox(index) {
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightboxImg');
+      const cap = document.getElementById('lightboxCaption');
+
+      if (lightbox && img && cap) {
+        img.src = galleryImages[index];
+        cap.textContent = `Portrait Frame 0${index + 1} • Lopez – Gomez Nuptials`;
+        lightbox.classList.remove('hidden');
+      }
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      if (lightbox) {
+        lightbox.classList.add('hidden');
+      }
+    }
+
+
+    // RSVP: custom Google-Form-styled form, submitted directly to your Google Form.
+    const GOOGLE_FORM_RESPONSE_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc5kBF0gPhggyUi8eYvPzEwrxv3CIO5WJ2ZJinECBtBGcp4IQ/formResponse";
+    const rsvpForm = document.getElementById('rsvpForm');
+    if (rsvpForm) {
+      let rsvpLocked = false;
+      rsvpForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (rsvpLocked) return;
+        const feedback = document.getElementById('rsvpFeedback');
+        const submit = document.getElementById('rsvpSubmit');
+        const submitText = document.getElementById('rsvpSubmitText');
+        const guests = Number(document.getElementById('rsvpGuests').value);
+        if (!rsvpForm.reportValidity()) return;
+        if (!Number.isInteger(guests) || guests < 1 || guests > 20) {
+          feedback.textContent = 'Please enter a guest count from 1 to 20.';
+          feedback.hidden = false;
+          return;
+        }
+        rsvpLocked = true;
+        submit.disabled = true;
+        submitText.textContent = 'Sending...';
+        feedback.hidden = true;
+        try {
+          const formData = new URLSearchParams();
+          for (const [key, value] of new FormData(rsvpForm).entries()) formData.append(key, String(value));
+          // no-cors: the guest stays on the invitation; Google's reply can't be read cross-origin.
+          await fetch(GOOGLE_FORM_RESPONSE_URL, { method: 'POST', mode: 'no-cors', body: formData });
+          rsvpForm.innerHTML = '<div class="gf-card gf-title gf-done"><h4>Wedding RSVP</h4><p>Your response has been recorded. Thank you, we look forward to celebrating with you!<br>With love, Richard &amp; Lucy</p></div>';
+        } catch (error) {
+          rsvpLocked = false;
+          feedback.textContent = 'Unable to send right now. Please check your connection and try again.';
+          feedback.hidden = false;
+          submit.disabled = false;
+          submitText.textContent = 'Submit';
+        }
+      });
+    }
+
+    // Live countdown to the wedding ceremony (browser's local time).
+    const weddingDate = new Date(2026, 11, 19, 10, 0, 0);
+    function updateWeddingCountdown() {
+      const now = new Date();
+      const remaining = weddingDate.getTime() - now.getTime();
+      const fields = {
+        days: document.getElementById('countDays'),
+        hours: document.getElementById('countHours'),
+        minutes: document.getElementById('countMinutes'),
+        seconds: document.getElementById('countSeconds')
+      };
+      const message = document.getElementById('countdownMessage');
+      if (!fields.days || !fields.hours || !fields.minutes || !fields.seconds) return;
+
+      if (remaining <= 0) {
+        fields.days.textContent = '00';
+        fields.hours.textContent = '00';
+        fields.minutes.textContent = '00';
+        fields.seconds.textContent = '00';
+        if (message) message.textContent = 'THE WEDDING DAY IS HERE!';
+        return;
+      }
+
+      const totalSeconds = Math.floor(remaining / 1000);
+      fields.days.textContent = String(Math.floor(totalSeconds / 86400)).padStart(2, '0');
+      fields.hours.textContent = String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, '0');
+      fields.minutes.textContent = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+      fields.seconds.textContent = String(totalSeconds % 60).padStart(2, '0');
+    }
+    updateWeddingCountdown();
+    window.setInterval(updateWeddingCountdown, 1000);
+
+    updatePageStates();
+  
+    // Magazine fit: fixed-size pages scaled to the screen, and each page auto-shrinks its content so nothing is cut off.
+    (function(){
+      const W=420,H=610,NAV=66,root=document.documentElement;
+      function scaleBook(){
+        const k=Math.max(.4,Math.min((innerWidth-24)/(W+10),(innerHeight-16)/(H+NAV),1.8));
+        root.style.setProperty('--book-scale',k.toFixed(3));
+      }
+      function fit(card){
+        // Headers (running head, title, deck) and the folio keep a fixed size on every page;
+        // only the content below them shrinks when a page is too full.
+        const kids=[...card.querySelectorAll(':scope > .mag-body > *')].filter(c=>!c.matches('.mag-head,.mag-h,.mag-deck'));
+        kids.forEach(c=>c.style.zoom='');
+        let z=1;
+        while(card.scrollHeight>card.clientHeight+1&&z>.55){z-=.03;kids.forEach(c=>c.style.zoom=z.toFixed(2));}
+      }
+      function fitAll(){document.querySelectorAll('.mag-page').forEach(fit);}
+      
+      const mk=(id,t,n)=>{const e=document.getElementById(id);if(e)e.innerHTML=Array.from({length:n},(_,i)=>'<div>'+t+' '+(i+1)+'</div>').join('')};
+      mk('ninongList','Mr. Godfather',32);mk('ninangList','Mrs. Godmother',32);
+      addEventListener('resize',scaleBook);
+      addEventListener('load',fitAll);
+      scaleBook();fitAll();
+      if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitAll);
+    })();
+  </script>
+</body>
+</html>

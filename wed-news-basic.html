@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE WEDDING EDITION | Lopez – Gomez Nuptials</title>
+
+<!-- BASIC CLASSIC PACKAGE
+     Built from the Premium newspaper edition. Removed: 3D tilt/flip, prenup video page,
+     background music + page-turn sound, vows page, gift page, Tailwind CDN and Font Awesome CDN.
+     Only dependency left: Google Fonts (no local files needed). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500..900;1,6..96,500..900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@500;600;700&family=Roboto:wght@400;500&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+<style>
+  /* ===================== BASE / RESET ===================== */
+  :root{
+    --news-ink:#172b3a;
+    --news-red:#8a6a1f;
+    --news-blue:#236b83;
+    --news-gold:#c28b32;
+    --news-paper:#e3e3e0;
+    --news-paper-light:#f1f1ef;
+    --news-muted:#435665;
+    --book-scale:1;
+  }
+  *,*::before,*::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{width:100%;height:100%;margin:0;overflow:hidden}
+  h1,h2,h3,p,ul,ol,figure{margin:0}
+  h1,h2,h3{font-size:inherit;font-weight:inherit}
+  ul,ol{list-style:none;padding:0}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  button,input,select,textarea{font:inherit;color:inherit;margin:0}
+  button{background:transparent;border:0;padding:0;cursor:pointer}
+  :focus-visible{outline:2px solid var(--news-gold);outline-offset:2px}
+  button:focus:not(:focus-visible),a:focus:not(:focus-visible){outline:none}
+
+  body{
+    display:flex;align-items:center;justify-content:center;
+    height:100svh;min-height:100svh;padding:0;
+    font-family:'Montserrat',sans-serif;color:#222;
+    -webkit-user-select:none;user-select:none;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;
+    background:
+      radial-gradient(ellipse at 30% 15%,rgba(194,139,50,.28),transparent 34%),
+      radial-gradient(ellipse at 80% 90%,rgba(35,107,131,.26),transparent 36%),
+      linear-gradient(135deg,#243746,#0b1620);
+  }
+  input,textarea,select{-webkit-user-select:text;user-select:text}
+
+  /* ===================== BOOKLET (flat, 2D) ===================== */
+  .book-container{width:100%;height:100svh;margin:0;padding:0;display:flex;align-items:center;justify-content:center}
+  .book-viewport{
+    position:relative;flex:none;
+    width:420px;height:610px;
+    zoom:var(--book-scale,1);       /* scaled to the screen by JS (desktop + mobile) */
+    margin-top:-26px;               /* leaves room for the navigation bar below the page */
+    box-shadow:0 22px 40px rgba(0,0,0,.45);
+    animation:bookFade .6s ease both;
+  }
+  @keyframes bookFade{from{opacity:0}to{opacity:1}}
+
+  /* Every sheet sits in the same spot; only the active one is visible */
+  .passport-card{
+    position:absolute;inset:0;width:100%;height:100%;
+    overflow:hidden;border-radius:0;
+    opacity:0;visibility:hidden;pointer-events:none;z-index:1;
+  }
+  .passport-card.is-active{opacity:1;visibility:visible;pointer-events:auto;z-index:20}
+
+  /* Simple fade + slide page change (flat 2D, no rotation) */
+  .passport-card.enter-next{animation:pageInNext .3s ease both}
+  .passport-card.enter-prev{animation:pageInPrev .3s ease both}
+  .passport-card.leave-next{visibility:visible;opacity:1;z-index:10;animation:pageOutNext .3s ease both}
+  .passport-card.leave-prev{visibility:visible;opacity:1;z-index:10;animation:pageOutPrev .3s ease both}
+  @keyframes pageInNext{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+  @keyframes pageInPrev{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
+  @keyframes pageOutNext{from{opacity:1;transform:none}to{opacity:0;transform:translateX(-18px)}}
+  @keyframes pageOutPrev{from{opacity:1;transform:none}to{opacity:0;transform:translateX(18px)}}
+  @media (prefers-reduced-motion:reduce){
+    .book-viewport,.passport-card{animation:none !important}
+  }
+
+  /* Newsprint paper on every sheet */
+  #coverPage,.mag-page,#backCover{
+    background-color:var(--news-paper);
+    background-image:
+      radial-gradient(ellipse at 20% 14%,rgba(255,255,255,.38),transparent 42%),
+      repeating-linear-gradient(0deg,rgba(23,43,58,.025) 0 1px,transparent 1px 4px);
+    box-shadow:inset 0 0 40px rgba(90,70,40,.12);
+    color:var(--news-ink);
+    font-family:Georgia,'Times New Roman',serif;
+  }
+
+  /* ===================== NAVIGATION BAR ===================== */
+  .book-navigation{
+    position:absolute;left:50%;top:calc(100% + 12px);transform:translateX(-50%);z-index:50;
+    display:flex;align-items:center;justify-content:space-between;gap:8px;
+    width:min(88%,340px);min-height:42px;padding:7px 9px;
+    background:var(--news-ink);border:2px solid #d4b36c;
+  }
+  .nav-page-button{
+    display:inline-flex;align-items:center;justify-content:center;gap:7px;
+    min-width:86px;min-height:30px;padding:6px 10px;
+    background:#e3e3e0;color:#172b3a;border:1px solid #d4b36c;
+    font:700 9px 'Montserrat',sans-serif;letter-spacing:.14em;
+    transition:background .2s ease,transform .2s ease;
+  }
+  .nav-page-button:hover:not(:disabled){background:#e8c879}
+  .nav-page-button:active:not(:disabled){transform:scale(.96)}
+  .nav-page-button:disabled{background:#8c806e;color:#eee4d3;opacity:.45;cursor:not-allowed}
+  .nav-arrow{font-size:15px;line-height:1}
+  .page-indicator{
+    min-width:76px;padding:0 8px;text-align:center;white-space:nowrap;
+    color:#e3e3e0;font:700 8px 'Montserrat',sans-serif;letter-spacing:.12em;
+    border-left:1px solid rgba(218,190,137,.4);border-right:1px solid rgba(218,190,137,.4);
+  }
+
+  /* ===================== FRONT COVER ===================== */
+  #coverPage .mag-cover-inner{
+    position:absolute;inset:0;z-index:10;
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:14px 14px 12px 30px;color:var(--news-ink);
+  }
+  .cv-ears{display:flex;justify-content:space-between;align-items:center;gap:6px;padding-bottom:5px;
+    font:700 6.5px 'Montserrat',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--news-ink)}
+  .cv-ears span{display:block;line-height:1.35}
+  .cv-ears b{display:block;font:700 9px Georgia,serif;letter-spacing:.06em;color:var(--news-red)}
+  .cv-ears span:last-child{text-align:right}
+  #coverPage .cv-motto{flex:1;text-align:center;text-transform:none;letter-spacing:.02em;
+    font:italic 500 9.5px Georgia,serif;color:var(--news-muted)}
+  .mag-title{
+    margin:0;padding:4px 0 6px;border-top:3px solid var(--news-ink);
+    font-family:'UnifrakturCook','Old English Text MT',Georgia,serif;font-size:41px;font-weight:700;
+    letter-spacing:-.01em;line-height:1;white-space:nowrap;text-align:center;
+    color:var(--news-ink);text-shadow:1px 1px 0 rgba(194,139,50,.45);
+  }
+  .mag-issue-row{
+    display:flex;justify-content:space-between;margin:0;padding:4px 0;
+    border-top:1px solid var(--news-ink);border-bottom:3px double var(--news-ink);
+    font:700 7.5px 'Montserrat',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--news-red);
+  }
+  .mag-cover-mid{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1fr 112px;gap:16px;margin:9px 0 8px;align-items:stretch}
+  .cv-photo{position:relative;display:flex;flex-direction:column;min-height:0}
+  .editorial-cover-photo{
+    display:block;width:100%;height:100%;flex:1 1 auto;min-height:0;
+    object-fit:cover;object-position:50% 40%;background:#d9c9a6;
+    border:4px solid var(--news-paper-light);
+    box-shadow:0 0 0 1px var(--news-ink),5px 6px 0 rgba(23,43,58,.18);
+  }
+  .cv-photo figcaption{margin-top:8px;padding-top:4px;border-top:1px solid var(--news-ink);
+    font:italic 500 9.5px/1.25 Georgia,serif;color:var(--news-muted)}
+  .cv-side{display:flex;flex-direction:column;justify-content:space-between;align-items:center;min-height:0}
+  .mag-lines{width:100%;padding:9px 9px 3px;background:var(--news-ink);border-top:3px solid var(--news-red);box-shadow:3px 4px 0 rgba(23,43,58,.25)}
+  .mag-lines ul{list-style:none;margin:0;padding:0}
+  .cv-in{display:block;padding-bottom:5px;margin-bottom:7px;border-bottom:1px solid rgba(244,197,108,.5);
+    font:700 7px 'Montserrat',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#f4c56c}
+  .mag-lines li{margin-bottom:8px;font:500 11.5px/1.2 Georgia,serif;color:#fff9eb}
+  .mag-lines b{display:block;margin-bottom:1px;font:700 14px Georgia,serif;letter-spacing:.02em;color:#f4c56c}
+  .mag-open{
+    flex:none;display:flex;align-items:center;justify-content:center;text-align:center;
+    width:88px;height:88px;margin:0 0 4px;border-radius:50%;
+    border:2px solid #f4e2b0;outline:1px dashed rgba(244,226,176,.85);outline-offset:-7px;
+    background:radial-gradient(circle at 35% 30%,#d2483f,#9c241f 62%,#6e1511);color:#f1f1ef;
+    box-shadow:0 8px 16px rgba(23,43,58,.45),inset 0 0 0 1px rgba(0,0,0,.2);
+    transform:rotate(-8deg);transition:transform .25s ease;
+    font:700 9px/1.2 'Montserrat',sans-serif;letter-spacing:.14em;text-transform:uppercase;
+  }
+  .mag-open:hover{transform:rotate(0) scale(1.06)}
+  .mag-cover-foot{border-top:3px double var(--news-ink);padding-top:6px}
+  .cv-kick{display:block;margin-bottom:1px;font:700 7.5px 'Montserrat',sans-serif;letter-spacing:.26em;text-transform:uppercase;color:var(--news-red)}
+  .mag-names{font-family:Georgia,'Times New Roman',serif;font-size:52px;font-weight:900;line-height:.95;letter-spacing:-.035em;white-space:nowrap;overflow:visible;color:var(--news-ink)}
+  .mag-names em{padding:0 2px;font-style:italic;font-weight:400;color:var(--news-red)}
+  .cv-foot-row{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-top:6px}
+  .mag-sub{flex:1;margin:0;font:italic 600 11px/1.35 Georgia,serif;color:var(--news-muted)}
+  .mag-barcode{flex:none;padding:3px 5px 2px;text-align:center;background:var(--news-paper-light);border:1px solid var(--news-ink)}
+  .mag-barcode i{display:block;width:74px;height:24px;background:repeating-linear-gradient(90deg,#111 0 2px,#fff 2px 3px,#111 3px 4px,#fff 4px 7px,#111 7px 8px,#fff 8px 9px)}
+  .mag-barcode span{font:500 6.5px 'Montserrat',sans-serif;letter-spacing:.08em;color:var(--news-ink)}
+
+  /* ===================== INSIDE PAGES ===================== */
+  .mag-page{
+    display:flex;flex-direction:column;padding:26px 18px 10px 30px;
+    font-weight:500;font-size:14.5px;line-height:1.38;overflow:hidden;
+  }
+  .mag-page::before{content:"";position:absolute;left:28px;right:18px;top:10px;height:5px;
+    border-top:3px solid var(--news-ink);border-bottom:1px solid var(--news-ink)}
+  #page1::before{display:none}
+  .mag-body{flex:1 1 auto;min-height:0}
+  .mag-head{display:flex;justify-content:space-between;margin:4px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--news-ink);
+    font:700 8px 'Montserrat',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--news-red)}
+  .mag-h{margin:2px 0 6px;font:900 32px/.98 Georgia,'Times New Roman',serif;letter-spacing:-.045em;color:var(--news-ink)}
+  .mag-h i{font-weight:500;color:var(--news-red)}
+  .mag-page p{margin:2px 0 6px;color:#3c4a50}
+  .mag-page p.mag-deck{padding-bottom:8px;border-bottom:1px solid rgba(23,43,58,.3);
+    font:italic 500 16px/1.25 Georgia,'Times New Roman',serif;color:var(--news-muted)}
+  .mag-lab{display:block;margin-bottom:3px;font:700 8.5px 'Montserrat',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--news-red)}
+  .mag-big{font:700 17px/1.12 Georgia,'Times New Roman',serif;color:var(--news-ink)}
+  .mag-page small,.mag-small{font:500 10.5px 'Montserrat',sans-serif;letter-spacing:.06em;color:#6b5f50}
+  .mag-2{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;padding:10px 0;border-top:1px solid rgba(23,43,58,.38)}
+  .mag-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:10px 0;border-top:1px solid rgba(23,43,58,.38);border-bottom:1px solid rgba(23,43,58,.38)}
+  .mag-3 > div{border-right:1px solid rgba(23,43,58,.22);padding-right:5px}
+  .mag-3 > div:last-child{border:0}
+  .mag-link{display:inline-block;margin-top:4px;font:700 9px 'Montserrat',sans-serif;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--news-blue);border-bottom:1px solid var(--news-blue)}
+  .mag-pull{margin:12px 0;padding:12px 0;border-top:4px solid var(--news-red);border-bottom:1px solid var(--news-ink);
+    font:italic 500 22px/1.2 'Bodoni Moda',serif;color:var(--news-blue)}
+  .mag-page p.mag-text{font-size:15.5px;line-height:1.45;text-align:justify;hyphens:auto}
+  .mag-dropcap::first-letter{float:left;padding:5px 7px 0 0;font:700 56px/.82 'Bodoni Moda',serif;color:var(--news-red)}
+  .mag-page p.mag-sign{text-align:right;font:italic 600 20px 'Bodoni Moda',serif;color:var(--news-ink)}
+  .mag-tl{margin:6px 0 0;border-top:1px solid rgba(23,43,58,.4)}
+  .mag-tl li{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid rgba(23,43,58,.2)}
+  .mag-tl b{min-width:62px;font:700 24px/1 'Bodoni Moda',serif;color:var(--news-red)}
+  .mag-tl strong{font:700 15px 'Bodoni Moda',serif;color:var(--news-ink)}
+  .mag-sw{display:flex;gap:16px}
+  .mag-sw div{text-align:center;font:600 9px 'Montserrat',sans-serif;letter-spacing:.1em;text-transform:uppercase}
+  .mag-sw i{display:block;width:46px;height:46px;margin:0 auto 5px;border-radius:50%;border:1px solid rgba(26,22,19,.3)}
+  .mag-scroll{overflow-y:auto;overscroll-behavior:contain;padding-right:6px;scrollbar-width:thin;scrollbar-color:#a07d3c transparent}
+  .mag-names2 div div{font:600 13px/1.5 'Cormorant Garamond',serif}
+  .mag-names2 #ninongList div,.mag-names2 #ninangList div{padding:1px 0;border-bottom:1px solid rgba(26,22,19,.1)}
+  .mag-sec div{font:italic 500 12.5px/1.25 'Cormorant Garamond',serif}
+  .mag-sec b{display:block;font:normal 700 14px 'Bodoni Moda',serif}
+  .mag-page p.mag-folio{
+    flex:none;display:flex;justify-content:space-between;align-items:baseline;
+    margin:auto 0 6px;padding-top:4px;border-top:2px solid var(--news-ink);
+    font:italic 400 10.5px Georgia,'Times New Roman',serif;color:#5d625e;
+  }
+  .mag-folio b{font:normal 700 14px Georgia,serif;color:var(--news-red)}
+  .mag-folio span{order:-1}
+
+  /* Page 01 – invitation + countdown */
+  .p1{padding:0 18px 10px 30px}
+  .mag-photo{position:relative;height:268px;margin:0 -18px 0 -30px;
+    background:linear-gradient(0deg,rgba(10,8,8,.85),rgba(10,8,8,.1) 60%),url("https://eventnest.ph/assets/images/blog/the-prenuptial-video-vs-save-the-date-video-what-is-the-difference-and-do-you-need-both3.avif") center/cover}
+  .mag-photo-txt{position:absolute;left:30px;right:18px;bottom:14px}
+  .mag-photo .mag-lab{color:#ecd29b}
+  .mag-photo .mag-h{color:#fff;font-size:32px}
+  .mag-count{margin-top:12px;padding:8px;background:#e9dfc8;border-top:3px double var(--news-ink);border-bottom:1px solid var(--news-ink)}
+  .mag-cd{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;font:600 8.5px 'Montserrat',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6b5f50}
+  .mag-cd b{display:block;font:700 28px/1.1 'Bodoni Moda',serif;letter-spacing:0;color:var(--news-red)}
+  .mag-count .mag-small{text-align:center;margin-top:6px}
+
+  /* Page 08 – gallery (5 photos) */
+  .mag-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .mag-ph{height:84px;padding:0;overflow:hidden;background:#ddd;border:2px solid var(--news-paper-light);box-shadow:0 0 0 1px #9b8c72;cursor:pointer}
+  .mag-ph.wide{grid-column:1/-1;height:120px}
+  .mag-ph img{width:100%;height:100%;object-fit:cover}
+
+  /* ===================== RSVP (Google Forms look) ===================== */
+  .rsvp-body{display:flex;flex-direction:column}
+  .rsvp-scroll{
+    position:relative;flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;
+    margin-right:-6px;padding:8px 6px 8px 8px;background:#f0ebf8;
+    scrollbar-width:thin;scrollbar-color:#b39ddb transparent;
+  }
+  .gform{display:block;font-family:Roboto,Arial,Helvetica,sans-serif;color:#202124}
+  .gform .gf-card{margin:0 0 10px;padding:14px 16px 16px;background:#fff;border:1px solid #dadce0;border-radius:8px}
+  .gform .gf-card.is-invalid{border-color:#d93025}
+  .gform .gf-head{border-top:10px solid #673ab7}
+  .gform .gf-title{margin:0 0 10px;font:400 22px/1.2 'Google Sans',Roboto,Arial,sans-serif;color:#202124;letter-spacing:0}
+  .gform .gf-desc{margin:0 0 12px;font:400 12px/1.5 Roboto,Arial,sans-serif;color:#202124}
+  .gform .gf-note{margin:0;padding-top:10px;border-top:1px solid #dadce0;font:400 11.5px Roboto,Arial,sans-serif;color:#d93025}
+  .gform .gf-sign{margin:10px 0 0;font:italic 400 14px Roboto,Arial,sans-serif;color:#673ab7}
+  .gform .gf-q{display:block;margin:0 0 10px;font:400 14px/1.35 Roboto,Arial,sans-serif;color:#202124;letter-spacing:0;text-transform:none}
+  .gform .gf-hint{display:block;margin:-6px 0 8px;font:400 11.5px Roboto,Arial,sans-serif;color:#5f6368}
+  .gform .gf-req{margin-left:2px;color:#d93025}
+  .gform .gf-input{
+    display:block;width:100%;padding:6px 0 7px;border:0;border-bottom:1px solid #dadce0;border-radius:0;
+    background:transparent;outline:0;resize:none;
+    font:400 14px Roboto,Arial,sans-serif;color:#202124;letter-spacing:0;text-transform:none;
+  }
+  .gform .gf-input::placeholder{color:#70757a}
+  .gform .gf-input:focus{padding-bottom:6px;border-bottom:2px solid #673ab7}
+  .gform textarea.gf-input{min-height:42px}
+  .gform .gf-opt{display:flex;align-items:center;gap:12px;padding:5px 0;font:400 14px Roboto,Arial,sans-serif;color:#202124;cursor:pointer}
+  .gform .gf-opt input{
+    -webkit-appearance:none;appearance:none;flex:none;width:20px;height:20px;margin:0;
+    border:2px solid #5f6368;border-radius:50%;background:#fff;cursor:pointer;
+  }
+  .gform .gf-opt input:checked{border-color:#673ab7;background:#673ab7;box-shadow:inset 0 0 0 3px #fff}
+  .gform .gf-err{display:none;align-items:center;gap:6px;margin-top:8px;font:400 12px Roboto,Arial,sans-serif;color:#d93025}
+  .gform .gf-err::before{content:"!";display:inline-flex;align-items:center;justify-content:center;flex:none;
+    width:16px;height:16px;border-radius:50%;background:#d93025;color:#fff;font:700 11px Roboto,Arial,sans-serif}
+  .gform .gf-card.is-invalid .gf-err{display:flex}
+  .gform .gf-alert{display:none;margin:0 0 10px;padding:10px 12px;border:1px solid #d93025;border-radius:4px;background:#fce8e6;
+    font:400 12px/1.4 Roboto,Arial,sans-serif;color:#b3261e}
+  .gform .gf-alert.is-visible{display:block}
+  .gform .gf-actions{display:flex;justify-content:space-between;align-items:center;margin:2px 0 0}
+  .gform .gf-submit{padding:9px 22px;border-radius:4px;background:#673ab7;color:#fff;box-shadow:0 1px 2px rgba(60,64,67,.3);
+    font:500 14px Roboto,Arial,sans-serif;letter-spacing:.01em;transition:background .15s ease}
+  .gform .gf-submit:hover:not(:disabled){background:#5b32a3}
+  .gform .gf-submit:disabled{opacity:.6;cursor:not-allowed}
+  .gform .gf-clear{padding:9px 8px;border-radius:4px;color:#673ab7;font:500 14px Roboto,Arial,sans-serif}
+  .gform .gf-clear:hover{background:rgba(103,58,183,.08)}
+
+  /* ===================== BACK COVER ===================== */
+  #backCover{
+    display:flex;flex-direction:column;justify-content:flex-start;text-align:left;
+    padding:20px 24px 16px 48px;
+  }
+  #backCover *{min-width:0}
+  #backCover::before{content:"";position:absolute;inset:8px 9px 8px 33px;z-index:3;pointer-events:none;
+    border:1px solid rgba(23,43,58,.55);box-shadow:inset 0 0 0 3px var(--news-paper),inset 0 0 0 4px rgba(23,43,58,.35)}
+  #backCover .bk-top{display:flex;justify-content:space-between;padding:5px 0;border-top:3px solid var(--news-ink);border-bottom:1px solid var(--news-ink);
+    font:700 7.5px 'Montserrat',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--news-red)}
+  #backCover .bk-head{text-align:center;padding:12px 0 10px}
+  #backCover .bk-kick{display:block;margin-bottom:3px;font:700 7.5px 'Montserrat',sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#a07a2c}
+  #backCover .bk-head h2{margin:0;font:900 52px/.92 Georgia,serif;letter-spacing:-.045em;color:var(--news-ink)}
+  #backCover .bk-head p{margin:4px 0 0;font:italic 500 19px Georgia,serif;color:var(--news-red)}
+  #backCover .bk-photo{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;margin:0}
+  #backCover .bk-photo img{display:block;width:100%;height:100%;flex:1 1 auto;min-height:0;object-fit:cover;background:#d9c9a6;
+    border:4px solid var(--news-paper-light);box-shadow:0 0 0 1px var(--news-ink),5px 6px 0 rgba(23,43,58,.18)}
+  #backCover .bk-photo figcaption{margin-top:7px;padding-top:4px;border-top:1px solid var(--news-ink);text-align:right;
+    font:italic 500 9.5px/1.25 Georgia,serif;color:var(--news-muted)}
+  #backCover .bk-ad{display:grid;grid-template-columns:96px 1fr;margin:10px 0 0;border:1px solid var(--news-ink);
+    box-shadow:inset 0 0 0 3px var(--news-paper),inset 0 0 0 4px rgba(23,43,58,.3);background:rgba(241,241,239,.8)}
+  #backCover .bk-ad-l{display:flex;flex-direction:column;justify-content:center;padding:10px 6px;text-align:center;border-right:1px solid var(--news-ink)}
+  #backCover .bk-lab{display:block;font:700 6.5px 'Montserrat',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--news-red)}
+  #backCover .bk-date{margin-top:4px;font:900 40px/.9 Georgia,serif;color:var(--news-ink)}
+  #backCover .bk-date small{display:block;margin-top:3px;font:700 11px 'Montserrat',sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#a07a2c}
+  #backCover .bk-date em{display:block;margin-top:2px;font:italic 500 13px Georgia,serif;color:var(--news-ink)}
+  #backCover .bk-ad-r{padding:9px 12px}
+  #backCover .bk-ad-r strong{display:block;margin:1px 0 6px;font:700 13.5px/1.15 Georgia,serif;color:var(--news-ink)}
+  #backCover .bk-ad-r strong:last-child{margin-bottom:0}
+  #backCover .bk-foot{margin-top:10px;padding-top:9px;text-align:center;border-top:3px double var(--news-ink)}
+  #backCover .bk-names{font:italic 700 24px Georgia,serif;color:var(--news-ink)}
+  #backCover .bk-names em{font-weight:400;color:var(--news-red)}
+  #backCover .bk-foot p{margin:3px 0 0;font:700 7.5px 'Montserrat',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--news-ink)}
+  #backCover .bk-foot .bk-col{margin-top:5px;font-size:6.5px;color:#a07a2c}
+
+  /* ===================== GALLERY LIGHTBOX ===================== */
+  .lightbox{position:fixed;inset:0;z-index:100;display:none;flex-direction:column;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.92)}
+  .lightbox.is-open{display:flex}
+  .lightbox-close{position:absolute;top:18px;right:18px;padding:8px 14px;background:#e3e3e0;color:#172b3a;border:1px solid #d4b36c;
+    font:700 10px 'Montserrat',sans-serif;letter-spacing:.12em}
+  .lightbox img{max-width:100%;max-height:82vh;object-fit:contain;border:2px solid #d4b36c}
+  .lightbox-caption{margin-top:12px;padding:6px 14px;font:italic 12px Georgia,serif;letter-spacing:.04em;color:#e3e3e0;background:rgba(0,0,0,.6)}
+</style>
+</head>
+
+<body>
+
+  <!-- INTERACTIVE NEWSPAPER BOOKLET -->
+  <main class="book-container">
+    <div class="book-viewport" id="passportBook">
+
+      <!-- ================= FRONT COVER ================= -->
+      <div id="coverPage" class="passport-card is-active">
+        <div class="mag-cover-inner">
+          <div class="mag-masthead">
+            <div class="cv-ears"><span><b>Vol. I</b>Wedding Edition</span><span class="cv-motto">“All the love that’s fit to print”</span><span><b>Free</b>Priceless inside</span></div>
+            <div class="mag-title">The Newlywed Times</div>
+            <div class="mag-issue-row"><span>Issue No. 019</span><span>Saturday, 19 December 2026</span><span>La Trinidad, Benguet</span></div>
+          </div>
+          <div class="mag-cover-mid">
+            <figure class="cv-photo">
+              <img class="editorial-cover-photo" src="https://eventnest.ph/assets/images/blog/bridal-cars-for-your-philippine-wedding1.avif" alt="Wedding bridal car cover photograph">
+              <figcaption>The big day is almost here · Richard &amp; Lucy</figcaption>
+            </figure>
+            <div class="cv-side">
+              <div class="mag-lines">
+                <span class="cv-in">In this issue</span>
+                <ul>
+                  <li><b>02</b> The ceremony and the celebration</li>
+                  <li><b>05</b> Meet the people beside us</li>
+                  <li><b>07</b> Kindly reply by November 15</li>
+                </ul>
+              </div>
+              <button type="button" class="mag-open" onclick="openInvitation()" aria-label="Open the wedding invitation">
+                <span>Tap to<br>open<br>the issue</span>
+              </button>
+            </div>
+          </div>
+          <div class="mag-cover-foot">
+            <span class="cv-kick">Special wedding edition · Exclusive</span>
+            <div class="mag-names" role="heading" aria-level="1">Richard <em>&amp;</em> Lucy</div>
+            <div class="cv-foot-row">
+              <p class="mag-sub">The Lopez–Gomez wedding, 19 December 2026, La Trinidad, Benguet</p>
+              <div class="mag-barcode"><i></i><span>VOWS 019 · 19.12.2026</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= PAGE 01 · INVITATION + COUNTDOWN ================= -->
+      <div id="page1" class="passport-card mag-page p1"><div class="mag-photo"><div class="mag-photo-txt"><span class="mag-lab">The invitation</span><div class="mag-h">Richard &amp; Lucy<br>are getting married</div></div></div>
+        <div class="mag-body" style="margin-top:12px"><p class="mag-deck">Together with their parents, they request the honor of your presence at the celebration of their holy matrimony.</p>
+          <div class="mag-3"><div><span class="mag-lab">When</span><div class="mag-big">19 December<br>2026</div><small>10:00 AM</small></div><div><span class="mag-lab">Where</span><div class="mag-big">La Trinidad,<br>Benguet</div><small>St. Paul Church</small></div><div><span class="mag-lab">Who</span><div class="mag-big">Richard A. Lopez<br>Lucy B. Gomez</div></div></div>
+          <div class="mag-count"><span class="mag-lab" style="text-align:center">Countdown to the big day</span><div id="weddingCountdown" class="mag-cd" role="timer" aria-live="off"><div><b id="countDays">--</b>days</div><div><b id="countHours">--</b>hours</div><div><b id="countMinutes">--</b>minutes</div><div><b id="countSeconds">--</b>seconds</div></div><p id="countdownMessage" class="mag-small">Until 19 December 2026 • 10:00 AM</p></div></div>
+        <p class="mag-folio"><b>01</b><span>VOWS · The Wedding Edition</span></p></div>
+
+      <!-- ================= PAGE 02 · EVENT LOCATION (GOOGLE NAVIGATION) + TIMELINE ================= -->
+      <div id="page2" class="passport-card mag-page"><div class="mag-body"><div class="mag-head"><span>The Day</span><span>Venues &amp; schedule</span></div><div class="mag-h">Where we say<br><i>I do</i></div><p class="mag-deck">Ceremony and celebration, both in La Trinidad.</p>
+        <div class="mag-2"><div><span class="mag-lab">Ceremony · 10:00 AM</span><div class="mag-big">St. Paul Church</div><p>Camp Dangwa, La Trinidad, Benguet</p><a class="mag-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/dir/?api=1&amp;destination=St.+Paul+Church+Camp+Dangwa+La+Trinidad+Benguet">Get directions</a></div>
+          <div><span class="mag-lab">Reception · Banquet follows</span><div class="mag-big">BSU Closed Gymnasium</div><p>La Trinidad, Benguet</p><a class="mag-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/dir/?api=1&amp;destination=BSU+Closed+Gymnasium+La+Trinidad+Benguet">Get directions</a></div></div>
+        <span class="mag-lab" style="margin-top:14px">The day, hour by hour</span><ol class="mag-tl"><li><b>10:00</b><div><strong>Sacred Nuptial Mass</strong><p>Exchange of vows at St. Paul Church</p></div></li><li><b>12:00</b><div><strong>Grand Banquet Feast</strong><p>Welcome dinner at BSU Closed Gym</p></div></li><li><b>1:30</b><div><strong>Toast &amp; Celebration</strong><p>Speeches, cake cutting and festivities</p></div></li></ol></div>
+        <p class="mag-folio"><b>02</b><span>VOWS · The Wedding Edition</span></p></div>
+
+      <!-- ================= PAGE 03 · RECEPTION NOTE ================= -->
+      <div id="page3" class="passport-card mag-page"><div class="mag-body"><div class="mag-head"><span>The Reception</span><span>Good to know</span></div><div class="mag-h">The celebration<br><i>after the vows</i></div><p class="mag-deck">BSU Closed Gymnasium, La Trinidad, Benguet</p>
+        <div class="mag-pull">“Formal reception, dinner and social program will follow immediately after the ceremony.”</div>
+        <span class="mag-lab">A small reminder</span><p class="mag-text mag-dropcap">Please show your RSVP confirmation at the reception entrance. It helps us welcome everyone smoothly, so we can spend more time celebrating with the people we love.</p></div>
+        <p class="mag-folio"><b>03</b><span>VOWS · The Wedding Edition</span></p></div>
+
+      <!-- ================= PAGE 04 · DRESS CODE ================= -->
+      <div id="page4" class="passport-card mag-page"><div class="mag-body"><div class="mag-head"><span>Style Notes</span><span>Attire</span></div><div class="mag-h">What to <i>wear</i></div><p class="mag-deck">Semi-formal or formal Filipiniana.</p>
+        <div class="mag-2"><div><span class="mag-lab">Gentlemen</span><div class="mag-big">Barong Tagalog</div><p>or a formal suit with black slacks.</p></div><div><span class="mag-lab">Ladies</span><div class="mag-big">Filipiniana</div><p>or a modern gown, or a long evening dress.</p></div></div>
+        <span class="mag-lab" style="margin-top:16px">Our colors</span><div class="mag-sw"><div><i style="background:#4a0e17"></i>Maroon</div><div><i style="background:#d4af37"></i>Gold</div><div><i style="background:#fbeea2"></i>Champagne</div><div><i style="background:#2d3748"></i>Navy</div></div></div>
+        <p class="mag-folio"><b>04</b><span>VOWS · The Wedding Edition</span></p></div>
+
+      <!-- ================= PAGE 05 · ENTOURAGE ================= -->
+      <div id="page5" class="passport-card mag-page"><div class="mag-body"><div class="mag-head"><span>The Entourage</span><span>People beside us</span></div><div class="mag-h">The people<br><i>beside us</i></div><div class="mag-scroll" style="max-height:395px"><div class="mag-2"><div><span class="mag-lab">Groom's parents</span><p>Mr. Mark Anthony Lopez &amp; Mrs. Leonora Mercedez Lopez</p></div><div><span class="mag-lab">Bride's parents</span><p>Mr. Robin Bobet Gomez &amp; Mrs. Sarah G. Gomez</p></div></div>
+        <div class="mag-2"><div><span class="mag-lab">Groom's grandparents</span><p>Mr. Margarito &amp; Mrs. Paula Lopez<br>Mr. Rosario &amp; Mrs. Marisol Mercedez</p></div><div><span class="mag-lab">Bride's grandparents</span><p>Mr. Randy &amp; Mrs. Lycka Gomez<br>Mr. Gabriel &amp; Mrs. Sarah Geronimo</p></div></div>
+        <div class="mag-2"><div><span class="mag-lab">Best man</span><p>Honored Companion</p></div><div><span class="mag-lab">Maid of honor</span><p>Honored Companion</p></div></div>
+        <div class="mag-2"><div><span class="mag-lab">Groomsmen</span><p>Groomsman 1<br>Groomsman 2</p></div><div><span class="mag-lab">Bridesmaids</span><p>Bridesmaid 1<br>Bridesmaid 2</p></div></div>
+        <div class="mag-2"><div><span class="mag-lab">Coin, ring &amp; Bible bearers</span><p>Little Bearers</p></div><div><span class="mag-lab">Flower girls</span><p>Little Flowers</p></div></div></div></div>
+        <p class="mag-folio"><b>05</b><span>VOWS · The Wedding Edition</span></p></div>
+
+      <!-- ================= PAGE 06 · SPONSORS (part of the entourage) ================= -->
+      <div id="page6" class="passport-card mag-page"><div class="mag-body"><div class="mag-head"><span>The Sponsors</span><span>Honor list</span></div><div class="mag-h">Our <i>witnesses</i></div><p class="mag-deck">Principal sponsors, guides of our sacred union.</p>
+        <div class="mag-scroll" style="max-height:255px"><div class="mag-2 mag-names2"><div><span class="mag-lab">Ninongs</span><div id="ninongList"></div></div><div><span class="mag-lab">Ninangs</span><div id="ninangList"></div></div></div></div>
+        <span class="mag-lab" style="margin-top:12px">Secondary sponsors</span><div class="mag-3 mag-sec"><div><b>Candle</b>to light our way</div><div><b>Veil</b>to clothe us in unity</div><div><b>Cord</b>to bind us forever</div></div></div>
+        <p class="mag-folio"><b>06</b><span>VOWS · The Wedding Edition</span></p></div>
+
+      <!-- ================= PAGE 07 · RSVP (Google Forms look, same Google Form submission) ================= -->
+      <div id="page7" class="passport-card mag-page"><div class="mag-body rsvp-body"><div class="mag-head"><span>Reply Card</span><span>RSVP</span></div>
+        <div class="rsvp-scroll" id="rsvpScroll">
+          <form id="rsvpForm" class="gform" novalidate>
+            <div class="gf-card gf-head">
+              <h3 class="gf-title">Lopez – Gomez Wedding RSVP</h3>
+              <p class="gf-desc">Please respond by <b>November 15, 2026</b>. We can’t wait to celebrate with you on 19 December 2026 at St. Paul Church, La Trinidad, Benguet.</p>
+              <p class="gf-note">* Indicates required question</p>
+            </div>
+
+            <div class="gf-card" data-field="name">
+              <label class="gf-q" for="rsvpName">Full name <span class="gf-req">*</span></label>
+              <input id="rsvpName" name="entry.1258977946" type="text" autocomplete="name" required maxlength="120" placeholder="Your answer" class="gf-input">
+              <div class="gf-err" role="alert">This is a required question</div>
+            </div>
+
+            <div class="gf-card" data-field="phone">
+              <label class="gf-q" for="rsvpPhone">Contact number <span class="gf-req">*</span></label>
+              <input id="rsvpPhone" name="entry.1743091270" type="tel" inputmode="tel" autocomplete="tel" required maxlength="30" placeholder="09XXXXXXXXX" class="gf-input">
+              <div class="gf-err" role="alert">This is a required question</div>
+            </div>
+
+            <div class="gf-card" data-field="email">
+              <label class="gf-q" for="rsvpEmail">Email address <span class="gf-req">*</span></label>
+              <input id="rsvpEmail" name="entry.1190084013" type="email" autocomplete="email" required maxlength="160" placeholder="you@email.com" class="gf-input">
+              <div class="gf-err" role="alert">This is a required question</div>
+            </div>
+
+            <div class="gf-card" data-field="attendance" role="radiogroup" aria-labelledby="qAttend">
+              <div class="gf-q" id="qAttend">Will you attend? <span class="gf-req">*</span></div>
+              <label class="gf-opt"><input type="radio" id="rsvpAttendance" name="entry.588706442" value="Yes, I'll be there!"><span>Yes, I'll be there!</span></label>
+              <label class="gf-opt"><input type="radio" name="entry.588706442" value="No, I can't make it"><span>No, I can't make it</span></label>
+              <div class="gf-err" role="alert">This is a required question</div>
+            </div>
+
+            <div class="gf-card" data-field="guests">
+              <label class="gf-q" for="rsvpGuests">Number of guests <span class="gf-req">*</span></label>
+              <span class="gf-hint">Including yourself (1 to 2)</span>
+              <input id="rsvpGuests" name="entry.1843798017" type="number" inputmode="numeric" min="1" max="2" step="1" value="1" required placeholder="Your answer" class="gf-input">
+              <div class="gf-err" role="alert">This is a required question</div>
+            </div>
+
+            <div class="gf-card" data-field="message">
+              <label class="gf-q" for="rsvpMessage">Message for the couple</label>
+              <textarea id="rsvpMessage" name="entry.492096606" rows="2" maxlength="500" placeholder="Your answer" class="gf-input"></textarea>
+            </div>
+
+            <div id="rsvpFeedback" class="gf-alert" role="status" aria-live="polite"></div>
+            <div class="gf-actions">
+              <button id="rsvpSubmit" type="submit" class="gf-submit">Submit</button>
+              <button type="reset" class="gf-clear">Clear form</button>
+            </div>
+          </form>
+        </div></div>
+        <p class="mag-folio"><b>07</b><span>VOWS · The Wedding Edition</span></p></div>
+
+      <!-- ================= PAGE 08 · LETTER + 5-PHOTO GALLERY ================= -->
+      <div id="page8" class="passport-card mag-page"><div class="mag-body"><div class="mag-head"><span>Letter from the Couple</span><span>Gratitude</span></div><div class="mag-h">With all our<br><i>love &amp; gratitude</i></div><p class="mag-text mag-dropcap">As we step into this sacred covenant of marriage, having your presence, love and prayers is the greatest treasure. Thank you for walking alongside us as we begin our forever.</p><p class="mag-sign">Richard &amp; Lucy</p>
+        <span class="mag-lab" style="margin-top:10px">Gallery · tap to enlarge</span><div class="mag-scroll" style="max-height:215px"><div class="mag-grid">
+          <button type="button" class="mag-ph wide" onclick="openLightbox(0)" aria-label="View photo 1"><img alt="Photo 1" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&amp;fit=crop&amp;w=700&amp;q=80"></button>
+          <button type="button" class="mag-ph" onclick="openLightbox(1)" aria-label="View photo 2"><img alt="Photo 2" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&amp;fit=crop&amp;w=700&amp;q=80"></button>
+          <button type="button" class="mag-ph" onclick="openLightbox(2)" aria-label="View photo 3"><img alt="Photo 3" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&amp;fit=crop&amp;w=700&amp;q=80"></button>
+          <button type="button" class="mag-ph" onclick="openLightbox(3)" aria-label="View photo 4"><img alt="Photo 4" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&amp;fit=crop&amp;w=700&amp;q=80"></button>
+          <button type="button" class="mag-ph" onclick="openLightbox(4)" aria-label="View photo 5"><img alt="Photo 5" src="https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&amp;fit=crop&amp;w=700&amp;q=80"></button>
+        </div></div></div>
+        <p class="mag-folio"><b>08</b><span>VOWS · The Wedding Edition</span></p></div>
+
+      <!-- ================= BACK COVER ================= -->
+      <div id="backCover" class="passport-card">
+        <div class="bk-top"><span>The Newlywed Times</span><span>Back page · Nº 019</span></div>
+        <div class="bk-head">
+          <span class="bk-kick">Final word</span>
+          <h2>The Beginning</h2>
+          <p>of everything beautiful.</p>
+        </div>
+        <figure class="bk-photo">
+          <img src="https://eventnest.ph/assets/images/blog/choosing-a-wedding-reception-venue-in-the-philippines2.avif" alt="Wedding reception venue photograph">
+          <figcaption>Where the celebration begins · La Trinidad, Benguet</figcaption>
+        </figure>
+        <div class="bk-ad">
+          <div class="bk-ad-l"><span class="bk-lab">Save the date</span><div class="bk-date">19<small>Dec</small><em>2026</em></div></div>
+          <div class="bk-ad-r">
+            <span class="bk-lab">Ceremony · 10:00 AM</span><strong>St. Paul Church</strong>
+            <span class="bk-lab">Reception</span><strong>BSU Closed Gymnasium</strong>
+            <span class="bk-lab">Kindly reply by</span><strong>November 15, 2026</strong>
+          </div>
+        </div>
+        <div class="bk-foot">
+          <div class="bk-names">Richard <em>&amp;</em> Lucy</div>
+          <p>19 • 12 • 2026 &nbsp;·&nbsp; La Trinidad, Benguet</p>
+          <p class="bk-col">VOWS · The Wedding Edition · Printed with love</p>
+        </div>
+      </div>
+
+      <!-- ================= PAGE NAVIGATION ================= -->
+      <footer id="bookNavigation" class="book-navigation" aria-label="Invitation page navigation" style="display:none">
+        <button type="button" id="prevBtn" onclick="prevPage()" aria-label="Previous page" class="nav-page-button">
+          <span class="nav-arrow" aria-hidden="true">&#8249;</span><span>PREV</span>
+        </button>
+        <span id="pageIndicator" class="page-indicator">Front Cover</span>
+        <button type="button" id="nextBtn" onclick="nextPage()" aria-label="Next page" class="nav-page-button">
+          <span id="nextLabel">NEXT</span><span class="nav-arrow" aria-hidden="true">&#8250;</span>
+        </button>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- GALLERY LIGHTBOX -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" onclick="closeLightbox()">
+    <button type="button" class="lightbox-close" onclick="closeLightbox()">&#10005; Close</button>
+    <img id="lightboxImg" alt="Gallery photo" src="" onclick="event.stopPropagation()">
+    <p id="lightboxCaption" class="lightbox-caption"></p>
+  </div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* ---------- Pages: one visible at a time ---------- */
+    var pageCards = ['coverPage','page1','page2','page3','page4','page5','page6','page7','page8','backCover']
+      .map(function (id) { return document.getElementById(id); })
+      .filter(Boolean);
+    var totalSteps = pageCards.length - 1;        // last index = back cover
+    var backCoverStep = totalSteps;
+    var currentStep = 0;
+    var isTurningPage = false;
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function getPageLabel(step) {
+      if (step === 0) return 'Front Cover';
+      if (step === backCoverStep) return 'Back Cover';
+      return 'Page ' + pad(step) + ' / ' + pad(backCoverStep - 1);
+    }
+
+    function updateNavigation() {
+      var nav = document.getElementById('bookNavigation');
+      var indicator = document.getElementById('pageIndicator');
+      var prev = document.getElementById('prevBtn');
+      var next = document.getElementById('nextBtn');
+      var nextLabel = document.getElementById('nextLabel');
+      if (nav) nav.style.display = currentStep === 0 ? 'none' : 'flex';
+      if (indicator) indicator.textContent = getPageLabel(currentStep);
+      if (prev) prev.disabled = currentStep === 0;
+      if (next) {
+        next.disabled = false;
+        next.setAttribute('aria-label', currentStep === totalSteps ? 'Back to the front cover' : 'Next page');
+      }
+      if (nextLabel) nextLabel.textContent = currentStep === totalSteps ? 'FRONT COVER' : 'NEXT';
+    }
+
+    function settlePages() {
+      pageCards.forEach(function (card, idx) {
+        card.classList.remove('enter-next', 'enter-prev', 'leave-next', 'leave-prev');
+        card.classList.toggle('is-active', idx === currentStep);
+      });
+    }
+
+    function turnToPage(nextStep) {
+      if (isTurningPage || nextStep < 0 || nextStep > totalSteps || nextStep === currentStep) return;
+      isTurningPage = true;
+
+      var forward = nextStep > currentStep;
+      var oldCard = pageCards[currentStep];
+      var newCard = pageCards[nextStep];
+      currentStep = nextStep;
+
+      oldCard.classList.remove('is-active');
+      oldCard.classList.add(forward ? 'leave-next' : 'leave-prev');
+      newCard.classList.add('is-active', forward ? 'enter-next' : 'enter-prev');
+      updateNavigation();
+
+      window.setTimeout(function () { settlePages(); isTurningPage = false; }, 320);
+    }
+
+    window.nextPage = function () { turnToPage(currentStep === totalSteps ? 0 : currentStep + 1); };
+    window.prevPage = function () { turnToPage(currentStep - 1); };
+    window.openInvitation = function () { turnToPage(1); };
+
+    /* ---------- Keyboard + swipe ---------- */
+    document.addEventListener('keydown', function (e) {
+      var lightbox = document.getElementById('lightbox');
+      if (lightbox && lightbox.classList.contains('is-open')) {
+        if (e.key === 'Escape') window.closeLightbox();
+        return;
+      }
+      if (e.target && e.target.matches && e.target.matches('input, textarea, select, button')) return;
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); window.nextPage(); }
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { window.prevPage(); }
+    });
+
+    var touchStartX = 0, touchStartY = 0, swipeTarget = null;
+    var book = document.getElementById('passportBook');
+    if (book) {
+      book.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+        swipeTarget = e.target;
+      }, { passive: true });
+      book.addEventListener('touchend', function (e) {
+        if (swipeTarget && swipeTarget.closest && swipeTarget.closest('input, textarea, select, button, a, label, .mag-scroll, .rsvp-scroll')) return;
+        var dx = e.changedTouches[0].screenX - touchStartX;
+        var dy = e.changedTouches[0].screenY - touchStartY;
+        if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.25) { dx < 0 ? window.nextPage() : window.prevPage(); }
+      }, { passive: true });
+    }
+
+    /* ---------- Gallery (5 photos) + lightbox ---------- */
+    var galleryImages = [
+      'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1200&q=80'
+    ];
+
+    window.openLightbox = function (index) {
+      var lightbox = document.getElementById('lightbox');
+      var img = document.getElementById('lightboxImg');
+      var cap = document.getElementById('lightboxCaption');
+      if (!lightbox || !img || !cap || !galleryImages[index]) return;
+      img.src = galleryImages[index];
+      cap.textContent = 'Photo ' + (index + 1) + ' of ' + galleryImages.length + ' • Lopez – Gomez Nuptials';
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden', 'false');
+    };
+
+    window.closeLightbox = function () {
+      var lightbox = document.getElementById('lightbox');
+      if (!lightbox) return;
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+    };
+
+    /* ---------- RSVP: Google Forms look, same Google Form submission ---------- */
+    var GOOGLE_FORM_RESPONSE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSc5kBF0gPhggyUi8eYvPzEwrxv3CIO5WJ2ZJinECBtBGcp4IQ/formResponse';
+    var ATTEND_FIELD = 'entry.588706442';
+    var rsvpForm = document.getElementById('rsvpForm');
+
+    if (rsvpForm) {
+      var rsvpSubmissionLocked = false;
+      var rsvpScroll = document.getElementById('rsvpScroll');
+
+      function validateRsvp() {
+        var firstBad = null;
+        rsvpForm.querySelectorAll('.gf-card[data-field]').forEach(function (card) {
+          var field = card.getAttribute('data-field');
+          var message = '';
+          card.classList.remove('is-invalid');
+
+          if (field === 'attendance') {
+            if (!rsvpForm.querySelector('input[name="' + ATTEND_FIELD + '"]:checked')) message = 'This is a required question';
+          } else {
+            var el = card.querySelector('input, textarea');
+            var value = el.value.trim();
+            if (el.required && !value) message = 'This is a required question';
+            else if (field === 'email' && value && !el.checkValidity()) message = 'Must be a valid email address';
+            else if (field === 'guests') {
+              var n = Number(value);
+              if (!Number.isInteger(n) || n < 1 || n > 20) message = 'Enter a whole number from 1 to 20';
+            }
+          }
+
+          if (message) {
+            card.classList.add('is-invalid');
+            var err = card.querySelector('.gf-err');
+            if (err) err.textContent = message;
+            if (!firstBad) firstBad = card;
+          }
+        });
+
+        if (firstBad) {
+          if (rsvpScroll) rsvpScroll.scrollTo({ top: Math.max(0, firstBad.offsetTop - 8), behavior: 'smooth' });
+          var focusable = firstBad.querySelector('input, textarea');
+          if (focusable) focusable.focus({ preventScroll: true });
+          return false;
+        }
+        return true;
+      }
+
+      rsvpForm.addEventListener('input', function (e) {
+        var card = e.target.closest && e.target.closest('.gf-card');
+        if (card) card.classList.remove('is-invalid');
+      });
+      rsvpForm.addEventListener('reset', function () {
+        rsvpForm.querySelectorAll('.gf-card.is-invalid').forEach(function (c) { c.classList.remove('is-invalid'); });
+        var feedback = document.getElementById('rsvpFeedback');
+        if (feedback) feedback.classList.remove('is-visible');
+      });
+
+      rsvpForm.addEventListener('submit', async function (event) {
+        event.preventDefault();
+        if (rsvpSubmissionLocked) return;          // no duplicate submissions while sending
+
+        var feedback = document.getElementById('rsvpFeedback');
+        var submit = document.getElementById('rsvpSubmit');
+        if (feedback) feedback.classList.remove('is-visible');
+        if (!validateRsvp()) return;
+
+        rsvpSubmissionLocked = true;
+        submit.disabled = true;
+        submit.textContent = 'Submitting…';
+
+        try {
+          var formData = new URLSearchParams();
+          new FormData(rsvpForm).forEach(function (value, key) { formData.append(key, String(value)); });
+
+          // no-cors keeps the guest on this page. The browser cannot read Google's response,
+          // so this confirms the request was sent; check your Google Form / Sheet for responses.
+          await fetch(GOOGLE_FORM_RESPONSE_URL, { method: 'POST', mode: 'no-cors', body: formData });
+
+          rsvpForm.innerHTML =
+            '<div class="gf-card gf-head" role="status" aria-live="polite">' +
+              '<h3 class="gf-title">RSVP Sent!</h3>' +
+              '<p class="gf-desc">Thank you for responding. We look forward to celebrating with you!</p>' +
+              '<p class="gf-sign">With love, Richard &amp; Lucy</p>' +
+            '</div>';
+          if (rsvpScroll) rsvpScroll.scrollTo({ top: 0 });
+        } catch (error) {
+          rsvpSubmissionLocked = false;
+          submit.disabled = false;
+          submit.textContent = 'Submit';
+          if (feedback) {
+            feedback.textContent = 'Unable to send right now. Please check your connection and try again.';
+            feedback.classList.add('is-visible');
+          }
+        }
+      });
+    }
+
+    /* ---------- Wedding countdown (viewer's local time) ---------- */
+    var weddingDate = new Date(2026, 11, 19, 10, 0, 0);
+    function updateWeddingCountdown() {
+      var fields = {
+        days: document.getElementById('countDays'),
+        hours: document.getElementById('countHours'),
+        minutes: document.getElementById('countMinutes'),
+        seconds: document.getElementById('countSeconds')
+      };
+      var message = document.getElementById('countdownMessage');
+      if (!fields.days || !fields.hours || !fields.minutes || !fields.seconds) return;
+
+      var remaining = weddingDate.getTime() - Date.now();
+      if (remaining <= 0) {
+        fields.days.textContent = fields.hours.textContent = fields.minutes.textContent = fields.seconds.textContent = '00';
+        if (message) message.textContent = 'THE WEDDING DAY IS HERE!';
+        return;
+      }
+      var total = Math.floor(remaining / 1000);
+      fields.days.textContent = pad(Math.floor(total / 86400));
+      fields.hours.textContent = pad(Math.floor((total % 86400) / 3600));
+      fields.minutes.textContent = pad(Math.floor((total % 3600) / 60));
+      fields.seconds.textContent = pad(total % 60);
+    }
+    updateWeddingCountdown();
+    window.setInterval(updateWeddingCountdown, 1000);
+
+    /* ---------- Entourage placeholders: edit the names here ---------- */
+    function fillList(id, label, count) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.innerHTML = Array.from({ length: count }, function (_, i) { return '<div>' + label + ' ' + (i + 1) + '</div>'; }).join('');
+    }
+    fillList('ninongList', 'Mr. Godfather', 32);
+    fillList('ninangList', 'Mrs. Godmother', 32);
+
+    /* ---------- Fit: scale the booklet to the screen, shrink page content so nothing is cut off ---------- */
+    var W = 420, H = 610, NAV = 66, root = document.documentElement;
+
+    function scaleBook() {
+      var k = Math.max(0.4, Math.min((innerWidth - 24) / (W + 10), (innerHeight - 16) / (H + NAV), 1.8));
+      root.style.setProperty('--book-scale', k.toFixed(3));
+    }
+    function fitPage(card) {
+      var kids = Array.prototype.slice.call(card.children);
+      kids.forEach(function (c) { c.style.zoom = ''; });
+      var z = 1;
+      while (card.scrollHeight > card.clientHeight + 1 && z > 0.55) {
+        z -= 0.03;
+        kids.forEach(function (c) { c.style.zoom = z.toFixed(2); });
+      }
+    }
+    function fitLine(el) {
+      if (!el) return;
+      el.style.removeProperty('font-size');
+      var size = parseFloat(getComputedStyle(el).fontSize) || 40, guard = 0;
+      while (el.scrollWidth > el.clientWidth + 0.5 && size > 18 && guard++ < 80) {
+        size -= 1;
+        el.style.setProperty('font-size', size + 'px', 'important');
+      }
+    }
+    function fitAll() {
+      document.querySelectorAll('.mag-page').forEach(fitPage);
+      var cover = document.getElementById('coverPage');
+      if (cover) { fitLine(cover.querySelector('.mag-names')); fitLine(cover.querySelector('.mag-title')); }
+      fitLine(document.querySelector('#backCover .bk-names'));
+    }
+
+    window.addEventListener('resize', scaleBook);
+    window.addEventListener('load', fitAll);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
+    scaleBook();
+    fitAll();
+    window.setTimeout(fitAll, 400);
+    window.setTimeout(fitAll, 1500);
+
+    updateNavigation();
+  })();
+  </script>
+</body>
+</html>

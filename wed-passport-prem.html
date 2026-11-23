@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lopez – Gomez Nuptials | Official Passport Invitation</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Great+Vibes&display=swap');
+
+  :root {
+    --passport-maroon: #4a0e17;
+    --paper-bg: #fdfbf7;
+  }
+
+  body {
+    background: radial-gradient(circle at center, #2d1016 0%, #0d0204 100%);
+    font-family: 'Montserrat', sans-serif;
+    color: #222;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .font-cinzel { font-family: 'Cinzel', serif; }
+  .font-serif { font-family: 'Playfair Display', serif; }
+  .font-mrz { font-family: 'Courier Prime', monospace; }
+  .font-script { font-family: 'Great Vibes', cursive; }
+
+  /* Gold Foil Metallic Effect */
+  .gold-foil {
+    background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0px 1px 2px rgba(0,0,0,0.8));
+  }
+
+  /* Authentic Philippine Maroon Leather Cover */
+  .passport-cover-bg {
+    background-color: var(--passport-maroon);
+    background-image: 
+      radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0),
+      radial-gradient(rgba(0, 0, 0, 0.65) 1px, transparent 0);
+    background-size: 3px 3px;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.9), 0 20px 35px rgba(0,0,0,0.8);
+  }
+
+  /* Passport Inner Paper Texture */
+  .passport-page-bg {
+    background-color: var(--paper-bg);
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.06) 0%, transparent 60%),
+      repeating-linear-gradient(45deg, rgba(74, 14, 23, 0.02) 0px, rgba(74, 14, 23, 0.02) 2px, transparent 2px, transparent 8px);
+	background-size: 3px 3px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.08);
+  }
+
+  /* Stamp Badges */
+  .stamp {
+    border: 3px double rgba(184, 51, 42, 0.7);
+    color: rgba(184, 51, 42, 0.85);
+    transform: rotate(-5deg);
+    border-radius: 8px;
+    text-transform: uppercase;
+    font-weight: bold;
+    pointer-events: none;
+  }
+
+  .stamp-approved {
+    border-color: rgba(22, 101, 52, 0.8);
+    color: rgba(22, 101, 52, 0.85);
+    transform: rotate(4deg);
+  }
+
+  /* Book 3D Container */
+  .book-container {
+    perspective: 2000px;
+  }
+
+  .book-viewport {
+    width: 100%;
+    max-width: 420px;
+    height: 640px;
+    position: relative;
+    transform-style: preserve-3d;
+  }
+  
+
+  .passport-card {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: rotateY(0deg);
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+  }
+
+  .passport-card.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: rotateY(0deg);
+    z-index: 20 !important;
+  }
+
+  .passport-card.is-turning-forward,
+  .passport-card.is-turning-backward {
+    visibility: visible;
+    pointer-events: none;
+    z-index: 30 !important;
+    animation-duration: .82s;
+    animation-timing-function: cubic-bezier(.62,.02,.34,1);
+    animation-fill-mode: both;
+  }
+
+  .passport-card.is-turning-forward {
+    transform-origin: left center;
+    animation-name: bookFlipForward;
+  }
+
+  .passport-card.is-turning-backward {
+    transform-origin: right center;
+    animation-name: bookFlipBackward;
+  }
+
+  @keyframes bookFlipForward {
+    0%   { transform: perspective(1800px) rotateY(0deg); filter: brightness(1); }
+    45%  { filter: brightness(.82); }
+    100% { transform: perspective(1800px) rotateY(-180deg); filter: brightness(.95); }
+  }
+
+  @keyframes bookFlipBackward {
+    0%   { transform: perspective(1800px) rotateY(0deg); filter: brightness(1); }
+    45%  { filter: brightness(.82); }
+    100% { transform: perspective(1800px) rotateY(180deg); filter: brightness(.95); }
+  }
+
+  .book-viewport {
+    perspective: 1800px;
+    transform-style: preserve-3d;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .passport-card { animation: none !important; transform: none !important; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .passport-card { transition: none; transform: none; }
+  }
+
+  .custom-scroll::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scroll::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.05);
+  }
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background: #a8792a;
+    border-radius: 4px;
+  }
+
+  .watermark-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 60%;
+    height: 100%;
+
+    opacity: 0.05;
+    pointer-events: none;
+
+    background: url("Taglelogo.webp") no-repeat center center;
+    background-size: contain;
+}
+
+  footer button:disabled { opacity: .35; cursor: not-allowed; }
+  footer button { transition: opacity .2s ease, color .2s ease, transform .2s ease; }
+  footer button:not(:disabled):active { transform: scale(.96); }
+
+  /* In-page navigation: styled like a small gold passport control strip */
+  .book-navigation {
+    width: min(88%, 340px);
+    min-height: 42px;
+    background: linear-gradient(145deg, rgba(65, 10, 20, .97), rgba(91, 18, 29, .96));
+    border: 1px solid rgba(212, 175, 55, .72);
+    box-shadow: 0 5px 18px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,239,180,.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .nav-page-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-width: 86px;
+    min-height: 30px;
+    padding: 6px 10px;
+    color: #f8e7b0;
+    border: 1px solid rgba(218, 183, 93, .38);
+    border-radius: 999px;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    transition: background .2s ease, color .2s ease, transform .2s ease, opacity .2s ease;
+  }
+  .nav-page-button:hover:not(:disabled) {
+    color: #4a0e17;
+    background: linear-gradient(135deg, #f8e7b0, #c99b42);
+    transform: translateY(-1px);
+  }
+  .nav-page-button:active:not(:disabled) { transform: scale(.96); }
+  .nav-page-button:disabled { opacity: .28; cursor: not-allowed; }
+  .page-indicator {
+    min-width: 76px;
+    text-align: center;
+    color: #f4d98d;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+    padding: 0 8px;
+    border-left: 1px solid rgba(218,183,93,.38);
+    border-right: 1px solid rgba(218,183,93,.38);
+  }
+
+  /* Responsive passport sizing for phones, tablets, and desktop */
+  html, body { width: 100%; }
+  body { min-height: 100svh; }
+  .book-container { width: 100%; padding-inline: 12px; }
+  .book-viewport {
+    width: min(420px, calc(100vw - 24px));
+    height: min(640px, calc(100svh - 176px));
+    min-height: 520px;
+    margin-inline: auto;
+  }
+  .passport-card { overflow: hidden; }
+  .passport-card > .custom-scroll,
+  .passport-card .custom-scroll {
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  img { max-width: 100%; }
+
+  @media (max-width: 480px) {
+    body { padding-left: 0; padding-right: 0; }
+    .book-viewport {
+      width: calc(100vw - 18px);
+      height: min(660px, calc(100svh - 150px));
+      min-height: 540px;
+    }
+    .passport-card { border-radius: 11px; }
+    .book-navigation {
+      width: min(92%, 330px);
+      bottom: 8px;
+      gap: 5px;
+      padding: 5px 6px;
+    }
+    .nav-page-button {
+      min-width: 76px;
+      min-height: 32px;
+      font-size: 8px;
+      padding: 6px 8px;
+    }
+    .page-indicator { min-width: 68px; font-size: 9px; padding-inline: 6px; }
+  }
+  @media (max-width: 360px) {
+    .book-viewport { width: calc(100vw - 12px); }
+    .book-navigation { width: 94%; }
+    .nav-page-button { min-width: 68px; gap: 5px; font-size: 7.5px; }
+    .page-indicator { min-width: 60px; }
+  }
+  @media (max-height: 700px) and (min-width: 481px) {
+    .book-viewport { height: calc(100svh - 150px); min-height: 500px; }
+  }
+
+
+  /* Cover title plaque */
+  .cover-title-plaque {
+    position: relative;
+    z-index: 2;
+    padding: 10px 8px 9px;
+    border: 1px solid rgba(220,184,95,.58);
+    border-radius: 9px;
+    background: linear-gradient(135deg, rgba(54,8,17,.88), rgba(92,22,31,.78));
+    box-shadow: inset 0 0 0 2px rgba(220,184,95,.10), 0 5px 14px rgba(0,0,0,.2);
+  }
+  .cover-kicker {
+    color: #e9ce88;
+    font: 700 8px/1.4 'Cinzel', serif;
+    letter-spacing: .2em;
+  }
+  .cover-couple-title {
+    margin-top: 4px;
+    color: #f5dda0;
+    font: 700 clamp(14px, 3.8vw, 19px)/1.25 'Cinzel', serif;
+    letter-spacing: .055em;
+    text-shadow: 0 2px 5px rgba(0,0,0,.65);
+  }
+  .cover-date-line {
+    margin-top: 4px;
+    color: rgba(255,239,195,.88);
+    font: 600 7px/1.4 'Courier Prime', monospace;
+    letter-spacing: .12em;
+  }
+
+  /* Keep the complete passport page unobstructed; controls sit on the frame just below it. */
+  .book-container {
+    padding-top: 8px !important;
+    padding-bottom: 66px !important;
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+  }
+  .book-viewport {
+    width: min(440px, calc(100vw - 28px)) !important;
+    max-width: 440px !important;
+    height: 640px !important;
+    min-height: 640px !important;
+    flex: 0 0 auto;
+  }
+  .book-navigation {
+    top: auto !important;
+    bottom: -53px !important;
+    width: min(88%, 340px) !important;
+  }
+  .passport-card { overflow: hidden; }
+
+  @media (max-width: 600px) {
+    body { padding: 8px 0 12px !important; min-height: 100svh; }
+    .book-container {
+      padding: 6px 0 62px !important;
+      margin: 0 auto !important;
+    }
+    .book-viewport {
+      width: calc(100vw - 18px) !important;
+      height: min(640px, calc(100svh - 105px)) !important;
+      min-height: 560px !important;
+      max-width: 440px !important;
+    }
+    .book-navigation { bottom: -50px !important; width: min(92%, 340px) !important; }
+    .cover-title-plaque { padding: 8px 6px; margin-bottom: 8px; }
+    .cover-kicker { font-size: 7px; }
+    .cover-couple-title { font-size: clamp(13px, 4.3vw, 17px); }
+    .cover-date-line { font-size: 6.5px; }
+  }
+  @media (max-width: 380px) {
+    .book-viewport { width: calc(100vw - 12px) !important; }
+    .book-navigation { width: 94% !important; }
+  }
+  @media (max-height: 700px) and (min-width: 601px) {
+    body { overflow-y: auto; }
+    .book-container { margin: 10px auto !important; }
+  }
+
+
+  /* Elegant initials seal replacing the stars and sun */
+  .cover-flight-ornament {
+    display:flex; align-items:center; justify-content:center; gap:9px;
+    color:#e7c777; margin:0 auto 5px; opacity:.9;
+  }
+  .cover-flight-ornament span { width:34px; height:1px; background:linear-gradient(90deg,transparent,#d8b45f); }
+  .cover-flight-ornament span:last-child { transform:rotate(180deg); }
+  .cover-flight-ornament i { font-size:12px; transform:rotate(-8deg); }
+  .cover-emblem-wrap { position:relative; width:100%; display:flex; justify-content:center; }
+  .cover-monogram {
+    position:relative; isolation:isolate; width:174px; height:174px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    border:0; border-radius:50%; color:#f3dda0; cursor:pointer;
+    background:radial-gradient(circle,rgba(255,226,155,.13),rgba(76,14,24,.2) 64%,transparent 66%);
+    transition:transform .35s ease, filter .35s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .cover-monogram:hover { transform:scale(1.045); filter:drop-shadow(0 0 12px rgba(222,185,94,.32)); }
+  .cover-monogram:active { transform:scale(.97); }
+  .cover-monogram:focus-visible { outline:2px solid #f2d88c; outline-offset:7px; }
+  .monogram-orbit {
+    position:absolute; inset:7px; border:1px solid rgba(230,194,112,.86);
+    border-radius:50%; pointer-events:none;
+  }
+  .orbit-one { transform:rotate(-13deg) scaleX(.88); }
+  .orbit-two { inset:15px; border-color:rgba(230,194,112,.42); transform:rotate(13deg) scaleX(.88); }
+  .monogram-initials {
+    position:relative; z-index:1; font-family:'Great Vibes',cursive;
+    font-size:76px; line-height:.95; letter-spacing:-.08em;
+    color:#f8e7b3; text-shadow:0 2px 3px rgba(0,0,0,.55),0 0 15px rgba(225,190,104,.18);
+  }
+  .monogram-amp { font-family:'Playfair Display',serif; font-size:28px; font-style:italic; margin:0 2px; vertical-align:middle; }
+  .monogram-caption {
+    margin-top:8px; font:600 7px/1 'Cinzel',serif; letter-spacing:.22em;
+    color:#e8ce8d;
+  }
+  .monogram-open-hint {
+    margin-top:11px; padding:5px 10px; border:1px solid rgba(222,187,105,.42);
+    border-radius:99px; color:rgba(248,228,174,.88);
+    font:700 7px/1 'Montserrat',sans-serif; letter-spacing:.16em;
+    background:rgba(55,8,16,.45); transition:background .2s ease,color .2s ease;
+  }
+  .cover-monogram:hover .monogram-open-hint { background:#e7cc88; color:#4a0e17; }
+  .flight-path {
+    position:absolute; right:calc(50% - 112px); top:5px; width:62px; height:38px;
+    transform:rotate(-22deg); pointer-events:none; opacity:.8;
+  }
+  .flight-dash {
+    position:absolute; left:0; top:18px; width:43px; height:17px;
+    border-top:1px dashed rgba(235,204,131,.85); border-radius:50%;
+    transform:rotate(-18deg);
+  }
+  .flight-plane { position:absolute; right:0; top:4px; color:#f0d58e; font-size:19px; transform:rotate(-8deg); }
+  @media(max-width:480px) {
+    .cover-monogram { width:158px; height:158px; }
+    .monogram-initials { font-size:68px; }
+    .flight-path { right:calc(50% - 103px); top:0; transform:scale(.88) rotate(-22deg); }
+  }
+
+
+  .hidden-wedding-audio {
+    position:fixed; left:-10px; bottom:0; width:1px; height:1px;
+    opacity:0; pointer-events:none; border:0;
+  }
+  .wedding-music-player[hidden] { display:none !important; }
+  .music-player-heading {
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:8px; color:#ead18f;
+    font:700 8px/1.2 'Cinzel',serif; letter-spacing:.16em;
+  }
+  .music-close {
+    width:25px;height:25px;border-radius:50%;
+    border:1px solid rgba(218,183,93,.35);color:#f6e7bd;
+  }
+  .music-close:hover { background:#e7cc88;color:#4a0e17; }
+  .music-video-frame {
+    width:100%; aspect-ratio:16/9; overflow:hidden;
+    border:1px solid rgba(218,183,93,.38);border-radius:7px;background:#16070a;
+  }
+  .music-video-frame iframe { display:block;width:100%;height:100%;border:0; }
+  .music-player-caption {
+    display:flex;justify-content:space-between;align-items:center;
+    gap:8px;margin-top:7px;color:#f7e6b6;
+    font:600 10px 'Montserrat',sans-serif;
+  }
+  .music-player-caption span {
+    color:rgba(247,230,182,.62);font:500 8px 'Montserrat',sans-serif;
+  }
+  @media(max-width:480px) {
+    .wedding-music-player {
+      right:10px;bottom:10px;width:min(250px,calc(100vw - 20px));
+      padding:8px;
+    }
+  }
+
+
+  /* ================= V2: 3D BOOK + TYPOGRAPHY + CONTRAST ================= */
+  :root { --wine:#4a0e17; --ink:#2a0c12; --gold:#e8c777; }
+
+  /* FIX: iPhone Safari cannot type into inputs when the body is user-select:none */
+  input, textarea, select { -webkit-user-select: text !important; user-select: text !important; }
+  @media (max-width: 600px) { #rsvpForm input, #rsvpForm select, #rsvpForm textarea { font-size: 16px !important; } }
+
+  body {
+    font-weight: 500;
+    background:
+      radial-gradient(ellipse 60% 45% at 50% 40%, rgba(160,42,58,.42), transparent 70%),
+      radial-gradient(circle at center, #2d1016 0%, #0d0204 100%) fixed;
+  }
+  body::before {
+    content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:
+      radial-gradient(2px 2px at 12% 22%, rgba(255,222,140,.75), transparent 60%),
+      radial-gradient(2px 2px at 82% 14%, rgba(255,222,140,.6), transparent 60%),
+      radial-gradient(3px 3px at 68% 78%, rgba(255,222,140,.5), transparent 60%),
+      radial-gradient(2px 2px at 24% 84%, rgba(255,222,140,.6), transparent 60%),
+      radial-gradient(2px 2px at 92% 52%, rgba(255,222,140,.5), transparent 60%),
+      radial-gradient(3px 3px at 6% 58%, rgba(255,222,140,.45), transparent 60%);
+    animation: dust 12s ease-in-out infinite alternate;
+  }
+  @keyframes dust { to { transform: translateY(-22px); } }
+
+  /* ---- readable type scale (old sizes were 6-11px) ---- */
+  .text-\[6px\], .text-\[7px\], .text-\[7\.5px\] { font-size: 9.5px !important; }
+  .text-\[8px\], .text-\[8\.5px\] { font-size: 10.5px !important; }
+  .text-\[9px\], .text-\[9\.5px\] { font-size: 11.5px !important; }
+  .text-\[10px\], .text-\[10\.5px\] { font-size: 12px !important; }
+  .text-\[11px\] { font-size: 13px !important; }
+  .text-xs { font-size: 13px !important; }
+  .cover-kicker { font-size: 9.5px !important; letter-spacing: .18em; }
+  .cover-date-line { font-size: 9px !important; color: #ffeebf !important; }
+  .cover-couple-title { font-size: clamp(16px, 4.6vw, 21px) !important; }
+  .monogram-caption { font-size: 10px !important; }
+  .monogram-open-hint { font-size: 10px !important; padding: 7px 13px !important; }
+  .nav-page-button { font-size: 10px !important; }
+  .page-indicator { font-size: 11px !important; }
+  .passport-card .border-b.border-amber-400\/40 { flex-wrap: wrap; gap: 4px 12px; }
+
+  /* ---- colour: stronger contrast on paper pages ---- */
+  .passport-page-bg .text-slate-500 { color:#6b4a3a !important; }
+  .passport-page-bg .text-slate-600, .passport-page-bg .text-slate-700 { color:#4a2f2a !important; }
+  .passport-page-bg .text-slate-800, .passport-page-bg .text-slate-900 { color:var(--ink) !important; }
+  .passport-page-bg .text-amber-950 { color:#6a1220 !important; }
+  .passport-page-bg .text-amber-900 { color:#8a5a12 !important; }
+  .passport-page-bg h2 {
+    font-family:'Cinzel',serif !important; font-weight:800; color:var(--wine) !important;
+    font-size:clamp(15px,4.8vw,19px) !important; letter-spacing:.05em;
+    text-shadow:0 1px 0 #fff, 0 3px 4px rgba(74,14,23,.28);
+  }
+  .passport-page-bg h3 { font-size:13.5px !important; color:#3a0b13 !important; letter-spacing:.04em; }
+  .font-serif.italic { font-family:'Cormorant Garamond',serif !important; font-weight:700; font-size-adjust:.52; }
+
+  /* gold on the dark data page + cover */
+  #page1 .text-slate-200, #page1 .text-slate-300 { color:#fff4d6 !important; }
+  #page1 .text-amber-200, #page1 [class*="text-amber-200/"] { color:#f8e2a0 !important; }
+  #page1 [class*="text-white/"] { color:#fff !important; }
+  #page1 .text-amber-300 { color:#ffd978 !important; }
+  #page1 p, #page1 span { text-shadow:0 1px 3px rgba(0,0,0,.75); }
+  #page1 .bg-black\/10 {
+    background:rgba(24,5,10,.58) !important; border:1px solid rgba(232,199,119,.38) !important;
+    backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+    box-shadow:0 10px 22px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.14);
+  }
+  #coverPage [class*="text-amber-200/"] { color:#f8e2a0 !important; }
+  .name-script {
+    font-family:'Great Vibes',cursive; font-size:23px; line-height:1.1; font-weight:400;
+    color:#fff1c2; text-shadow:0 2px 0 rgba(120,80,20,.55), 0 5px 12px rgba(0,0,0,.75) !important;
+  }
+  #weddingCountdown [id^="count"] {
+    font-family:'Cinzel',serif !important; font-size:26px !important; color:#ffe08a !important;
+    text-shadow:0 2px 0 #7a5410, 0 5px 9px rgba(0,0,0,.75) !important;
+  }
+
+  /* animated gold foil + embossed monogram */
+  .gold-foil {
+    background:linear-gradient(110deg,#8a5a12 0%,#e9c15a 18%,#fff6c4 32%,#d7a52e 48%,#fff0a8 62%,#a8751a 80%,#e9c15a 100%) !important;
+    background-size:250% 100% !important; -webkit-background-clip:text !important; background-clip:text !important;
+    -webkit-text-fill-color:transparent; animation:foilShine 6s linear infinite;
+    filter:drop-shadow(0 1px 0 #5a3a08) drop-shadow(0 3px 4px rgba(0,0,0,.7));
+  }
+  @keyframes foilShine { to { background-position:-250% 0; } }
+  .monogram-initials {
+    font-size:80px !important; padding:6px 10px 2px; overflow:visible;
+    background:none !important; -webkit-text-fill-color:currentColor !important; animation:none !important; filter:none !important;
+    color:#f6dfa0;
+    text-shadow:0 1px 0 #d9ac45, 0 2px 0 #b8892f, 0 3px 0 #94691d, 0 4px 0 #6b4609,
+                0 8px 10px rgba(0,0,0,.65), 0 0 18px rgba(240,200,110,.35) !important;
+  }
+  .orbit-one { animation:orb1 22s linear infinite; }
+  .orbit-two { animation:orb2 30s linear infinite; }
+  @keyframes orb1 { to { transform:rotate(347deg) scaleX(.88); } }
+  @keyframes orb2 { to { transform:rotate(-347deg) scaleX(.88); } }
+  .cover-title-plaque { box-shadow:inset 0 0 0 2px rgba(220,184,95,.14), inset 0 1px 0 rgba(255,255,255,.18), 0 8px 18px rgba(0,0,0,.45); }
+
+  /* ---- the 3D book ---- */
+  .book-container { perspective:2200px !important; position:relative; }
+  .book-container::after {
+    content:""; position:absolute; left:50%; bottom:60px; width:min(380px,80vw); height:34px;
+    transform:translateX(-50%); z-index:-1; filter:blur(9px);
+    background:radial-gradient(ellipse, rgba(0,0,0,.8), transparent 70%);
+  }
+  .book-viewport {
+    height:min(700px, calc(100svh - 112px)) !important; min-height:560px !important;
+    transform-style:preserve-3d;
+    transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+    transition:transform .25s ease-out;
+  }
+  /* light sheen + spine shading sit above every page */
+  .book-viewport::after {
+    content:""; position:absolute; inset:0; border-radius:14px; pointer-events:none; z-index:50;
+    transform:translateZ(2px);
+    background:
+      radial-gradient(circle at var(--mx,25%) var(--my,8%), rgba(255,255,255,.20), transparent 42%),
+      linear-gradient(90deg, rgba(0,0,0,.38) 0, rgba(0,0,0,.10) 2.5%, transparent 7%),
+      linear-gradient(270deg, rgba(0,0,0,.14) 0, transparent 4%);
+  }
+  /* stacked page edges = thickness */
+  .passport-card {
+    box-shadow:
+      1px 1px 0 #eadfc3, 2px 2px 0 #d8caa6, 3px 3px 0 #ebe0c4, 4px 4px 0 #cdbf98,
+      5px 5px 0 #e6dabb, 6px 6px 0 #bfae84, 8px 9px 14px rgba(0,0,0,.5), 18px 26px 44px rgba(0,0,0,.55) !important;
+  }
+  .passport-page-bg.passport-card {
+    box-shadow:
+      inset 0 0 0 6px rgba(255,250,240,.75), inset 0 0 0 7px rgba(184,137,47,.5), inset 0 0 26px rgba(120,80,20,.12),
+      1px 1px 0 #eadfc3, 2px 2px 0 #d8caa6, 3px 3px 0 #ebe0c4, 4px 4px 0 #cdbf98,
+      5px 5px 0 #e6dabb, 6px 6px 0 #bfae84, 8px 9px 14px rgba(0,0,0,.5), 18px 26px 44px rgba(0,0,0,.55) !important;
+  }
+  .passport-card.passport-cover-bg {
+    box-shadow:
+      inset 0 0 50px rgba(0,0,0,.85), inset 2px 2px 3px rgba(255,255,255,.14), inset 0 0 0 1px rgba(232,199,119,.25),
+      1px 1px 0 #3d0a13, 2px 2px 0 #35080f, 3px 3px 0 #2d060c, 4px 4px 0 #260509, 5px 5px 0 #200408, 6px 6px 0 #190307,
+      18px 26px 44px rgba(0,0,0,.65) !important;
+  }
+  .passport-card { overflow-x:hidden !important; overflow-y:auto !important; scrollbar-width:thin; scrollbar-color:#a8792a transparent; }
+  #coverPage, #page1 { overflow:hidden !important; }
+
+  /* raised panels + tactile buttons on paper pages */
+  .passport-page-bg .bg-white\/90, .passport-page-bg .bg-amber-50\/90 {
+    border-color:rgba(184,137,47,.45) !important; transition:transform .25s ease, box-shadow .25s ease;
+    box-shadow:inset 0 1px 0 #fff, 0 7px 14px -5px rgba(74,14,23,.3), 0 1px 2px rgba(74,14,23,.2) !important;
+  }
+  .passport-page-bg .bg-white\/90:hover { transform:translateY(-2px); }
+  .passport-page-bg a.bg-red-950 {
+    background:linear-gradient(180deg,#7d1c2d,#4a0e17) !important; color:#ffe9a8 !important;
+    border:1px solid #d4a73f; font-size:12px !important; letter-spacing:.03em;
+    box-shadow:0 3px 0 #2a060c, 0 8px 12px rgba(0,0,0,.35) !important;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .passport-page-bg a.bg-red-950:active { transform:translateY(3px); box-shadow:0 0 0 #2a060c, 0 2px 4px rgba(0,0,0,.4) !important; }
+
+  /* phones: gentle idle sway instead of mouse tilt */
+  @media (hover:none) {
+    .book-viewport { animation:bookSway 8s ease-in-out infinite; transition:none; }
+  }
+  @keyframes bookSway {
+    0%,100% { transform:rotateX(1.5deg) rotateY(-3.5deg); }
+    50%     { transform:rotateX(-1deg)  rotateY(3.5deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .book-viewport, body::before, .gold-foil, .monogram-initials, .orbit-one, .orbit-two { animation:none !important; transform:none !important; }
+  }
+
+  /* ---- Page 1: let the portrait show through ---- */
+  #page1 .bg-gradient-to-t {
+    background-image:
+      linear-gradient(to bottom, rgba(10,3,6,.55) 0%, rgba(10,3,6,0) 24%),
+      linear-gradient(to top, rgba(10,3,6,.9) 0%, rgba(10,3,6,.45) 38%, rgba(10,3,6,0) 70%) !important;
+  }
+  #page1 img { filter:saturate(1.08) contrast(1.04); object-position:center top; }
+  #page1 .bg-black\/10 {
+    background:rgba(24,5,10,.40) !important;
+    backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px);
+  }
+
+  /* ---- Page 7: background picture (swap the url to use your own photo) ---- */
+  #page7.passport-page-bg {
+    background-image:
+      linear-gradient(to bottom, rgba(253,251,247,.55) 0%, rgba(253,251,247,.72) 45%, rgba(253,251,247,.88) 100%),
+      url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80") !important;
+    background-size:cover !important; background-position:center !important;
+  }
+  #page7 .watermark-bg { display:none; }
+</style>
+</head>
+<body class="flex flex-col items-center justify-between p-3 md:p-6 select-none min-h-screen">
+
+  <!-- PASSPORT BOOK CONTAINER -->
+  <main id="content" class="book-container my-auto py-2 w-full flex justify-center items-center">
+    <div class="book-viewport relative" id="passportBook">
+
+      <!-- ================= COVER PAGE ================= -->
+      <div id="coverPage" class="passport-card passport-cover-bg border-2 border-amber-500/40 p-6 flex flex-col justify-between items-center text-center shadow-2xl">
+        <div class="cover-title-plaque text-center mb-3">
+          <div class="cover-flight-ornament" aria-hidden="true">
+            <span></span><i class="fa-solid fa-plane"></i><span></span>
+          </div>
+          <p class="cover-kicker">OFFICIAL PASSPORT WEDDING INVITATION</p>
+          <h1 class="cover-couple-title">Lopez – Gomez NUPTIALS</h1>
+          <p class="cover-date-line">DECEMBER 19, 2026 • LA TRINIDAD, BENGUET</p>
+        </div>
+
+        <div class="absolute inset-3 border border-amber-500/30 rounded-lg pointer-events-none"></div>
+
+        <div class="mt-4 space-y-1">
+          <h2 class="font-cinzel text-xs md:text-sm font-bold tracking-[0.25em] gold-foil uppercase">
+            REPUBLIKA NG PAGIBIG
+          </h2>
+          <p class="text-[9px] tracking-widest text-amber-200/70 font-medium">
+            REPUBLIC OF THE PHILIPPINES
+          </p>
+        </div>
+
+        <div class="my-auto py-5 cover-emblem-wrap">
+          <button type="button" class="cover-monogram" onclick="openPassportCover()" aria-label="Open the wedding passport">
+            <span class="monogram-orbit orbit-one"></span>
+            <span class="monogram-orbit orbit-two"></span>
+            <span class="monogram-initials">L<span class="monogram-amp">&</span>G</span>
+            <span class="monogram-caption">Lopez · Gomez</span>
+            <span class="monogram-open-hint"><i class="fa-solid fa-book-open mr-1"></i> TAP TO OPEN</span>
+          </button>
+          <div class="flight-path" aria-hidden="true">
+            <span class="flight-dash"></span>
+            <i class="fa-solid fa-plane flight-plane"></i>
+          </div>
+        </div>
+
+        <div class="mb-4 space-y-2">
+          <h3 class="font-cinzel text-2xl md:text-3xl font-black tracking-[0.3em] gold-foil">
+            WEDDING
+          </h3>
+          <p class="font-cinzel text-xs tracking-[0.3em] text-amber-200/90 font-semibold">
+            PASSPORT
+          </p>
+
+          <div class="w-12 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto my-2"></div>
+
+          
+        </div>
+
+        <div class="mb-2">
+          <div class="w-8 h-5 border border-amber-400/80 rounded-sm mx-auto flex items-center justify-center relative">
+            <div class="w-3 h-3 border border-amber-400/80 rounded-full"></div>
+            <div class="absolute w-full h-[1px] bg-amber-400/80"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= PAGE 1: DATA PAGE (FULL PAGE BACKGROUND PORTRAIT) ================= -->
+      <div id="page1" class="passport-card relative border-2 border-amber-900/20 flex flex-col justify-between overflow-hidden shadow-2xl">
+        <div class="absolute inset-0 z-0">
+          <img src="https://eventnest.ph/assets/images/blog/the-prenuptial-video-vs-save-the-date-video-what-is-the-difference-and-do-you-need-both3.avif" alt="Official Couple Portrait Background" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-900/60"></div>
+        </div>
+
+       
+
+        <div class="relative z-10 p-4 md:p-5 h-full flex flex-col justify-between text-white">
+          <div>
+            <div class="flex justify-between items-center border-b border-amber-400/40 pb-1.5 mb-2">
+              <div>
+                <p class="text-[8px] font-bold tracking-widest text-amber-300 uppercase">REPUBLIKA NG PILIPINAS</p>
+                <p class="text-[10px] font-bold text-white">PASAPORTE / PASSPORT</p>
+              </div>
+              <div class="text-right">
+                <span class="text-[8px] font-mono block text-amber-200/70">TYPE</span>
+                <span class="text-xs font-bold font-mono text-amber-300">P</span>
+              </div>
+              <div class="text-right">
+                <span class="text-[8px] font-mono block text-amber-200/70">CODE</span>
+                <span class="text-xs font-bold font-mono text-amber-300">PHL</span>
+              </div>
+              <div class="text-right">
+                <span class="text-[8px] font-mono block text-amber-200/70">PASSPORT NO.</span>
+                <span class="text-xs font-bold font-mono text-amber-300">W-20261219</span>
+              </div>
+            </div>
+
+            <!-- Host Line & Formal Request -->
+            <div class="text-center bg-black/0 p-1.5 rounded border border-white/0 mb-2">
+              <p class="text-[8px] text-amber-200 uppercase tracking-widest font-semibold">Host & Request Line</p>
+              <p class="text-[9.5px] italic text-slate-200 font-serif mt-0.5">
+                Together with their parents, <br>
+                request the honor of your presence at the celebration of their holy matrimony.
+              </p>
+            </div>
+
+            <div class="bg-black/0 p-1.5 rounded border border-white/0 mb-2 space-y-1.5 my-1">
+              <div class="grid grid-cols-2 gap-2 border-b border-white/10 pb-1.5">
+                <div>
+                  <span class="text-[8px] font-mono text-amber-200 uppercase block">Groom</span>
+                  <p class="name-script">Mr. Richard A. Lopez</p>
+				  
+			
+                </div>
+                <div>
+                  <span class="text-[8px] font-mono text-amber-200 uppercase block">Bride</span>
+                  <p class="name-script">Ms. Lucy B. Gomez</p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2 pt-0.5">
+                <div>
+                  <span class="text-[7px] font-mono text-amber-200/80 uppercase block">Date & Time</span>
+                  <p class="font-bold text-amber-300 text-[11px]">19 DEC 2026 • 10:00 AM</p>
+                </div>
+                <div>
+                  <span class="text-[7px] font-mono text-amber-200/80 uppercase block">Location</span>
+                  <p class="font-bold text-white text-[10px]">La Trinidad, Benguet</p>
+                </div>
+              </div>
+
+              <div>
+                <span class="text-[7px] font-mono text-amber-200/80 uppercase block">Issuing Authority</span>
+                <p class="font-semibold text-amber-300 text-[8.5px]">REPUBLIC OF LOVE • PHILIPPINES</p>
+              </div>
+            </div>
+
+            <!-- Live wedding countdown -->
+          
+			<div class="bg-black/0 p-1.5 rounded border border-white/0 px-2 py-2 my-2 text-center shadow-lg">
+              <p class="text-[8px] font-bold tracking-[0.2em] text-amber-200 uppercase mb-1">COUNTDOWN TO THE BIG DAY</p>
+              <div id="weddingCountdown" class="grid grid-cols-4 gap-1" role="timer" aria-live="off">
+                <div class="py-1"><span id="countDays" class="block text-lg leading-none font-bold text-amber-300 font-mono">--</span><span class="text-[6px] tracking-widest text-white/75">DAYS</span></div>
+                <div class="py-1"><span id="countHours" class="block text-lg leading-none font-bold text-amber-300 font-mono">--</span><span class="text-[6px] tracking-widest text-white/75">HOURS</span></div>
+                <div class="py-1"><span id="countMinutes" class="block text-lg leading-none font-bold text-amber-300 font-mono">--</span><span class="text-[6px] tracking-widest text-white/75">MINUTES</span></div>
+                <div class="py-1"><span id="countSeconds" class="block text-lg leading-none font-bold text-amber-300 font-mono">--</span><span class="text-[6px] tracking-widest text-white/75">SECONDS</span></div>
+              </div>
+              <p id="countdownMessage" class="text-[7px] text-amber-100/80 mt-1">Until 19 December 2026 • 10:00 AM</p>
+            </div>
+            
+          </div>
+
+          <div class="flex justify-between items-center border-t border-white/20 pt-1 mt-auto">
+            <span class="text-[8px] text-amber-200/80 font-mono">PAGE 01 • BEARER PORTRAIT PAGE</span>
+            <div class="stamp stamp-approved text-[7.5px] px-2 py-0.5 font-bold">
+              OFFICIALLY JOINED
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= PAGE 2: CEREMONY & RECEPTION + GOOGLE MAPS ================= -->
+      <div id="page2" class="passport-card passport-page-bg border-2 border-amber-900/20 p-4 md:p-5 flex flex-col justify-between overflow-hidden shadow-2xl">
+        <div class="watermark-bg"></div>
+
+        <div>
+          <div class="text-center border-b-2 border-slate-900 pb-1.5 mb-2">
+            <p class="text-[8px] font-mono tracking-widest text-slate-500 uppercase">DESTINATION GAZETTE</p>
+            <h2 class="font-serif text-base font-bold text-slate-900 uppercase tracking-tight">Lopez – Gomez Nuptials</h2>
+            <p class="text-[9.5px] italic font-serif text-amber-950">"Request the honor of your presence as we exchange our vows."</p>
+          </div>
+
+          <div class="space-y-2">
+            <!-- Ceremony Card with Google Maps -->
+            <div class="bg-white/90 p-2 rounded-lg border border-amber-900/20 shadow-sm">
+              <div class="flex items-center justify-between mb-0.5">
+                <div class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-church text-amber-900 text-xs"></i>
+                  <h3 class="font-cinzel text-xs font-bold text-slate-900 uppercase">Ceremony Venue</h3>
+                </div>
+                <span class="text-[8.5px] font-bold text-amber-950 bg-amber-100 px-1.5 py-0.5 rounded">10:00 AM</span>
+              </div>
+              <p class="text-[11px] font-bold text-amber-950">St. Paul Church</p>
+              <p class="text-[9.5px] text-slate-700">Camp Dangwa, La Trinidad, Benguet</p>
+              
+              <a href="https://maps.google.com/?q=St.+Paul+Church+Camp+Dangwa+La+Trinidad+Benguet" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-1.5 w-full justify-center bg-red-950 hover:bg-red-900 text-amber-200 py-1 px-2 rounded text-[9.5px] font-semibold transition shadow">
+                <i class="fa-solid fa-map-location-dot text-amber-300"></i> Open Ceremony Google Maps
+              </a>
+            </div>
+
+            <!-- Reception Card with Google Maps -->
+            <div class="bg-white/90 p-2 rounded-lg border border-amber-900/20 shadow-sm">
+              <div class="flex items-center justify-between mb-0.5">
+                <div class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-champagne-glasses text-amber-900 text-xs"></i>
+                  <h3 class="font-cinzel text-xs font-bold text-slate-900 uppercase">Reception Venue</h3>
+                </div>
+                <span class="text-[8.5px] font-bold text-amber-950 bg-amber-100 px-1.5 py-0.5 rounded">Banquet Follows</span>
+              </div>
+              <p class="text-[11px] font-bold text-amber-950">BSU Closed Gymnasium</p>
+              <p class="text-[9.5px] text-slate-700">La Trinidad, Benguet</p>
+
+              <a href="https://maps.google.com/?q=BSU+Closed+Gymnasium+La+Trinidad+Benguet" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-1.5 w-full justify-center bg-red-950 hover:bg-red-900 text-amber-200 py-1 px-2 rounded text-[9.5px] font-semibold transition shadow">
+                <i class="fa-solid fa-map-location-dot text-amber-300"></i> Open Reception Google Maps
+              </a>
+            </div>
+
+            <!-- Visual Vector Vertical Wedding Timeline Section (Patayo) -->
+            <div class="bg-amber-50/90 p-2 rounded-lg border border-amber-900/20 shadow-xs">
+              <div class="flex items-center justify-center gap-1 mb-2">
+                <i class="fa-solid fa-clock text-amber-900 text-[10px]"></i>
+                <span class="text-[8.5px] font-bold text-amber-950 uppercase tracking-widest font-cinzel">Wedding Day Timeline</span>
+              </div>
+
+              <!-- Vertical Timeline (Patayo) -->
+              <div class="relative pl-5 space-y-2.5 text-left border-l-2 border-amber-400 ml-3">
+                
+                <!-- Step 1 -->
+                <div class="relative">
+                  <div class="absolute -left-[27px] top-0.5 w-5 h-5 rounded-full bg-red-950 border-2 border-amber-400 flex items-center justify-center text-amber-200 text-[9px] shadow">
+                    <i class="fa-solid fa-church"></i>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-[9px] font-bold font-mono text-amber-950 bg-amber-200/70 px-1.5 py-0.2 rounded">10:00 AM</span>
+                    <span class="text-[10px] font-bold text-slate-900">Sacred Nuptial Mass</span>
+                  </div>
+                  <p class="text-[8.5px] text-slate-600">Exchange of Vows at St. Paul Church</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative">
+                  <div class="absolute -left-[27px] top-0.5 w-5 h-5 rounded-full bg-amber-600 border-2 border-amber-300 flex items-center justify-center text-white text-[9px] shadow">
+                    <i class="fa-solid fa-utensils"></i>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-[9px] font-bold font-mono text-amber-950 bg-amber-200/70 px-1.5 py-0.2 rounded">12:00 PM</span>
+                    <span class="text-[10px] font-bold text-slate-900">Grand Banquet Feast</span>
+                  </div>
+                  <p class="text-[8.5px] text-slate-600">Welcome Dinner at BSU Closed Gym</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative">
+                  <div class="absolute -left-[27px] top-0.5 w-5 h-5 rounded-full bg-emerald-800 border-2 border-amber-300 flex items-center justify-center text-emerald-100 text-[9px] shadow">
+                    <i class="fa-solid fa-champagne-glasses"></i>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-[9px] font-bold font-mono text-amber-950 bg-amber-200/70 px-1.5 py-0.2 rounded">1:30 PM</span>
+                    <span class="text-[10px] font-bold text-slate-900">Toast & Celebration Program</span>
+                  </div>
+                  <p class="text-[8.5px] text-slate-600">Speeches, Cake Cutting & Festivities</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center border-t border-amber-900/20 pt-1 mt-1">
+          <p class="text-[9px] text-slate-600 font-semibold font-mono">PAGE 02 • VENUES & VERTICAL TIMELINE</p>
+        </div>
+      </div>
+
+      <!-- ================= PAGE 3: CEREMONY & RECEPTION VENUES ================= -->
+      <div id="page3" class="passport-card passport-page-bg border-2 border-amber-900/20 p-4 md:p-5 flex flex-col justify-between overflow-hidden shadow-2xl">
+        <div class="watermark-bg"></div>
+
+        <div>
+          <div class="text-center border-b-2 border-slate-900 pb-1.5 mb-2">
+            <p class="text-[8px] font-mono tracking-widest text-slate-500 uppercase">PAGE 03 • VENUE SPECIFICATIONS</p>
+            <h2 class="font-serif text-base font-bold text-slate-900 uppercase tracking-tight">Reception Details</h2>
+          </div>
+
+          <div class="space-y-3">
+            <div class="bg-white/90 p-3 rounded-lg border border-amber-900/20 shadow-sm">
+              <div class="flex items-center gap-1.5 mb-1">
+                <i class="fa-solid fa-utensils text-amber-900 text-xs"></i>
+                <h3 class="font-cinzel text-xs font-bold text-slate-900 uppercase">Banquet & Celebration</h3>
+              </div>
+              <p class="text-xs font-bold text-amber-950">BSU Closed Gymnasium</p>
+              <p class="text-[10px] text-slate-700">La Trinidad, Benguet</p>
+              <p class="text-[9.5px] text-slate-500 italic mt-1">Formal reception, dinner, and social program will follow immediately after the ceremony.</p>
+            </div>
+
+            <div class="p-2 bg-amber-50 rounded-lg border border-amber-200 text-center">
+              <span class="text-[9px] font-bold text-amber-950 uppercase tracking-wider block">Important Reminder</span>
+              <p class="text-[9.5px] text-slate-700 mt-0.5">Please present your boarding clearance (RSVP confirmation) at the reception entrance.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center border-t border-amber-900/10 pt-1.5">
+          <p class="text-[9px] text-slate-500 font-mono">PAGE 03 • RECEPTION GUIDELINES</p>
+        </div>
+      </div>
+
+      <!-- ================= PAGE 4: DRESS CODE & COLOR MOTIF ================= -->
+      <div id="page4" class="passport-card passport-page-bg border-2 border-amber-900/20 p-4 md:p-5 flex flex-col justify-between overflow-hidden shadow-2xl">
+        <div class="watermark-bg"></div>
+
+        <div>
+          <div class="flex justify-between items-center border-b-2 border-amber-900/20 pb-1.5 mb-2">
+            <span class="text-[10px] font-bold tracking-widest text-amber-950 uppercase">PAGE 04 • DRESS CODE GUIDE</span>
+            <span class="text-[10px] font-mono text-slate-500">ATTIRE</span>
+          </div>
+
+          <div class="text-center mb-2">
+            <h3 class="font-serif text-sm font-bold text-slate-900 uppercase">Formal Attire Guide</h3>
+            <p class="text-[9px] text-slate-600 italic">Strictly Semi-Formal / Formal Filipiniana</p>
+          </div>
+
+          <!-- Attire Vector Illustrations -->
+          <div class="grid grid-cols-2 gap-2 mb-3">
+            <!-- Gentlemen Attire Vector Card -->
+            <div class="bg-white p-2.5 rounded-lg border border-amber-900/20 text-center shadow-sm">
+              <div class="w-14 h-16 mx-auto mb-1 flex items-center justify-center text-amber-900">
+                <svg class="w-full h-full" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M16 12 L32 20 L48 12 L42 56 L22 56 Z" fill="#fff8e7" />
+                  <path d="M26 12 L32 24 L38 12" />
+                  <line x1="32" y1="24" x2="32" y2="52" stroke-dasharray="2 2" />
+                  <circle cx="32" cy="30" r="1.5" fill="currentColor"/>
+                  <circle cx="32" cy="38" r="1.5" fill="currentColor"/>
+                  <circle cx="32" cy="46" r="1.5" fill="currentColor"/>
+                </svg>
+              </div>
+              <p class="text-[10px] font-bold text-amber-950 uppercase">Gentlemen</p>
+              <p class="text-[8px] text-slate-600 mt-0.5">Barong Tagalog / Formal Suit with Black Slacks</p>
+            </div>
+
+            <!-- Ladies Attire Vector Card -->
+            <div class="bg-white p-2.5 rounded-lg border border-amber-900/20 text-center shadow-sm">
+              <div class="w-14 h-16 mx-auto mb-1 flex items-center justify-center text-amber-900">
+                
+			<svg class="w-full h-full" viewBox="0 0 64 64"
+				fill="none" stroke="currentColor"
+				stroke-width="2.5" stroke-linejoin="round">
+				<path d="M24 12 L20 22
+					L16 28 L22 32
+					L12 58 H52 L42 32
+					L48 28 L44 22 L40 12
+					L32 20 Z"
+				fill="#FFF8E7"/>
+				<path d="M22 32 H42"
+				stroke="#E8A8C0"/>
+		 </svg>
+              </div>
+              <p class="text-[10px] font-bold text-amber-950 uppercase">Ladies</p>
+              <p class="text-[8px] text-slate-600 mt-0.5">Filipiniana / Modern Gown / Long Evening Dress</p>
+            </div>
+          </div>
+
+          <!-- Color Motif Palette Swatches -->
+          <div class="bg-white/90 p-3 rounded-lg border border-slate-300 text-center shadow-xs">
+            <span class="text-[9px] font-bold text-amber-950 uppercase block mb-2">Color Palette Motif</span>
+            <div class="flex justify-center items-center gap-3">
+              <div class="text-center">
+                <div class="w-7 h-7 rounded-full bg-[#4a0e17] border-2 border-slate-300 mx-auto shadow-sm"></div>
+                <span class="text-[7.5px] font-mono text-slate-600 block mt-1 font-semibold">Maroon</span>
+              </div>
+              <div class="text-center">
+                <div class="w-7 h-7 rounded-full bg-[#d4af37] border-2 border-slate-300 mx-auto shadow-sm"></div>
+                <span class="text-[7.5px] font-mono text-slate-600 block mt-1 font-semibold">Gold</span>
+              </div>
+              <div class="text-center">
+                <div class="w-7 h-7 rounded-full bg-[#fbeea2] border-2 border-slate-300 mx-auto shadow-sm"></div>
+                <span class="text-[7.5px] font-mono text-slate-600 block mt-1 font-semibold">Champagne</span>
+              </div>
+              <div class="text-center">
+                <div class="w-7 h-7 rounded-full bg-[#2d3748] border-2 border-slate-300 mx-auto shadow-sm"></div>
+                <span class="text-[7.5px] font-mono text-slate-600 block mt-1 font-semibold">Navy/Dark</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center border-t border-amber-900/10 pt-1.5">
+          <p class="text-[9px] text-slate-500 font-mono">PAGE 04 • ATTIRE & COLOR MOTIF</p>
+        </div>
+      </div>
+
+      <!-- ================= PAGE 5: BRIDAL PARTY & ENTOURAGE ROSTER ================= -->
+      <div id="page5" class="passport-card passport-page-bg border-2 border-amber-900/20 p-4 flex flex-col justify-between overflow-hidden shadow-2xl">
+        <div class="watermark-bg"></div>
+
+        <div>
+          <div class="flex justify-between items-center border-b-2 border-amber-900/20 pb-1.5 mb-2">
+            <span class="text-[10px] font-bold tracking-widest text-amber-950 uppercase">PAGE 05 • BRIDAL PARTY</span>
+            <span class="text-[10px] font-mono text-slate-500">ROSTER</span>
+          </div>
+
+          <div class="custom-scroll max-h-[440px] overflow-y-auto pr-1 space-y-2 text-center text-xs">
+            
+            <!-- Parents -->
+            <div class="border-b border-amber-900/10 pb-1.5 bg-white/70 p-2 rounded">
+			   <span class="font-cinzel font-bold text-amber-950 text-[10.5px] uppercase">Groom's Parents</span>
+              <div class="grid grid-cols-1 gap-1 mt-1 text-[9.5px]">
+                <div>  
+                  <p class="font-semibold text-slate-800">Mr. Mark Anthony Lopez <strong class="text-amber-950">&</strong> Mrs. Leonora Mercedez Lopez</p>
+                </div>
+              </div>
+			  
+			  <span class="font-cinzel font-bold text-amber-950 text-[10.5px] uppercase">Bride's Parents</span>
+			  <div class="grid grid-cols-1 gap-1 mt-1 text-[9.5px]">
+                <div>  
+                  <p class="font-semibold text-slate-800">Mr. Robin Bobet Gomez <strong class="text-amber-950">&</strong> Mrs. Sarah G. Gomez</p>
+                </div>
+              </div>
+			  
+            </div>
+			
+			<!-- GrandParents -->
+            <div class="border-b border-amber-900/10 pb-1.5 bg-white/70 p-2 rounded">
+              <p class="font-cinzel font-bold text-amber-950 text-[10.5px] uppercase">Groom's GrandParents</p>
+			   <div class="grid grid-cols-1 gap-1 mt-1 text-[9.5px]">
+                <div>  
+                  <p class="font-semibold text-slate-800">Mr. Margarito Lopez <strong class="text-amber-950">&</strong> Mrs. Paula Lopez</p>
+                </div>
+				<div>  
+                  <p class="font-semibold text-slate-800">Mr. Rosario Mercedez <strong class="text-amber-950">&</strong> Mrs. Marisol Mercedez</p>
+                </div>
+              </div>
+			  
+			  <p class="font-cinzel font-bold text-amber-950 text-[10.5px] uppercase">Brides's GrandParents</p>
+			   <div class="grid grid-cols-1 gap-1 mt-1 text-[9.5px]">
+                <div>  
+                  <p class="font-semibold text-slate-800">Mr. Randy Gomez <strong class="text-amber-950">&</strong> Mrs. Lycka Gomez</p>
+                </div>
+				<div>  
+                  <p class="font-semibold text-slate-800">Mr. Gabriel Geronimo <strong class="text-amber-950">&</strong> Mrs. Sarah Geronimo</p>
+                </div>
+              </div>
+               
+            </div>
+			
+
+            <!-- Best Man & MOH -->
+            <div class="border-b border-amber-900/10 pb-1.5 bg-white/70 p-2 rounded">
+              <div class="grid grid-cols-2 gap-1">
+                <div>
+                  <span class="text-[8px] font-bold text-amber-950 uppercase block font-cinzel">Best Man</span>
+                  <p class="text-[10px] text-slate-800 font-semibold">Honored Companion</p>
+                </div>
+                <div>
+                  <span class="text-[8px] font-bold text-amber-950 uppercase block font-cinzel">Maid of Honor</span>
+                  <p class="text-[10px] text-slate-800 font-semibold">Honored Companion</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Groomsmen & Bridesmaids -->
+            <div class="border-b border-amber-900/10 pb-1.5 bg-white/70 p-2 rounded">
+              <p class="font-cinzel font-bold text-amber-950 text-[10px] uppercase">Groomsmen & Bridesmaids</p>
+              <div class="grid grid-cols-2 gap-1 mt-1 text-[9px] text-slate-700">
+                <div>
+                  <p class="font-semibold text-slate-800">Groomsman 1</p>
+                  <p class="font-semibold text-slate-800">Groomsman 2</p>
+                </div>
+                <div>
+                  <p class="font-semibold text-slate-800">Bridesmaid 1</p>
+                  <p class="font-semibold text-slate-800">Bridesmaid 2</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bearers & Flower Girls -->
+            <div class="bg-white/70 p-2 rounded">
+              <p class="font-cinzel font-bold text-amber-950 text-[10px] uppercase">Bearers & Flower Girls</p>
+              <div class="grid grid-cols-2 gap-1 mt-1 text-[8.5px] text-slate-800 font-medium">
+                <div>
+                  <span class="text-[7px] text-slate-500 uppercase block font-bold">Coin / Ring / Bible Bearers</span>
+                  <p class="font-semibold">Little Bearers</p>
+                </div>
+                <div>
+                  <span class="text-[7px] text-slate-500 uppercase block font-bold">Flower Girls</span>
+                  <p class="font-semibold">Little Flowers</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="text-center border-t border-amber-900/10 pt-1.5">
+          <p class="text-[9px] text-slate-500 font-mono">PAGE 05 • BRIDAL PARTY & ATTENDANTS</p>
+        </div>
+      </div>
+
+      <!-- ================= PAGE 6: PRINCIPAL & SECONDARY SPONSORS ================= -->
+      <div id="page6" class="passport-card passport-page-bg border-2 border-amber-900/20 p-4 md:p-5 flex flex-col justify-between overflow-hidden shadow-2xl">
+        <div class="watermark-bg"></div>
+
+        <div>
+          <div class="flex justify-between items-center border-b-2 border-amber-900/20 pb-1.5 mb-2">
+            <span class="text-[10px] font-bold tracking-widest text-amber-950 uppercase">PAGE 06 • WEDDING SPONSORS</span>
+            <span class="text-[10px] font-mono text-slate-500">HONOR LIST</span>
+          </div>
+
+          <div class="space-y-3">
+            <!-- Principal Sponsors -->
+            <div class="bg-white/90 p-3 rounded-lg border border-amber-900/20 text-center shadow-sm">
+              <p class="font-cinzel font-bold text-amber-950 text-[11px] uppercase">Principal Sponsors (Ninongs & Ninangs)</p>
+              <p class="text-[8.5px] text-slate-500 italic mb-2">Witnesses & Guides of Our Sacred Union</p>
+			  
+			 <div class="grid grid-cols-2">
+			 <div class="text-[7.5px] text-amber-950 font-bold uppercase block mb-0.5">Godfathers (Ninongs)</div>
+			 <div class="text-[7.5px] text-amber-950 font-bold uppercase block mb-0.5">GodMothers (Ninangs)</div>
+			 </div>
+			  
+            
+			
+<div class="grid grid-cols-2 gap-2 text-[9px] sm:text-[10px] text-slate-800 font-medium border-t border-slate-100 pt-2 custom-scroll max-h-[300px] overflow-y-auto pr-1.5 overscroll-contain pb-2">
+
+  <!-- GODFATHERS -->
+  <div class="min-w-0 flex flex-col items-center text-center">
+    <div class="w-full space-y-1">
+      <p class="py-0.5">Mr. Godfather 1</p>
+      <p class="py-0.5">Mr. Godfather 2</p>
+      <p class="py-0.5">Mr. Godfather 3</p>
+      <p class="py-0.5">Mr. Godfather 4</p>
+      <p class="py-0.5">Mr. Godfather 5</p>
+      <p class="py-0.5">Mr. Godfather 6</p>
+      <p class="py-0.5">Mr. Godfather 7</p>
+      <p class="py-0.5">Mr. Godfather 8</p>
+      <p class="py-0.5">Mr. Godfather 9</p>
+      <p class="py-0.5">Mr. Godfather 10</p>
+      <p class="py-0.5">Mr. Godfather 11</p>
+      <p class="py-0.5">Mr. Godfather 12</p>
+      <p class="py-0.5">Mr. Godfather 13</p>
+      <p class="py-0.5">Mr. Godfather 14</p>
+      <p class="py-0.5">Mr. Godfather 15</p>
+      <p class="py-0.5">Mr. Godfather 16</p>
+      <p class="py-0.5">Mr. Godfather 17</p>
+      <p class="py-0.5">Mr. Godfather 18</p>
+      <p class="py-0.5">Mr. Godfather 19</p>
+      <p class="py-0.5">Mr. Godfather 20</p>
+      <p class="py-0.5">Mr. Godfather 21</p>
+      <p class="py-0.5">Mr. Godfather 22</p>
+      <p class="py-0.5">Mr. Godfather 23</p>
+      <p class="py-0.5">Mr. Godfather 24</p>
+      <p class="py-0.5">Mr. Godfather 25</p>
+      <p class="py-0.5">Mr. Godfather 26</p>
+      <p class="py-0.5">Mr. Godfather 27</p>
+      <p class="py-0.5">Mr. Godfather 28</p>
+      <p class="py-0.5">Mr. Godfather 29</p>
+      <p class="py-0.5">Mr. Godfather 30</p>
+      <p class="py-0.5">Mr. Godfather 31</p>
+      <p class="py-0.5">Mr. Godfather 32</p>
+    </div>
+  </div>
+
+  <!-- GODMOTHERS -->
+  <div class="min-w-0 flex flex-col items-center text-center">
+    <div class="w-full space-y-1">
+      <p class="py-0.5">Mrs. Godmother 1</p>
+      <p class="py-0.5">Mrs. Godmother 2</p>
+      <p class="py-0.5">Mrs. Godmother 3</p>
+      <p class="py-0.5">Mrs. Godmother 4</p>
+      <p class="py-0.5">Mrs. Godmother 5</p>
+      <p class="py-0.5">Mrs. Godmother 6</p>
+      <p class="py-0.5">Mrs. Godmother 7</p>
+      <p class="py-0.5">Mrs. Godmother 8</p>
+      <p class="py-0.5">Mrs. Godmother 9</p>
+      <p class="py-0.5">Mrs. Godmother 10</p>
+      <p class="py-0.5">Mrs. Godmother 11</p>
+      <p class="py-0.5">Mrs. Godmother 12</p>
+      <p class="py-0.5">Mrs. Godmother 13</p>
+      <p class="py-0.5">Mrs. Godmother 14</p>
+      <p class="py-0.5">Mrs. Godmother 15</p>
+      <p class="py-0.5">Mrs. Godmother 16</p>
+      <p class="py-0.5">Mrs. Godmother 17</p>
+      <p class="py-0.5">Mrs. Godmother 18</p>
+      <p class="py-0.5">Mrs. Godmother 19</p>
+      <p class="py-0.5">Mrs. Godmother 20</p>
+      <p class="py-0.5">Mrs. Godmother 21</p>
+      <p class="py-0.5">Mrs. Godmother 22</p>
+      <p class="py-0.5">Mrs. Godmother 23</p>
+      <p class="py-0.5">Mrs. Godmother 24</p>
+      <p class="py-0.5">Mrs. Godmother 25</p>
+      <p class="py-0.5">Mrs. Godmother 26</p>
+      <p class="py-0.5">Mrs. Godmother 27</p>
+      <p class="py-0.5">Mrs. Godmother 28</p>
+      <p class="py-0.5">Mrs. Godmother 29</p>
+      <p class="py-0.5">Mrs. Godmother 30</p>
+      <p class="py-0.5">Mrs. Godmother 31</p>
+      <p class="py-0.5">Mrs. Godmother 32</p>
+    </div>
+  </div>
+
+</div>
+
+			</div>
+
+            <!-- Secondary Sponsors -->
+            <div class="bg-white/90 p-3 rounded-lg border border-amber-900/20 text-center shadow-sm">
+              <p class="font-cinzel font-bold text-amber-950 text-[10px] uppercase mb-1">Secondary Sponsors</p>
+              <div class="grid grid-cols-3 gap-1.5 text-[8.5px] text-slate-700">
+                <div class="bg-amber-50/60 p-1.5 rounded border border-amber-200">
+                  <span class="font-bold text-amber-950 block text-[9px]">Candle</span>
+                  <p class="text-[7.5px] mt-0.5">To Light Our Way</p>
+                </div>
+                <div class="bg-amber-50/60 p-1.5 rounded border border-amber-200">
+                  <span class="font-bold text-amber-950 block text-[9px]">Veil</span>
+                  <p class="text-[7.5px] mt-0.5">To Clothe Us in Unity</p>
+                </div>
+                <div class="bg-amber-50/60 p-1.5 rounded border border-amber-200">
+                  <span class="font-bold text-amber-950 block text-[9px]">Cord</span>
+                  <p class="text-[7.5px] mt-0.5">To Bind Us Forever</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center border-t border-amber-900/10 pt-1.5">
+          <p class="text-[9px] text-slate-500 font-mono">PAGE 06 • PRINCIPAL & SECONDARY SPONSORS</p>
+        </div>
+      </div>
+
+      <!-- ================= PAGE 7: DEDICATED GIFT REGISTRY & MONETARY GIFT NOTE ================= -->
+      <div id="page7" class="passport-card passport-page-bg border-2 border-amber-900/20 p-4 md:p-5 flex flex-col justify-between overflow-hidden shadow-2xl">
+        <div class="watermark-bg"></div>
+
+        <div class="h-full flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center border-b-2 border-amber-900/20 pb-1.5 mb-2">
+              <span class="text-[10px] font-bold tracking-widest text-amber-950 uppercase">PAGE 07 • GIFT REGISTRY</span>
+              <span class="text-[10px] font-mono text-slate-500">GIFT NOTES</span>
+            </div>
+
+            <div class="text-center mb-2">
+              <div class="w-12 h-12 mx-auto rounded-full bg-amber-100/90 border border-amber-600/30 flex items-center justify-center text-amber-900 mb-1 shadow-sm">
+                <i class="fa-solid fa-gift text-xl"></i>
+              </div>
+              <h3 class="font-serif text-base font-bold text-slate-900 uppercase tracking-tight">Monetary Gift Note</h3>
+              <p class="text-[10px] font-script text-2xl text-amber-950 mt-0.5">With Warm Heart & Deep Gratitude</p>
+            </div>
+
+            <!-- Dedicated Gift Note Message Card -->
+            <div class="bg-white/90 p-3.5 rounded-lg border border-amber-900/20 shadow-sm text-center mb-3">
+              <p class="text-[10.5px] text-slate-700 italic leading-relaxed font-serif">
+                "Your presence on our wedding day is the greatest gift of all. However, should you wish to honor us with a gift, a monetary blessing towards building our new home and future together would be deeply appreciated."
+              </p>
+            </div>
+
+            <!-- Digital QR Code & Transfer Details Container -->
+            <div class="bg-amber-50/90 border-2 border-dashed border-amber-800/30 rounded-lg p-3 text-center space-y-2">
+              <span class="text-[9px] font-bold text-amber-950 uppercase tracking-widest block">Digital Gift QR Code</span>
+              
+              <div class="flex justify-center items-center gap-3">
+                <div class="w-24 h-24 bg-white p-1.5 border-2 border-amber-900/40 rounded-md flex items-center justify-center shadow-md">
+                  <svg class="w-full h-full text-slate-900" viewBox="0 0 100 100" fill="currentColor">
+                    <rect x="5" y="5" width="30" height="30" fill="none" stroke="currentColor" stroke-width="4"/>
+                    <rect x="13" y="13" width="14" height="14"/>
+                    <rect x="65" y="5" width="30" height="30" fill="none" stroke="currentColor" stroke-width="4"/>
+                    <rect x="73" y="13" width="14" height="14"/>
+                    <rect x="5" y="65" width="30" height="30" fill="none" stroke="currentColor" stroke-width="4"/>
+                    <rect x="13" y="73" width="14" height="14"/>
+                    <rect x="42" y="10" width="10" height="10"/>
+                    <rect x="42" y="42" width="16" height="16"/>
+                    <rect x="65" y="42" width="10" height="20"/>
+                    <rect x="42" y="70" width="20" height="10"/>
+                    <rect x="70" y="70" width="15" height="15"/>
+                  </svg>
+                </div>
+
+                <div class="text-left text-[9.5px] space-y-1">
+                  <div class="bg-white p-1.5 rounded border border-amber-200">
+                    <span class="font-bold text-amber-950 block text-[8.5px] uppercase">GCash / Maya Transfer</span>
+                    <p class="text-slate-800 font-mono font-bold text-[10.5px]">09XX-XXX-XXXX</p>
+                  </div>
+                  <div class="bg-white p-1.5 rounded border border-amber-200">
+                    <span class="font-bold text-amber-950 block text-[8.5px] uppercase">Account Name</span>
+                    <p class="text-slate-800 font-semibold text-[10px]">Richard A. Lopez</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="stamp stamp-approved self-center px-4 py-0.5 text-center my-1">
+            <p class="text-[8px] tracking-widest font-bold">WITH SINCERE GRATITUDE</p>
+          </div>
+        </div>
+
+        <div class="text-center border-t border-amber-900/10 pt-1.5">
+          <p class="text-[9px] text-slate-500 font-mono">PAGE 07 • DEDICATED GIFT NOTE & QR CODE</p>
+        </div>
+      </div>
+
+      <!-- ================= PAGE 8: DEDICATED RSVP PAGE (WITH EMBEDDED GOOGLE FORM) ================= -->
+      <div id="page8" class="passport-card passport-page-bg border-2 border-amber-900/20 p-4 md:p-5 flex flex-col justify-between overflow-hidden shadow-2xl">
+        <div class="watermark-bg"></div>
+
+        <div class="h-full flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center border-b-2 border-amber-900/20 pb-1.5 mb-2">
+              <span class="text-[10px] font-bold tracking-widest text-amber-950 uppercase">PAGE 08 • BOARDING CLEARANCE</span>
+              <span class="text-[10px] font-mono text-slate-500">OFFICIAL RSVP</span>
+            </div>
+
+            <div class="text-center mb-2">
+              <h3 class="font-serif text-base font-bold text-slate-900 uppercase">Confirm Your Attendance</h3>
+              <p class="text-[9.5px] text-slate-600 mt-0.5">Please fill out the clearance form below by <strong class="text-amber-950">November 15, 2026</strong>.</p>
+            </div>
+
+            <!-- Custom Wedding RSVP Form -->
+            <div class="rsvp-shell relative overflow-hidden rounded-xl border border-[#c6a45b]/70 bg-[#fffdf8] p-3 shadow-[0_12px_30px_rgba(74,14,23,.12)] mb-2">
+              <div class="absolute inset-[5px] rounded-lg border border-[#d8c18a]/55 pointer-events-none"></div>
+              <div class="relative text-center mb-3">
+                <div class="mx-auto mb-1.5 flex h-9 w-9 items-center justify-center rounded-full bg-[#4a0e17] text-[#f5df9b] shadow-md">
+                  <i class="fa-regular fa-envelope-open text-sm"></i>
+                </div>
+                <p class="font-cinzel text-[9px] tracking-[.22em] uppercase text-[#9b7835]">A note to the couple</p>
+                <h4 class="font-serif text-[19px] italic text-[#4a0e17]">Kindly RSVP</h4>
+                <p class="mx-auto mt-1 max-w-[270px] text-[9px] leading-relaxed text-slate-600">
+                  Please let us know if you'll be joining the celebration by filling out the form below. We can't wait to celebrate with you! <span class="text-red-700">♥</span>
+                </p>
+              </div>
+
+              <form id="rsvpForm" class="relative space-y-2 text-left" novalidate>
+                <div>
+                  <label for="rsvpName" class="mb-1 block font-cinzel text-[8px] font-bold tracking-wider text-[#4a0e17]">FULL NAME</label>
+                  <input id="rsvpName" name="entry.1258977946" type="text" autocomplete="name" required maxlength="120"
+                    placeholder="Enter your full name"
+                    class="w-full rounded-md border border-[#d8c9a8] bg-white px-3 py-2 text-[10px] text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-[#9b7835] focus:ring-2 focus:ring-[#d8c18a]/35">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label for="rsvpPhone" class="mb-1 block font-cinzel text-[8px] font-bold tracking-wider text-[#4a0e17]">CONTACT NUMBER</label>
+                    <input id="rsvpPhone" name="entry.1743091270" type="tel" autocomplete="tel" required maxlength="30"
+                      placeholder="09XXXXXXXXX"
+                      class="w-full rounded-md border border-[#d8c9a8] bg-white px-2.5 py-2 text-[10px] text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-[#9b7835] focus:ring-2 focus:ring-[#d8c18a]/35">
+                  </div>
+                  <div>
+                    <label for="rsvpEmail" class="mb-1 block font-cinzel text-[8px] font-bold tracking-wider text-[#4a0e17]">EMAIL ADDRESS</label>
+                    <input id="rsvpEmail" name="entry.1190084013" type="email" autocomplete="email" required maxlength="160"
+                      placeholder="you@email.com"
+                      class="w-full rounded-md border border-[#d8c9a8] bg-white px-2.5 py-2 text-[10px] text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-[#9b7835] focus:ring-2 focus:ring-[#d8c18a]/35">
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-[1.35fr_.65fr] gap-2">
+                  <div>
+                    <label for="rsvpAttendance" class="mb-1 block font-cinzel text-[8px] font-bold tracking-wider text-[#4a0e17]">WILL YOU ATTEND OUR WEDDING?</label>
+                    <select id="rsvpAttendance" name="entry.588706442" required
+                      class="w-full rounded-md border border-[#d8c9a8] bg-white px-2.5 py-2 text-[10px] text-slate-800 outline-none transition focus:border-[#9b7835] focus:ring-2 focus:ring-[#d8c18a]/35">
+                      <option value="" disabled selected>Select response</option>
+                      <option value="Yes, I'll be there!">Yes, I'll be there!</option>
+                      <option value="No, I can't make it">No, I can't make it</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="rsvpGuests" class="mb-1 block font-cinzel text-[8px] font-bold tracking-wider text-[#4a0e17]">NO. OF GUESTS</label>
+                    <input id="rsvpGuests" name="entry.1843798017" type="number" min="1" max="20" step="1" value="1" required
+                      class="w-full rounded-md border border-[#d8c9a8] bg-white px-2.5 py-2 text-[10px] text-slate-800 outline-none transition focus:border-[#9b7835] focus:ring-2 focus:ring-[#d8c18a]/35">
+                  </div>
+                </div>
+
+                <div>
+                  <label for="rsvpMessage" class="mb-1 block font-cinzel text-[8px] font-bold tracking-wider text-[#4a0e17]">MESSAGE FOR THE COUPLE <span class="font-normal normal-case tracking-normal text-slate-400">(optional)</span></label>
+                  <textarea id="rsvpMessage" name="entry.492096606" rows="2" maxlength="500"
+                    placeholder="Leave a little note for Richard & Lucy..."
+                    class="w-full resize-none rounded-md border border-[#d8c9a8] bg-white px-3 py-2 text-[10px] leading-relaxed text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-[#9b7835] focus:ring-2 focus:ring-[#d8c18a]/35"></textarea>
+                </div>
+
+                <button id="rsvpSubmit" type="submit"
+                  class="group flex w-full items-center justify-center gap-2 rounded-md bg-gradient-to-r from-[#4a0e17] via-[#641b27] to-[#4a0e17] px-3 py-2.5 font-cinzel text-[9px] font-bold tracking-[.16em] text-[#f8e7b5] shadow-md transition duration-300 hover:-translate-y-0.5 hover:shadow-lg disabled:cursor-wait disabled:opacity-60">
+                  <i class="fa-regular fa-paper-plane transition group-hover:translate-x-0.5"></i>
+                  <span id="rsvpSubmitText">SEND MY RSVP</span>
+                </button>
+
+                <div id="rsvpFeedback" role="status" aria-live="polite" class="hidden rounded-md px-2.5 py-2 text-center text-[10px] leading-relaxed"></div>
+                <p class="text-center font-mono text-[7px] tracking-wider text-[#9b7835]">WITH LOVE • Richard & Lucy</p>
+              </form>
+            </div>
+          </div>
+
+          <div class="stamp stamp-approved self-center px-3 py-0.5 text-center my-0.5">
+            <p class="text-[8px] tracking-widest font-bold">CLEARANCE REQUIRED PRIOR TO FLIGHT</p>
+          </div>
+        </div>
+
+        <div class="text-center border-t border-amber-900/10 pt-1.5">
+          <p class="text-[9px] text-slate-500 font-mono">PAGE 08 • DEDICATED RSVP & CLEARANCE</p>
+        </div>
+      </div>
+
+      <!-- ================= PAGE 9: THANK YOU MESSAGE & VERTICAL GALLERY (FINAL DULO PAGE) ================= -->
+      <div id="page9" class="passport-card passport-page-bg border-2 border-amber-900/20 p-4 md:p-5 flex flex-col justify-between overflow-hidden shadow-2xl">
+        <div class="watermark-bg"></div>
+
+        <div class="h-full flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center border-b-2 border-amber-900/20 pb-1.5 mb-2">
+              <span class="text-[10px] font-bold tracking-widest text-amber-950 uppercase">PAGE 09 • GRATITUDE & GALLERY</span>
+              <span class="text-[10px] font-mono text-slate-500">FINAL PAGE</span>
+            </div>
+
+            <!-- Couple Thank You Message -->
+            <div class="bg-amber-50/90 p-2 rounded-lg border border-amber-900/20 shadow-sm text-center mb-1.5">
+              <h4 class="font-script text-xl text-amber-950 font-bold">With All Our Love & Gratitude</h4>
+              <p class="text-[8.5px] text-slate-700 italic leading-tight">
+                "As we step into this sacred covenant of marriage, having your presence, love, and prayers is the greatest treasure. Thank you for walking alongside us as we begin our forever."
+              </p>
+              <div class="mt-1 text-center">
+                <p class="font-serif text-[10px] font-bold text-amber-950 tracking-wide">— Richard & Lucy —</p>
+                <p class="text-[7px] font-mono text-slate-500">THE NEWLYWEDS</p>
+              </div>
+            </div>
+
+            <!-- Vertical Photo Gallery Title -->
+            <div class="flex items-center justify-between mb-1 px-0.5">
+              <span class="text-[8.5px] font-bold tracking-widest text-amber-950 uppercase">Couples Vertical Gallery (5 Photos)</span>
+              <span class="text-[7.5px] font-mono text-slate-500 italic"><i class="fa-solid fa-arrows-up-down mr-0.5"></i> Scroll to view all</span>
+            </div>
+
+            <!-- Extended Responsive Vertical Scrollable Gallery (5 Pictures - Lengthened Height) -->
+            <div class="custom-scroll max-h-[380px] overflow-y-auto space-y-2.5 pr-1.5 overscroll-contain pb-2">
+              
+              <!-- Frame 1 -->
+              <button type="button" onclick="openLightbox(0)" class="cursor-pointer group bg-white p-2 border border-amber-900/20 rounded-md shadow-xs hover:border-amber-600 transition transform hover:-translate-y-0.5 text-left w-full">
+                <div class="w-full aspect-[16/9] overflow-hidden rounded bg-slate-100 relative">
+                  <img id="galImg0" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+                  <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-[9px] font-semibold">
+                    <i class="fa-solid fa-expand mr-1"></i> Tap to View
+                  </div>
+                </div>
+                <div class="flex justify-between items-center mt-1 px-1">
+                  <span class="text-[8.5px] font-bold text-amber-950 font-serif">Portrait 01 • Engagement Session</span>
+                  <span class="text-[7.5px] text-slate-500 font-mono">View Fullscreen</span>
+                </div>
+              </button>
+
+              <!-- Frame 2 -->
+              <button type="button" onclick="openLightbox(1)" class="cursor-pointer group bg-white p-2 border border-amber-900/20 rounded-md shadow-xs hover:border-amber-600 transition transform hover:-translate-y-0.5 text-left w-full">
+                <div class="w-full aspect-[16/9] overflow-hidden rounded bg-slate-100 relative">
+                  <img id="galImg1" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+                  <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-[9px] font-semibold">
+                    <i class="fa-solid fa-expand mr-1"></i> Tap to View
+                  </div>
+                </div>
+                <div class="flex justify-between items-center mt-1 px-1">
+                  <span class="text-[8.5px] font-bold text-amber-950 font-serif">Portrait 02 • Eternal Promise</span>
+                  <span class="text-[7.5px] text-slate-500 font-mono">View Fullscreen</span>
+                </div>
+              </button>
+
+              <!-- Frame 3 -->
+              <button type="button" onclick="openLightbox(2)" class="cursor-pointer group bg-white p-2 border border-amber-900/20 rounded-md shadow-xs hover:border-amber-600 transition transform hover:-translate-y-0.5 text-left w-full">
+                <div class="w-full aspect-[16/9] overflow-hidden rounded bg-slate-100 relative">
+                  <img id="galImg2" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+                  <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-[9px] font-semibold">
+                    <i class="fa-solid fa-expand mr-1"></i> Tap to View
+                  </div>
+                </div>
+                <div class="flex justify-between items-center mt-1 px-1">
+                  <span class="text-[8.5px] font-bold text-amber-950 font-serif">Portrait 03 • Romantic Sunset</span>
+                  <span class="text-[7.5px] text-slate-500 font-mono">View Fullscreen</span>
+                </div>
+              </button>
+
+              <!-- Frame 4 -->
+              <button type="button" onclick="openLightbox(3)" class="cursor-pointer group bg-white p-2 border border-amber-900/20 rounded-md shadow-xs hover:border-amber-600 transition transform hover:-translate-y-0.5 text-left w-full">
+                <div class="w-full aspect-[16/9] overflow-hidden rounded bg-slate-100 relative">
+                  <img id="galImg3" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+                  <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-[9px] font-semibold">
+                    <i class="fa-solid fa-expand mr-1"></i> Tap to View
+                  </div>
+                </div>
+                <div class="flex justify-between items-center mt-1 px-1">
+                  <span class="text-[8.5px] font-bold text-amber-950 font-serif">Portrait 04 • Joyful Moments</span>
+                  <span class="text-[7.5px] text-slate-500 font-mono">View Fullscreen</span>
+                </div>
+              </button>
+
+              <!-- Frame 5 -->
+              <button type="button" onclick="openLightbox(4)" class="cursor-pointer group bg-white p-2 border border-amber-900/20 rounded-md shadow-xs hover:border-amber-600 transition transform hover:-translate-y-0.5 text-left w-full">
+                <div class="w-full aspect-[16/9] overflow-hidden rounded bg-slate-100 relative">
+                  <img id="galImg4" src="https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+                  <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-[9px] font-semibold">
+                    <i class="fa-solid fa-expand mr-1"></i> Tap to View
+                  </div>
+                </div>
+                <div class="flex justify-between items-center mt-1 px-1">
+                  <span class="text-[8.5px] font-bold text-amber-950 font-serif">Portrait 05 • Forever & Always</span>
+                  <span class="text-[7.5px] text-slate-500 font-mono">View Fullscreen</span>
+                </div>
+              </button>
+
+            </div>
+          </div>
+
+          <div class="stamp stamp-approved self-center px-3 py-0.5 text-center my-0.5">
+            <p class="text-[8px] tracking-widest font-bold">SEE YOU ON OUR SPECIAL DAY</p>
+          </div>
+        </div>
+
+        <div class="text-center border-t border-amber-900/10 pt-1 mt-0.5">
+          <p class="text-[9px] text-slate-500 font-mono">PAGE 09 • COUPLE'S MESSAGE & CLOSING</p>
+        </div>
+      </div>
+
+      <!-- ================= PAGE 10: PRENUP / PROPOSAL VIDEO ================= -->
+      <div id="page10" class="passport-card passport-page-bg border-2 border-amber-900/20 p-4 md:p-5 flex flex-col justify-between overflow-hidden shadow-2xl">
+        <div class="watermark-bg"></div>
+
+        <div class="relative z-10">
+          <div class="flex justify-between items-center border-b-2 border-amber-900/20 pb-1.5 mb-3">
+            <span class="text-[10px] font-bold tracking-widest text-amber-950 uppercase">PAGE 10 • OUR STORY IN MOTION</span>
+            <span class="text-[10px] font-mono text-slate-500">VIDEO FEATURE</span>
+          </div>
+
+          <div class="text-center mb-4">
+            <div class="w-12 h-12 mx-auto rounded-full bg-amber-100 border border-amber-700/30 flex items-center justify-center text-amber-900 mb-2">
+              <i class="fa-solid fa-film text-xl"></i>
+            </div>
+            <h3 class="font-serif text-lg font-bold text-slate-900 uppercase tracking-tight">A Moment to Remember</h3>
+            <p class="text-[9px] text-slate-600 italic mt-1">A little glimpse into our love story</p>
+          </div>
+
+          <div class="bg-white/90 p-2 rounded-xl border border-amber-900/20 shadow-sm">
+            <div class="flex items-center justify-between mb-2 px-1">
+              <span class="text-[9px] font-bold text-amber-950 uppercase tracking-widest">Prenup / Proposal Video</span>
+              <i class="fa-solid fa-heart text-amber-800 text-xs"></i>
+            </div>
+
+            <div class="w-full aspect-video rounded-lg overflow-hidden bg-[#16070a] border border-amber-800/40 shadow-inner">
+              <video id="coupleStoryVideo" class="w-full h-full object-contain" controls playsinline preload="metadata" poster="">
+                <source src="prenup-video.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+              </video>
+            </div>
+
+            <p class="text-[8px] text-slate-500 text-center mt-2">Our favorite moments, captured forever.</p>
+          </div>
+
+          <div class="mt-3 rounded-lg border border-amber-900/15 bg-amber-50/80 p-2.5 text-center">
+            <p class="font-script text-xl text-amber-950">Every love story is beautiful...</p>
+            <p class="text-[9px] text-slate-700 mt-1 leading-relaxed">...but ours is our favorite. Thank you for being part of our journey.</p>
+          </div>
+        </div>
+
+        <div class="text-center border-t border-amber-900/10 pt-1.5 mt-3">
+          <p class="text-[9px] text-slate-500 font-mono">PAGE 10 • PRENUP / PROPOSAL VIDEO</p>
+        </div>
+      </div>
+
+      <!-- IN-PAGE BOOK NAVIGATION -->
+  <footer id="bookNavigation" aria-label="Passport page navigation" class="book-navigation absolute z-40 left-1/2 -translate-x-1/2 flex items-center justify-between gap-2 px-2 py-1.5 rounded-full">
+    <button type="button" onclick="prevPage()" aria-label="Previous page" class="nav-page-button nav-prev">
+      <i class="fa-solid fa-chevron-left"></i><span>PREV</span>
+    </button>
+    <span id="pageIndicator" class="page-indicator">
+      Cover
+    </span>
+    <button type="button" onclick="nextPage()" aria-label="Next page" class="nav-page-button nav-next">
+      <span>NEXT</span><i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </footer>
+
+      <!-- Page content remains fully interactive; use the navigation controls to turn pages. -->
+    </div>
+  </main>
+  
+  
+
+  <!-- HIDDEN BACKGROUND MUSIC: put your downloaded MP3 beside this HTML file
+       and name it exactly: uhaw.mp3 -->
+  <audio id="weddingAudio" preload="none" loop playsinline>
+    <source src="uhaw.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- LIGHTBOX MODAL -->
+  <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden flex flex-col items-center justify-center p-4 backdrop-blur-md" onclick="closeLightbox()">
+    <button class="absolute top-5 right-5 text-amber-200 hover:text-white text-lg px-3 py-1 bg-amber-950/80 border border-amber-400/40 rounded-full transition" onclick="closeLightbox()">
+      <i class="fa-solid fa-xmark mr-1"></i> Close
+    </button>
+    <img id="lightboxImg" onclick="event.stopPropagation()" src="" class="max-w-full max-h-[82vh] rounded-lg shadow-2xl border-2 border-amber-400/50 object-contain">
+    <p id="lightboxCaption" class="text-amber-200 text-xs font-serif mt-3 tracking-widest uppercase bg-black/60 px-4 py-1.5 rounded-full border border-amber-500/30"></p>
+  </div>
+
+  <script>
+    // REALISTIC PAPER FLIP SOUND SYNTHESIZER (Web Audio API)
+    let audioCtx = null;
+
+    function playPageTurnSound() {
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+
+        const duration = 0.22;
+        const bufferSize = audioCtx.sampleRate * duration;
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+
+        for (let i = 0; i < bufferSize; i++) {
+          const t = i / bufferSize;
+          const noise = (Math.random() * 2 - 1);
+          const envelope = Math.sin(t * Math.PI);
+          data[i] = noise * envelope;
+        }
+
+        const source = audioCtx.createBufferSource();
+        source.buffer = buffer;
+
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(800, audioCtx.currentTime);
+        filter.frequency.exponentialRampToValueAtTime(2400, audioCtx.currentTime + duration * 0.6);
+        filter.frequency.exponentialRampToValueAtTime(600, audioCtx.currentTime + duration);
+        filter.Q.setValueAtTime(1.8, audioCtx.currentTime);
+
+        const gainNode = audioCtx.createGain();
+        gainNode.gain.setValueAtTime(0.01, audioCtx.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.35, audioCtx.currentTime + 0.05);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+        source.connect(filter);
+        filter.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
+        source.start();
+      } catch (e) {
+        console.log("Audio play prevented or unsupported:", e);
+      }
+    }
+
+    // Passport pages: one visible page at a time, with directional transitions.
+    const pageCards = [
+      document.getElementById('coverPage'),
+      document.getElementById('page1'),
+      document.getElementById('page2'),
+      document.getElementById('page3'),
+      document.getElementById('page4'),
+      document.getElementById('page5'),
+      document.getElementById('page6'),
+      document.getElementById('page7'),
+      document.getElementById('page8'),
+      document.getElementById('page9'),
+      document.getElementById('page10')
+    ].filter(Boolean);
+
+    const galleryImages = [
+      "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1200&q=80"
+    ];
+
+    let currentStep = 0;
+    let isTurningPage = false;
+    const totalSteps = pageCards.length - 1;
+
+    function updatePageStates() {
+      pageCards.forEach((card, idx) => {
+        card.classList.remove('is-active', 'is-turning-forward', 'is-turning-backward');
+        if (idx === currentStep) {
+          card.style.visibility = 'visible';
+          card.style.opacity = '1';
+          card.style.pointerEvents = 'auto';
+          card.style.zIndex = '20';
+          card.style.transform = '';
+          card.classList.add('is-active');
+        } else {
+          card.style.visibility = 'hidden';
+          card.style.opacity = '0';
+          card.style.pointerEvents = 'none';
+          card.style.zIndex = '1';
+          card.style.transform = '';
+        }
+      });
+
+      const indicator = document.getElementById('pageIndicator');
+      const navigation = document.getElementById('bookNavigation');
+      if (navigation) navigation.style.display = currentStep === 0 ? 'none' : 'flex';
+      if (indicator) {
+        indicator.textContent = currentStep === 0
+          ? 'Cover'
+          : `Page ${String(currentStep).padStart(2, '0')} / ${String(totalSteps).padStart(2, '0')}`;
+      }
+      const prev = document.querySelector('#bookNavigation button[onclick="prevPage()"]');
+      const next = document.querySelector('#bookNavigation button[onclick="nextPage()"]');
+      if (prev) prev.disabled = currentStep === 0;
+      if (next) {
+        next.disabled = false;
+        const nextLabel = next.querySelector('span');
+        if (nextLabel) nextLabel.textContent = currentStep === totalSteps ? 'COVER' : 'NEXT';
+        next.setAttribute('aria-label', currentStep === totalSteps ? 'Return to cover' : 'Next page');
+      }
+    }
+
+    function turnToPage(nextStep) {
+      if (isTurningPage || nextStep < 0 || nextStep > totalSteps || nextStep === currentStep) return;
+
+      // Stop and rewind the background MP3 whenever the passport returns to its cover.
+      if (nextStep === 0) {
+        const audio = document.getElementById('weddingAudio');
+        if (audio) {
+          audio.pause();
+          audio.currentTime = 0;
+        }
+      }
+
+      isTurningPage = true;
+
+      const oldStep = currentStep;
+      const oldCard = pageCards[oldStep];
+      const direction = nextStep > oldStep ? 1 : -1;
+      const newCard = pageCards[nextStep];
+
+      // Put the destination page underneath, then turn the current sheet like a real book page.
+      newCard.classList.remove('is-turning-forward', 'is-turning-backward');
+      newCard.style.visibility = 'visible';
+      newCard.style.opacity = '1';
+      newCard.style.pointerEvents = 'auto';
+      newCard.style.zIndex = '20';
+      newCard.style.transform = '';
+      newCard.classList.add('is-active');
+
+      oldCard.classList.remove('is-active', 'is-turning-forward', 'is-turning-backward');
+      oldCard.style.visibility = 'visible';
+      oldCard.style.opacity = '1';
+      oldCard.style.pointerEvents = 'none';
+      oldCard.style.zIndex = '30';
+      oldCard.style.transform = '';
+      void oldCard.offsetWidth;
+      oldCard.classList.add(direction > 0 ? 'is-turning-forward' : 'is-turning-backward');
+
+      currentStep = nextStep;
+      playPageTurnSound();
+
+      const indicator = document.getElementById('pageIndicator');
+      if (indicator) indicator.textContent = currentStep === 0
+        ? 'Cover'
+        : `Page ${String(currentStep).padStart(2, '0')} / ${String(totalSteps).padStart(2, '0')}`;
+      const navigation = document.getElementById('bookNavigation');
+      if (navigation) navigation.style.display = currentStep === 0 ? 'none' : 'flex';
+      const prev = document.querySelector('#bookNavigation button[onclick="prevPage()"]');
+      const next = document.querySelector('#bookNavigation button[onclick="nextPage()"]');
+      if (prev) prev.disabled = currentStep === 0;
+      if (next) {
+        next.disabled = false;
+        const nextLabel = next.querySelector('span');
+        if (nextLabel) nextLabel.textContent = currentStep === totalSteps ? 'COVER' : 'NEXT';
+        next.setAttribute('aria-label', currentStep === totalSteps ? 'Return to cover' : 'Next page');
+      }
+
+      window.setTimeout(() => {
+        pageCards.forEach((card, idx) => {
+          card.classList.remove('is-turning-forward', 'is-turning-backward');
+          if (idx === currentStep) {
+            card.classList.add('is-active');
+            card.style.visibility = 'visible';
+            card.style.opacity = '1';
+            card.style.pointerEvents = 'auto';
+            card.style.zIndex = '20';
+          } else {
+            card.classList.remove('is-active');
+            card.style.visibility = 'hidden';
+            card.style.opacity = '0';
+            card.style.pointerEvents = 'none';
+            card.style.zIndex = '1';
+          }
+          card.style.transform = '';
+          card.style.filter = '';
+        });
+        isTurningPage = false;
+      }, 850);
+    }
+
+    function openPassportCover() {
+      // A user click on the monogram opens the passport and starts local MP3 audio.
+      turnToPage(1);
+      playWeddingMusic();
+    }
+
+    function playWeddingMusic() {
+      const audio = document.getElementById('weddingAudio');
+      if (!audio) return;
+      audio.volume = 0.45; // gentle background level; adjust from 0.0 to 1.0 if desired
+      const playback = audio.play();
+      if (playback && typeof playback.catch === 'function') {
+        playback.catch(() => {
+          console.warn('Wedding MP3 could not play. Check that uhaw.mp3 is beside this HTML file.');
+        });
+      }
+    }
+
+    function nextPage() { turnToPage(currentStep === totalSteps ? 0 : currentStep + 1); }
+    function prevPage() { turnToPage(currentStep - 1); }
+
+    // Keyboard Controls
+    document.addEventListener('keydown', (e) => {
+      if (e.target && e.target.matches('input, textarea, select, button')) return;
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+        if (e.key === ' ') e.preventDefault();
+        nextPage();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevPage();
+      }
+    });
+
+    // Touch gestures: ignore inputs, textareas, selects, buttons and scrollable gallery areas.
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let swipeTarget = null;
+    const book = document.getElementById('passportBook');
+
+    if (book) {
+      book.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+        swipeTarget = e.target;
+      }, { passive: true });
+
+      book.addEventListener('touchend', (e) => {
+        if (swipeTarget && swipeTarget.closest('input, textarea, select, button, a, .custom-scroll')) return;
+        const dx = e.changedTouches[0].screenX - touchStartX;
+        const dy = e.changedTouches[0].screenY - touchStartY;
+        if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.25) {
+          dx < 0 ? nextPage() : prevPage();
+        }
+      }, { passive: true });
+    }
+
+    // Lightbox Controls
+    function openLightbox(index) {
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightboxImg');
+      const cap = document.getElementById('lightboxCaption');
+
+      if (lightbox && img && cap) {
+        img.src = galleryImages[index];
+        cap.textContent = `Portrait Frame 0${index + 1} • Lopez – Gomez Nuptials`;
+        lightbox.classList.remove('hidden');
+      }
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      if (lightbox) {
+        lightbox.classList.add('hidden');
+      }
+    }
+
+
+    // Submit the custom-styled RSVP directly to Google Forms (no embedded form/iframe).
+    const GOOGLE_FORM_RESPONSE_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc5kBF0gPhggyUi8eYvPzEwrxv3CIO5WJ2ZJinECBtBGcp4IQ/formResponse";
+    const rsvpForm = document.getElementById('rsvpForm');
+    if (rsvpForm) {
+      let rsvpSubmissionLocked = false;
+
+      rsvpForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        // Prevent repeated clicks / duplicate submissions while a request is in progress.
+        if (rsvpSubmissionLocked) return;
+
+        const feedback = document.getElementById('rsvpFeedback');
+        const submit = document.getElementById('rsvpSubmit');
+        const submitText = document.getElementById('rsvpSubmitText');
+        const guests = Number(document.getElementById('rsvpGuests').value);
+
+        if (!rsvpForm.reportValidity()) return;
+        if (!Number.isInteger(guests) || guests < 1 || guests > 20) {
+          feedback.className = 'rounded-md px-2.5 py-2 text-center text-[10px] leading-relaxed bg-red-50 text-red-800 border border-red-200';
+          feedback.textContent = 'Please enter a guest count from 1 to 20.';
+          feedback.classList.remove('hidden');
+          return;
+        }
+
+        rsvpSubmissionLocked = true;
+        submit.disabled = true;
+        submit.setAttribute('aria-disabled', 'true');
+        submitText.textContent = 'SENDING...';
+        feedback.classList.add('hidden');
+
+        try {
+          const formData = new URLSearchParams();
+          for (const [key, value] of new FormData(rsvpForm).entries()) {
+            formData.append(key, String(value));
+          }
+
+          // no-cors keeps the guest on this invitation page. The browser cannot read
+          // Google's cross-origin response, so this confirms request dispatch, not
+          // independently verified storage inside Google Forms.
+          await fetch(GOOGLE_FORM_RESPONSE_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: formData
+          });
+
+          // Replace the form contents so it is hidden after submission and cannot be resent.
+          rsvpForm.innerHTML = `
+            <div class="py-6 text-center" role="status" aria-live="polite">
+              <div class="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full border border-emerald-700/30 bg-emerald-50 text-emerald-700">
+                <i class="fa-solid fa-check text-xl"></i>
+              </div>
+              <p class="font-serif text-[17px] font-bold text-[#4a0e17]">RSVP Sent!</p>
+              <p class="mt-2 text-[10px] leading-relaxed text-slate-700">Thank you for responding. We look forward to celebrating with you!</p>
+              <p class="mt-3 font-script text-xl text-[#9b7835]">With love, Richard & Lucy</p>
+            </div>`;
+        } catch (error) {
+          // Re-enable only when the browser reports a network-level failure.
+          rsvpSubmissionLocked = false;
+          feedback.className = 'rounded-md px-2.5 py-2 text-center text-[10px] leading-relaxed bg-red-50 text-red-800 border border-red-200';
+          feedback.textContent = 'Unable to send right now. Please check your connection and try again.';
+          feedback.classList.remove('hidden');
+          submit.disabled = false;
+          submit.removeAttribute('aria-disabled');
+          submitText.textContent = 'SEND MY RSVP';
+        }
+      });
+    }
+
+    // Live countdown to the wedding ceremony (browser's local time).
+    const weddingDate = new Date(2026, 11, 19, 10, 0, 0);
+    function updateWeddingCountdown() {
+      const now = new Date();
+      const remaining = weddingDate.getTime() - now.getTime();
+      const fields = {
+        days: document.getElementById('countDays'),
+        hours: document.getElementById('countHours'),
+        minutes: document.getElementById('countMinutes'),
+        seconds: document.getElementById('countSeconds')
+      };
+      const message = document.getElementById('countdownMessage');
+      if (!fields.days || !fields.hours || !fields.minutes || !fields.seconds) return;
+
+      if (remaining <= 0) {
+        fields.days.textContent = '00';
+        fields.hours.textContent = '00';
+        fields.minutes.textContent = '00';
+        fields.seconds.textContent = '00';
+        if (message) message.textContent = 'THE WEDDING DAY IS HERE!';
+        return;
+      }
+
+      const totalSeconds = Math.floor(remaining / 1000);
+      fields.days.textContent = String(Math.floor(totalSeconds / 86400)).padStart(2, '0');
+      fields.hours.textContent = String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, '0');
+      fields.minutes.textContent = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+      fields.seconds.textContent = String(totalSeconds % 60).padStart(2, '0');
+    }
+    updateWeddingCountdown();
+    window.setInterval(updateWeddingCountdown, 1000);
+
+    // 3D tilt + moving light on desktop (mouse); phones use the CSS idle sway.
+    (function () {
+      const vp = document.getElementById('passportBook');
+      if (!vp || !window.matchMedia('(hover:hover) and (pointer:fine)').matches ||
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      let raf = 0;
+      window.addEventListener('pointermove', (e) => {
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = 0;
+          const nx = e.clientX / window.innerWidth - 0.5;
+          const ny = e.clientY / window.innerHeight - 0.5;
+          vp.style.setProperty('--ry', (nx * 16).toFixed(2) + 'deg');
+          vp.style.setProperty('--rx', (-ny * 11).toFixed(2) + 'deg');
+          vp.style.setProperty('--mx', (50 + nx * 90).toFixed(0) + '%');
+          vp.style.setProperty('--my', (30 + ny * 90).toFixed(0) + '%');
+        });
+      }, { passive: true });
+      document.addEventListener('mouseleave', () => {
+        ['--rx', '--ry'].forEach(p => vp.style.setProperty(p, '0deg'));
+      });
+    })();
+
+    updatePageStates(1, false);
+	
+	// ================= COPY PROTECTION =================
+    (function () {
+      const isField = (el) => el && el.closest && el.closest('input, textarea, select');
+      const block = (e) => { if (!isField(e.target)) e.preventDefault(); };
+
+      // Block copy, cut, right-click menu, text selection start, and dragging
+      ['copy', 'cut', 'contextmenu', 'selectstart', 'dragstart'].forEach((evt) =>
+        document.addEventListener(evt, block)
+      );
+
+      // Block copy/cut even from form fields' content leaking out via the clipboard
+      document.addEventListener('copy', (e) => {
+        if (e.clipboardData) e.clipboardData.setData('text/plain', '');
+        e.preventDefault();
+      });
+
+      // Block common shortcuts: Ctrl/Cmd + C, X, A, U, S, P and F12 / DevTools combos
+      document.addEventListener('keydown', (e) => {
+        const key = e.key.toLowerCase();
+        const mod = e.ctrlKey || e.metaKey;
+        const inField = isField(e.target);
+
+        if (mod && ['c', 'x', 'a'].includes(key) && !inField) return e.preventDefault();
+        if (mod && ['u', 's', 'p'].includes(key)) return e.preventDefault();
+        if (e.key === 'F12') return e.preventDefault();
+        if (mod && e.shiftKey && ['i', 'j', 'c'].includes(key)) return e.preventDefault();
+      });
+
+      // Clear any selection that somehow appears outside form fields
+      document.addEventListener('mouseup', () => {
+        const active = document.activeElement;
+        if (!isField(active)) {
+          const sel = window.getSelection();
+          if (sel && sel.rangeCount) sel.removeAllRanges();
+        }
+      });
+    })();
+	
+  </script>
+</body>
+</html>
