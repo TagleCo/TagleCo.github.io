@@ -825,6 +825,25 @@ button:disabled {
 .pg[data-title="RSVP"] .frm .rsvp-done p{font:italic 500 20px/1.5 "Cormorant Garamond",serif !important;color:#2b2118 !important;text-shadow:none !important;margin:0;max-width:320px}
 </style>
 
+
+<style id="horizontal-envelope-centering-fix">
+/* Center the envelope horizontally only; keep the original vertical layout. */
+#envelope-overlay {
+  align-items: center !important;
+}
+#envelope-overlay .envelope-stage {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  translate: none !important;
+  align-self: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: calc(100vw - 32px) !important;
+  box-sizing: border-box !important;
+}
+</style>
+
 </head>
 <body class="font-sans antialiased text-stone-800 envelope-locked">
 
@@ -1184,7 +1203,7 @@ button:disabled {
       <p class="kick">Tap a photo to view fullscreen</p>
     </div>
   </article>
-	
+
   <article class="pg" data-title="A Moment to Remember" style="--tint:linear-gradient(180deg,color-mix(in srgb,var(--dark) 62%,transparent),color-mix(in srgb,var(--main) 42%,transparent) 45%,color-mix(in srgb,var(--dark) 88%,transparent))">
     <div class="pg-in">
       <h2 class="script" style="font-size:clamp(38px,7.4svh,60px)">A Moment to Remember</h2>
@@ -1199,7 +1218,7 @@ button:disabled {
       <p class="script" style="font-size:clamp(44px,9svh,72px);color:#ffe3a3">Save the</p>
       <h1 style="font:700 clamp(40px,8svh,64px) Cinzel,serif;letter-spacing:.2em;color:#fff">DATE</h1>
       <div class="rule"></div><p class="kick">Lopez – Gomez Nuptials</p><p class="kick">12.19.26 · La Trinidad, Benguet</p>
-      <h2 class="script" style="font-size:clamp(34px,6.6svh,54px)">With love,<br>Richard &amp; Lucy</h2>
+      <h2 class="script" style="font-size:clamp(34px,6.6svh,54px)">With love, Richard &amp; Lucy ✦</h2>
     </div>
   </article>
 </main>
